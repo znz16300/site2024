@@ -31,6 +31,10 @@ body {
   max-width: 1920px;
 }
 
+a {
+  text-decoration: none;
+}
+
 input[type='text']:focus {
   border: none;
   outline: none;
