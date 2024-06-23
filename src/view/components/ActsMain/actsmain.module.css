@@ -1,0 +1,45 @@
+.materials {
+  max-width: 1280px;
+}
+.title {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #545454;
+  width: 320px;
+  margin: 0 auto 60px;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  margin: 0 auto -55px;
+}
+
+.item {
+  margin-right: 120px;
+  margin-bottom: 55px;
+  text-align: center;
+}
+
+.image {
+  width: 10rem;
+  height: 10rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.name {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #545454;
+}

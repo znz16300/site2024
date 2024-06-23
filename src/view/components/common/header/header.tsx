@@ -1,19 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
-import * as classes from './header.module.css';
-import { MainProps } from '../../../../data/types/main-props';
+import { AppState } from '../../../../data/types/main-props';
 import LogoSVG from '../../../../assets/icon/logo.svg';
+import LogoWhiteSVG from '../../../../assets/icon/logo-white.svg';
 import NologinMessage from '../NologinMessage/NologinMessage';
+import * as classes from './header.module.css';
 
-function Header({ state, setState }: MainProps) {
+interface HeaderProps {
+  state: AppState;
+  setState: React.Dispatch<React.SetStateAction<AppState>>;
+  page: string;
+}
+
+function Header({ state, setState, page }: HeaderProps) {
+  const color = page === 'main' ? '#fff' : '#000';
+  const backgroundColor = page === 'main' ? '#000' : '#fff';
+
   return (
     <>
-      <header className={classes.header}>
+      <header
+        className={`${classes.header} ${page === 'main' ? classes.headerMain : ''}`}
+        style={{ backgroundColor, color }}>
         <Link to="/">
-          <img src={LogoSVG} alt="rs school Logo" className={classes.logo} />
+          <div className={classes.logoWrapper}>
+            <img
+              src={page !== 'main' ? LogoSVG : LogoWhiteSVG}
+              alt="rs school Logo"
+              className={classes.logo}
+            />
+          </div>
         </Link>
-        <Navbar state={state} setState={setState} />
+        <Navbar state={state} page={page} />
       </header>
       <NologinMessage state={state} setState={setState} />
     </>

@@ -6,13 +6,13 @@ function Footer() {
   return (
     <footer className={classes.footer}>
       <div className={classes.footerItem}>
-        © 2024 &quot;Galactic Exclusive&quot;. All rights reserved.
+        © 2024 &quot;Куликівський ліцей&quot;. All rights reserved.
       </div>
       <div className={`${classes.footerItem} ${classes.minimal}`}>
         <p>Contact Information:</p>
-        <Link to="tel:+90000000">
-          <p>Phone: +1 (800) 123-4567</p>
-          <p>Email: info@galacticexclusive.com</p>
+        <Link to="tel:+380464321208">
+          <p>Телефон: +38 (046) 43-2-12-08</p>
+          <p>Email: znz16300@gmail.com</p>
         </Link>
       </div>
       <div className={`${classes.footerItem} ${classes.minimal}`}>

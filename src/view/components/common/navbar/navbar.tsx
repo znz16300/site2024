@@ -1,10 +1,20 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { MainProps } from '../../../../data/types/main-props';
+import { AppState } from '../../../../data/types/main-props';
 import * as classes from './navbar.module.css';
 
-function Navbar({ state }: MainProps) {
+const SHOWLOGIN = false;
+
+interface NavbarProps {
+  state: AppState;
+  page: string;
+}
+
+function Navbar({ state, page }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const menuMainBg = page === 'main' ? classes.menuMain : '';
+  const colorText = page === 'main' ? '#fff' : '#000';
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,11 +36,11 @@ function Navbar({ state }: MainProps) {
         role="button"
         tabIndex={0}
         aria-label="Toggle menu">
-        <div className={classes.burgerBar} />
-        <div className={classes.burgerBar} />
-        <div className={classes.burgerBar} />
+        <div className={classes.burgerBar} style={{ backgroundColor: colorText }} />
+        <div className={classes.burgerBar} style={{ backgroundColor: colorText }} />
+        <div className={classes.burgerBar} style={{ backgroundColor: colorText }} />
       </div>
-      <div className={`${classes.menu} ${isOpen ? classes.show : ''}`}>
+      <div className={`${classes.menu} ${menuMainBg} ${isOpen ? classes.show : ''}`}>
         <Link to="/" onClick={toggleMenu}>
           Головна
         </Link>
@@ -40,26 +50,30 @@ function Navbar({ state }: MainProps) {
         <Link to="/documents" onClick={toggleMenu}>
           Документи
         </Link>
-        {!state.userLoggedIn && (
-          <>
-            <Link to="/signup" onClick={toggleMenu}>
-              Реєстрація
-            </Link>
-            <Link to="/login" onClick={toggleMenu}>
-              Увійти
-            </Link>
-          </>
-        )}
-        {state.userLoggedIn && (
-          <>
-            <Link to="/logout" onClick={toggleMenu}>
-              Вийти
-            </Link>
-            <Link to="/profile" onClick={toggleMenu}>
-              Профіль
-            </Link>
-          </>
-        )}
+        <Link to="/acts" onClick={toggleMenu}>
+          Діяльність
+        </Link>
+        {SHOWLOGIN &&
+          (!state.userLoggedIn ? (
+            <>
+              <Link to="/signup" onClick={toggleMenu}>
+                Реєстрація
+              </Link>
+              <Link to="/login" onClick={toggleMenu}>
+                Увійти
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/logout" onClick={toggleMenu}>
+                Вийти
+              </Link>
+              <Link to="/profile" onClick={toggleMenu}>
+                Профіль
+              </Link>
+            </>
+          ))}
+
         <Link to="/about" onClick={toggleMenu}>
           Контакти
         </Link>

@@ -5,20 +5,22 @@
   background: transparent;
   border: 1px solid teal;
   cursor: pointer;
-  border: none;
-  border-radius: 1rem;
-  width: 15rem;
+  border-radius: 5rem;
+  width: auto;
+  min-width: 15rem;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.5);
   transition: 0.4s all ease-in;
-}
-
-.btn-center {
-  margin-top: 5rem;
+  font-size: 1.8rem;
+  margin-top: 2rem;
 }
 
 .btn:hover {
   background-color: rgb(255, 255, 255);
+}
+
+.btn-center {
+  margin-top: 5rem;
 }
 
 .btnYes {

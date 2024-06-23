@@ -1,0 +1,15 @@
+.materials {
+  background-color: var(--gray-bg-color);
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  width: 100%;
+
+  .title {
+    width: 90%;
+    text-align: center;
+  }
+}

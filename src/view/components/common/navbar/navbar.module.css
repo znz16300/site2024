@@ -11,7 +11,7 @@
   a {
     margin-right: 25px;
     text-decoration: none;
-    color: black;
+    color: inherit;
     transition: 0.4s all ease-in;
   }
   a img:hover {
@@ -19,7 +19,7 @@
   }
 
   a:hover {
-    color: rgb(83, 139, 126);
+    color: #02282b;
   }
 }
 
@@ -34,12 +34,12 @@
   flex-direction: column;
   cursor: pointer;
   transition: transform 0.4s ease-in-out;
+  color: inherit;
 }
 
 .burgerBar {
   width: 25px;
   height: 3px;
-  background-color: black;
   margin: 4px 0;
   transition: 0.4s;
 }
@@ -77,6 +77,11 @@
       margin-left: 0;
       margin-right: 0;
     }
+  }
+
+  .menuMain {
+    background: url('../../../../assets/img/noise_transparent@2x.png'),
+      linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
   }
 
   .menu.show {

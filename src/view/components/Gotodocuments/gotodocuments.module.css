@@ -1,0 +1,68 @@
+.greeting {
+  color: var(--primary-text-color);
+  background-color: var(--default-bg-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  flex: 2 1;
+
+  .textContent {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    /* color: var(--primary-text-color); */
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 5rem;
+    }
+  }
+  .subtitle {
+    text-indent: 3rem;
+    margin-top: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .picture {
+    background-image: url('../../../assets/img/kab3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 40rem;
+    height: 50rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.catalogButton {
+  font-size: 2rem;
+  color: var(--light-text-color);
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
+  min-width: 15rem;
+  padding: 1rem 3rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: 0.4s all ease-in;
+  margin-top: 5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.catalogButton:hover {
+  background-color: var(--body-text-color);
+}
+
+@media (max-width: 430px) {
+  .picture {
+    display: none;
+  }
+}

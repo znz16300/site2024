@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyButton from '../../components/common/Button/Button';
+import MyButton from '../common/Button/Button';
 import * as classes from './greeting.module.css';
 
 function Greeting() {

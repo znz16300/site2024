@@ -1,12 +1,12 @@
 .greeting {
-  background-color: rgb(33, 51, 51);
+  background: url('../../../assets/img/noise_transparent@2x.png'),
+    linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
   color: var(--light-text-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   padding: 2rem;
-  gap: 2rem;
   flex: 2 1;
 
   .textContent {
@@ -29,7 +29,6 @@
     margin-top: 1rem;
     font-size: 2.5rem;
   }
-  
 
   .picture {
     background-image: url('../../../assets/img/school.png');
@@ -37,7 +36,6 @@
     background-size: cover;
     min-width: 40rem;
     height: 50rem;
-    border-radius: 2rem;
   }
 }
 
@@ -50,7 +48,7 @@
 
 .catalogButton {
   font-size: 2rem;
-  color: var(--accent-color);
+  color: var(--light-text-color);
   background: transparent;
   border: 1px solid var(--accent-color);
   cursor: pointer;
@@ -65,13 +63,11 @@
 }
 
 .catalogButton:hover {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--body-text-color);
 }
-
 
 @media (max-width: 430px) {
   .picture {
     display: none;
   }
 }
-
