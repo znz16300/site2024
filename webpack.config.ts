@@ -77,8 +77,11 @@ const config: Configuration = {
     new EslintPlugin({ extensions: ['ts', '.tsx'] }),
     new FaviconsWebpackPlugin('./src/assets/icon/favicon.png'),
     new CopyWebpackPlugin({
-      patterns: [{ from: './src/assets/', to: './assets/' }, { from: './public/', to: './' },]
-    }),
+      patterns: [
+        { from: './src/assets/', to: './assets/' },
+        { from: './public/', to: './' }
+      ]
+    })
   ]
 };
 
