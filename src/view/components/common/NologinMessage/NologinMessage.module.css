@@ -1,4 +1,5 @@
 .nologin {
+  top: 8rem;
   position: absolute;
   padding: 0.5rem;
   display: flex;
@@ -14,8 +15,6 @@
   font-size: 1.2rem;
   a {
     padding-left: 2rem;
-    text-decoration: none;
-    color: var(--primary-text-color);
   }
 }
 .button {
@@ -27,6 +26,7 @@
   border: none;
   right: 1rem;
   z-index: 700;
+  cursor: pointer;
 }
 
 .hide {

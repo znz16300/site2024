@@ -14,8 +14,8 @@ interface HeaderProps {
 }
 
 function Header({ state, setState, page }: HeaderProps) {
-  const color = page === 'main' ? '#fff' : '#000';
-  const backgroundColor = page === 'main' ? '#000' : '#fff';
+  const color = page === 'main' ? 'var(--light-text-color)' : 'var(--primary-text-color)';
+  const backgroundColor = page === 'main' ? 'var(--dark-bg-color)' : 'var(--default-bg-color';
 
   return (
     <>

@@ -2,10 +2,6 @@
   max-width: 1280px;
 }
 .title {
-  font-family: Georgia;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 35px;
   line-height: 130%;
   letter-spacing: 0.06em;
   text-align: center;
@@ -22,14 +18,22 @@
 }
 
 .item {
-  margin-right: 120px;
-  margin-bottom: 55px;
+  margin: 2rem 4rem;
+  gap: 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.item:active {
+  background-color: rgba(200, 200, 200, 0.5);
 }
 
 .image {
@@ -39,10 +43,7 @@
   background-size: contain;
 }
 .name {
-  font-family: Georgia;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
+  font-size: 1.8rem;
   line-height: 115%;
   letter-spacing: 0.06em;
   text-align: center;

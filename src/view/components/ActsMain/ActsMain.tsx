@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as classes from './actsmain.module.css';
 
 import img1 from '../../../assets/icon/acts/5.png';
@@ -31,20 +31,21 @@ const images: Record<string, string> = {
 // }
 
 function ActsMain() {
+  const navigate = useNavigate();
   return (
     <section className={classes.materials}>
       <h2 className={classes.title}>Діяльність</h2>
       <div className={classes.list}>
         {actsData.map((btn) => (
-          <Link key={btn.id} to={btn.url}>
-            <div className={classes.item}>
-              <div
-                className={classes.image}
-                style={{ backgroundImage: `url(${images[btn.image]})` }}
-              />
-              <div className={classes.name}>{btn.title}</div>
-            </div>
-          </Link>
+          // <Link key={btn.id} to={btn.url}>
+          <button type="button" className={classes.item} onClick={() => navigate(btn.url)}>
+            <div
+              className={classes.image}
+              style={{ backgroundImage: `url(${images[btn.image]})` }}
+            />
+            <div className={classes.name}>{btn.title}</div>
+          </button>
+          // </Link>
         ))}
       </div>
     </section>

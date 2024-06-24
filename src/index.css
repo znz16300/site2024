@@ -1,10 +1,11 @@
 :root {
   --accent-color: rgb(14, 165, 233);
   --default-bg-color: rgb(255, 255, 255);
-  --primary-text-color: rgb(17, 24, 39);
+  --primary-text-color: rgb(84, 84, 84);
   --body-text-color: rgb(75, 85, 99);
   --light-text-color: rgb(248, 248, 248);
   --gray-bg-color: rgba(248, 248, 248, 0.5);
+  --dark-bg-color: rgb(75, 85, 99);
   --border-color: rgb(229, 231, 235);
 }
 
@@ -27,6 +28,7 @@ body {
   font-size: 1.8rem;
   font-family: 'Poppins', sans-serif;
   background-color: var(--default-bg-color);
+  color: var(--primary-text-color);
   width: 100%;
   max-width: 1920px;
 }
@@ -38,4 +40,8 @@ a {
 input[type='text']:focus {
   border: none;
   outline: none;
+}
+
+h2 {
+  margin: 2rem 2rem;
 }

@@ -27,22 +27,5 @@
       font-size: 3rem;
       font-weight: 600;
     }
-
-    .button {
-      font-size: 1rem;
-      text-transform: uppercase;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #7e7474;
-      margin-top: 20px;
-      text-decoration: none;
-      font-weight: 600;
-      color: #000;
-      transition: 0.2s all ease-in;
-    }
-    .button:hover {
-      cursor: pointer;
-      background-color: rgb(177, 96, 58);
-    }
   }
 }

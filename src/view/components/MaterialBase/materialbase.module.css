@@ -1,6 +1,5 @@
 .materials {
   background-color: var(--gray-bg-color);
-  color: var(--primary-text-color);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -11,5 +10,6 @@
   .title {
     width: 90%;
     text-align: center;
+    margin-bottom: 2rem;
   }
 }
