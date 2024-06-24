@@ -49,7 +49,6 @@ const config: Configuration = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
     clean: true,
     compareBeforeEmit: true
   },
