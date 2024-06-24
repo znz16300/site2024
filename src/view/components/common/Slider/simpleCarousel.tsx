@@ -19,9 +19,6 @@ interface SimpleCarouselProps {
 }
 
 export default function SimpleCarousel({ slides, settings }: SimpleCarouselProps) {
-  // eslint-disable-next-line no-console
-  console.log(slides);
-
   return (
     <Slider className={classes.container} {...settings}>
       {slides.map((slide) => (

@@ -38,7 +38,11 @@ function ActsMain() {
       <div className={classes.list}>
         {actsData.map((btn) => (
           // <Link key={btn.id} to={btn.url}>
-          <button type="button" className={classes.item} onClick={() => navigate(btn.url)}>
+          <button
+            type="button"
+            key={btn.id}
+            className={classes.item}
+            onClick={() => navigate(btn.url)}>
             <div
               className={classes.image}
               style={{ backgroundImage: `url(${images[btn.image]})` }}

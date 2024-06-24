@@ -5,7 +5,7 @@ import AppRoutes from './AppRoutes';
 
 function App() {
   const [state, setState] = useState<AppState>({
-    showMsg: true,
+    showMsg: false,
     userLoggedIn: false,
     productsAmount: 42,
     changesInCart: 0,
