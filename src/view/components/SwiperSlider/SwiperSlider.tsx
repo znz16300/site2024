@@ -5,8 +5,12 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import SwiperCore from 'swiper';
 
 import * as classes from './swiperSlider.module.css';
+
+// Завантажуємо необхідні модулі Swiper
+SwiperCore.use([]);
 
 interface Slide {
   id: string;
@@ -20,13 +24,14 @@ interface SwiperSliderProps {
 
 function SwiperSlider({ slides }: SwiperSliderProps) {
   const grabCursor = true;
-  const centeredSlides = true;
+  const centeredSlides = false; // Вимикаємо центрування слайдів
   const loop = true;
-  const slidesPerView = 2; // Кількість видимих слайдів
-  const spaceBetween = 1; // Відстань між слайдами
+  const slidesPerView = 3; // Показуємо одночасно 3 слайди
+  const spaceBetween = 10; // Відстань між слайдами
 
   return (
     <Swiper
+      className={classes.swiper}
       spaceBetween={spaceBetween}
       effect="coverflow"
       grabCursor={grabCursor}
@@ -40,7 +45,7 @@ function SwiperSlider({ slides }: SwiperSliderProps) {
         modifier: 2.5
       }}
       pagination={{ clickable: true }}
-      navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }}>
+      navigation>
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>
           <div>
@@ -49,7 +54,7 @@ function SwiperSlider({ slides }: SwiperSliderProps) {
           </div>
         </SwiperSlide>
       ))}
-      ,{/* Додайте більше компонентів SwiperSlide за потреби */}
+      <div className="swiper-pagination" />
     </Swiper>
   );
 }
