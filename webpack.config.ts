@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import EslintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import 'webpack-dev-server';
 
 const config: Configuration = {
@@ -74,7 +75,10 @@ const config: Configuration = {
       filename: '[name].[contenthash].css'
     }),
     new EslintPlugin({ extensions: ['ts', '.tsx'] }),
-    new FaviconsWebpackPlugin('./src/assets/icon/favicon.png')
+    new FaviconsWebpackPlugin('./src/assets/icon/favicon.png'),
+    new CopyWebpackPlugin({
+      patterns: [{ from: './src/assets/', to: './assets/' }, { from: './public/', to: './' },]
+    }),
   ]
 };
 
