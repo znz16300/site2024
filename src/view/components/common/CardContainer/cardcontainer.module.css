@@ -1,10 +1,15 @@
 .cardContainer {
+  background-color: var(--gray-bg-color);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   justify-content: space-evenly;
   gap: 2rem;
   padding: 2rem 1rem;
   width: 100%;
+
+  .title {
+    width: 20%;
+  }
 
   .noProduct {
     align-items: center;

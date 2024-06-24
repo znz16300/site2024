@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -12,15 +13,41 @@ interface NewsCardProps {
   goToNews: (id: string) => void;
 }
 
+function extractIdFromUrl(url: string) {
+  const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
+  return match ? match[1] : null;
+}
+
+function imagesFromField(inputString: string) {
+  if (inputString) {
+    const elementsArray: string[] = inputString.split(/[\s,\n]+/);
+    if (elementsArray) {
+      const result: string[] = elementsArray.map((item) => {
+        if (item.indexOf('https://drive.google.com/open?id=') === 0) {
+          return `https://drive.usercontent.google.com/download?id=${extractIdFromUrl(item)}&export=view&authuser=0`;
+        }
+        if (item.indexOf('http') === 0) {
+          return item;
+        }
+        return `https://znz16300.github.io/site/img-news/${item}`;
+      });
+      return result;
+    }
+  }
+  return null;
+}
+
 function NewsCard({ news, goToNews }: NewsCardProps) {
+  console.log(imagesFromField(news['Фото']));
+  const images: string[] | null = imagesFromField(news['Фото']);
+  const img1: string | null = images ? images[0] : null;
+  const backgroundImage: string = img1 ? `url(${img1})` : 'unset';
   return (
     <div id={news.id} className={classes.card} onClick={() => goToNews(news.id)}>
       <div
         className={classes.image}
         style={{
-          backgroundImage:
-            // eslint-disable-next-line prettier/prettier, quotes
-            `url('https://nus.org.ua/wp-content/uploads/2019/07/Kyyiv-vzhe-obladnav-novi-pershi-klasy-NUSH-meblyamy-na-65.jpg')`
+          backgroundImage
         }}
       />
       <h4 className={classes.cardTitle}>{news['Назва новини']}</h4>

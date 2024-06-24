@@ -26,7 +26,7 @@ const transformData = (input: ResponseNews): DataObject[] => {
     result.push(row);
   }
   console.log('result', result);
-  return result;
+  return result.reverse();
 };
 
 function responseToNews(sheetName: string, responseNews: ResponseNews[]) {

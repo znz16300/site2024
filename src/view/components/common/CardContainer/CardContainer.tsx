@@ -14,25 +14,28 @@ interface CardContainesProps {
 
 function CardContaines({ data, goToNews }: CardContainesProps) {
   return (
-    <div className={classes.cardContainer}>
-      {data && data.length > 0 ? (
-        data.map((item: DataObject) => {
-          return (
-            <NewsCard
-              // eslint-disable-next-line react/no-array-index-key
-              key={item.id}
-              news={item}
-              goToNews={() => goToNews('0')}
-            />
-          );
-        })
-      ) : (
-        <div className={classes.noProduct}>
-          {/* <img src={NoProductImg} alt="no products" /> */}
-          <h2>NO PRODUCTS FOUND</h2>
-        </div>
-      )}
-    </div>
+    <>
+      <h2 className={classes.title}>Останні новини Куликівського ліцею</h2>
+      <div className={classes.cardContainer}>
+        {data && data.length > 0 ? (
+          data.map((item: DataObject) => {
+            return (
+              <NewsCard
+                // eslint-disable-next-line react/no-array-index-key
+                key={item.id}
+                news={item}
+                goToNews={() => goToNews('0')}
+              />
+            );
+          })
+        ) : (
+          <div className={classes.noProduct}>
+            {/* <img src={NoProductImg} alt="no products" /> */}
+            <h2>NO PRODUCTS FOUND</h2>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
