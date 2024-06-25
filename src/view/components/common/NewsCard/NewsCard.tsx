@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import * as classes from './NewsCard.module.css';
+import imagesFromField from '../../../../data/utils/imgPathUtils';
 
 interface DataObject {
   [key: string]: string;
@@ -10,30 +11,6 @@ interface DataObject {
 interface NewsCardProps {
   news: DataObject;
   goToNews: (id: string) => void;
-}
-
-function extractIdFromUrl(url: string) {
-  const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
-  return match ? match[1] : null;
-}
-
-function imagesFromField(inputString: string) {
-  if (inputString) {
-    const elementsArray: string[] = inputString.split(/[\s,\n]+/);
-    if (elementsArray) {
-      const result: string[] = elementsArray.map((item) => {
-        if (item.indexOf('https://drive.google.com/open?id=') === 0) {
-          return `https://drive.usercontent.google.com/download?id=${extractIdFromUrl(item)}&export=view&authuser=0`;
-        }
-        if (item.indexOf('http') === 0) {
-          return item;
-        }
-        return `https://znz16300.github.io/site/img-news/${item}`;
-      });
-      return result;
-    }
-  }
-  return null;
 }
 
 function NewsCard({ news, goToNews }: NewsCardProps) {

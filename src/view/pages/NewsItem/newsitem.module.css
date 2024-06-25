@@ -2,26 +2,41 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
 
-  .container > :nth-child(1),
-  .container > :nth-child(3) {
-    flex: 0 0 auto;
-  }
-  .news {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1 1 auto;
+.container> :nth-child(1),
+.container> :nth-child(3) {
+  flex: 0 0 auto;
+}
 
-    .title {
-      font-size: 12rem;
-    }
+.news {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+}
 
-    .subtitle {
-      font-size: 3rem;
-      font-weight: 600;
-    }
-  }
+.title {
+  font-size: 12rem;
+}
+
+.subtitle {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.btnBlock {
+  display: flex;
+  gap: 5rem;
+}
+
+.description {
+  width: 80%;
+  padding: 1rem;
+}
+
+.img {
+  width: 40%;
 }

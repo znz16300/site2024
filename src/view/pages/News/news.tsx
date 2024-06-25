@@ -61,30 +61,32 @@ function News({ state, setState }: MainProps) {
 
   return (
     <div className={classes.newsWrapper}>
-      {!loading && data ? (
-        idKey !== null ? (
-          <NewsItem state={state} setState={setState} id={idKey} />
+      <Header state={state} setState={setState} page={page} />
+      <main className={classes.news}>
+        {!loading && data ? (
+          idKey !== null ? (
+            <NewsItem news={data.find((item) => item.id === idKey)} />
+          ) : (
+            <>
+              <CardContainer
+                data={data}
+                goToNews={(id: string) => goToNews(id)}
+                offset={offset}
+                itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              />
+              <PaginationBlock
+                activeId={activePaginationBtn}
+                itemsPerPage={ITEMS_PER_PAGE_NEWS}
+                onClickHandler={(e) => offsetHandler(e)}
+                state={state}
+              />
+            </>
+          )
         ) : (
-          <main className={classes.news}>
-            <Header state={state} setState={setState} page={page} />
-            <CardContainer
-              data={data}
-              goToNews={(id: string) => goToNews(id)}
-              offset={offset}
-              itemsPerPage={ITEMS_PER_PAGE_NEWS}
-            />
-            <PaginationBlock
-              activeId={activePaginationBtn}
-              itemsPerPage={ITEMS_PER_PAGE_NEWS}
-              onClickHandler={(e) => offsetHandler(e)}
-              state={state}
-            />
-            <Footer />
-          </main>
-        )
-      ) : (
-        <Loader />
-      )}
+          <Loader />
+        )}
+      </main>
+      <Footer />
     </div>
   );
 }

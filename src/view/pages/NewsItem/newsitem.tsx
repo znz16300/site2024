@@ -1,24 +1,44 @@
 import React from 'react';
-import Header from '../../components/common/header/header';
-import { AppState } from '../../../data/types/main-props';
-import Footer from '../../components/common/footer/footer';
 import * as classes from './newsitem.module.css';
+import imagesFromField from '../../../data/utils/imgPathUtils';
+import Button from '../../components/common/Button/Button';
 
-const page = 'newsitem';
-
-interface NewsItemProps {
-  state: AppState;
+interface DataObject {
   id: string;
-  setState: React.Dispatch<React.SetStateAction<AppState>>;
+  [key: string]: string;
 }
 
-function NewsItem({ state, id, setState }: NewsItemProps) {
+interface NewsItemProps {
+  news: DataObject | null | undefined;
+}
+
+function NewsItem({ news }: NewsItemProps) {
+  let img1: string | undefined | null = '';
+  if (news) {
+    const images: string[] | null | undefined = imagesFromField(news['Фото']);
+    img1 = images ? images[0] : null;
+  }
   return (
-    <div className={classes.newsWrapper}>
-      <Header state={state} setState={setState} page={page} />
-      <main className={classes.news}>News One {id}</main>
-      <Footer />
-    </div>
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {news ? (
+        <>
+          <h2>{news['Назва новини']}</h2>
+          {img1 ? <img className={classes.img} src={img1} alt="" /> : null}
+          <div
+            className={classes.description}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: news['Текст новини'] }}
+          />
+          <div className={classes.btnBlock}>
+            <Button>Попередня новина</Button>
+            <Button>Наступна новина</Button>
+          </div>
+        </>
+      ) : (
+        <h2>Новини не існує</h2>
+      )}
+    </>
   );
 }
 
