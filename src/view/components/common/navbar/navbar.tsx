@@ -41,16 +41,16 @@ function Navbar({ state, page }: NavbarProps) {
         <div className={classes.burgerBar} style={{ backgroundColor: colorText }} />
       </div>
       <div className={`${classes.menu} ${menuMainBg} ${isOpen ? classes.show : ''}`}>
-        <Link to="/site2024/" onClick={toggleMenu}>
+        <Link to="/" onClick={toggleMenu}>
           Головна
         </Link>
-        <Link to="/site2024/news" onClick={toggleMenu}>
+        <Link to="/news" onClick={toggleMenu}>
           Новини
         </Link>
-        <Link to="/site2024/documents" onClick={toggleMenu}>
+        <Link to="/documents" onClick={toggleMenu}>
           Документи
         </Link>
-        <Link to="/site2024/acts" onClick={toggleMenu}>
+        <Link to="/acts" onClick={toggleMenu}>
           Діяльність
         </Link>
         {SHOWLOGIN &&
@@ -74,7 +74,7 @@ function Navbar({ state, page }: NavbarProps) {
             </>
           ))}
 
-        <Link to="/site2024/about" onClick={toggleMenu}>
+        <Link to="/about" onClick={toggleMenu}>
           Контакти
         </Link>
       </div>
