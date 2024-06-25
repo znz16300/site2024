@@ -16,6 +16,7 @@
   position: relative;
   height: 40rem;
   border: 1px solid;
+  max-width: 30rem;
 
   .image {
     height: 25rem;
