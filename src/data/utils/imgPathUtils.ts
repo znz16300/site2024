@@ -14,7 +14,7 @@ export default function imagesFromField(inputString: string) {
         if (item.indexOf('http') === 0) {
           return item;
         }
-        return `https://znz16300.github.io/site/img-news/${item}`;
+        return `./img-news/${item}`;
       });
       return result;
     }

@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/common/header/header';
 import { MainProps } from '../../../data/types/main-props';
 import Footer from '../../components/common/footer/footer';
@@ -21,17 +21,13 @@ interface DataObject {
   [key: string]: string;
 }
 
-function goToNews(id: string) {
-  // eslint-disable-next-line no-console
-  console.log('показуємо новину', id);
-}
-
 function News({ state, setState }: MainProps) {
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const idKey = searchParams.get('id');
   // eslint-disable-next-line no-console
@@ -51,6 +47,12 @@ function News({ state, setState }: MainProps) {
     fetchData();
     setLoading(false);
   }, []);
+
+  function goToNews(id: string) {
+    // eslint-disable-next-line no-console
+    console.log('показуємо новину', id);
+    navigate(`/news?id=${id}`);
+  }
 
   function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (e.currentTarget) {
