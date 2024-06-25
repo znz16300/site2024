@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -38,7 +37,6 @@ function imagesFromField(inputString: string) {
 }
 
 function NewsCard({ news, goToNews }: NewsCardProps) {
-  console.log(imagesFromField(news['Фото']));
   const images: string[] | null = imagesFromField(news['Фото']);
   const img1: string | null = images ? images[0] : null;
   const backgroundImage: string = img1 ? `url(${img1})` : 'unset';

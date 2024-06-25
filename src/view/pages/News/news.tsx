@@ -8,8 +8,10 @@ import { ResponseNews } from '../../../data/types/interfaces/INews';
 import Loader from '../../components/common/Loader/Loader';
 import CardContainer from '../../components/common/CardContainer/CardContainer';
 import responseToNews from '../../../data/utils/responseToNews';
+import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 
 const page = 'news';
+export const ITEMS_PER_PAGE_NEWS = 8;
 
 interface DataObject {
   id: string;
@@ -24,6 +26,8 @@ function goToNews() {
 function News({ state, setState }: MainProps) {
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [offset, setOffset] = useState<number>(0);
+  const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +48,27 @@ function News({ state, setState }: MainProps) {
     <div className={classes.newsWrapper}>
       <Header state={state} setState={setState} page={page} />
       <main className={classes.news}>
-        {!loading && data ? <CardContainer data={data} goToNews={goToNews} /> : <Loader />}
+        {!loading && data ? (
+          <>
+            <CardContainer
+              data={data}
+              goToNews={goToNews}
+              offset={offset}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+            />
+            <PaginationBlock
+              activeId={activePaginationBtn}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              onClickHandler={(e) => {
+                setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+                setActivePaginationBtn(+e.currentTarget.id);
+              }}
+              state={state}
+            />
+          </>
+        ) : (
+          <Loader />
+        )}
       </main>
       <Footer />
     </div>

@@ -9,24 +9,23 @@ interface DataObject {
 
 interface CardContainesProps {
   data: DataObject[];
+  offset: number;
+  itemsPerPage: number;
   goToNews: (id: string) => void;
 }
 
-function CardContaines({ data, goToNews }: CardContainesProps) {
+function CardContaines({ data, offset, itemsPerPage, goToNews }: CardContainesProps) {
+  // eslint-disable-next-line no-console
+  console.log(offset, itemsPerPage);
+  const sliceData: DataObject[] = data.slice(offset, offset + itemsPerPage);
+
   return (
     <>
       <h2 className={classes.title}>Останні новини Куликівського ліцею</h2>
       <div className={classes.cardContainer}>
-        {data && data.length > 0 ? (
-          data.map((item: DataObject) => {
-            return (
-              <NewsCard
-                // eslint-disable-next-line react/no-array-index-key
-                key={item.id}
-                news={item}
-                goToNews={() => goToNews('0')}
-              />
-            );
+        {sliceData && sliceData.length > 0 ? (
+          sliceData.map((item: DataObject) => {
+            return <NewsCard key={item.id} news={item} goToNews={() => goToNews('0')} />;
           })
         ) : (
           <div className={classes.noProduct}>
