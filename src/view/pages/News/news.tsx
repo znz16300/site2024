@@ -52,37 +52,39 @@ function News({ state, setState }: MainProps) {
     setLoading(false);
   }, []);
 
+  function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (e.currentTarget) {
+      setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+      setActivePaginationBtn(+e.currentTarget.id);
+    }
+  }
+
   return (
     <div className={classes.newsWrapper}>
-      <Header state={state} setState={setState} page={page} />
-      <main className={classes.news}>
-        {!loading && data ? (
-          idKey !== null ? (
-            <NewsItem state={state} setState={setState} id={idKey} />
-          ) : (
-            <>
-              <CardContainer
-                data={data}
-                goToNews={(id: string) => goToNews(id)}
-                offset={offset}
-                itemsPerPage={ITEMS_PER_PAGE_NEWS}
-              />
-              <PaginationBlock
-                activeId={activePaginationBtn}
-                itemsPerPage={ITEMS_PER_PAGE_NEWS}
-                onClickHandler={(e) => {
-                  setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
-                  setActivePaginationBtn(+e.currentTarget.id);
-                }}
-                state={state}
-              />
-            </>
-          )
+      {!loading && data ? (
+        idKey !== null ? (
+          <NewsItem state={state} setState={setState} id={idKey} />
         ) : (
-          <Loader />
-        )}
-      </main>
-      <Footer />
+          <main className={classes.news}>
+            <Header state={state} setState={setState} page={page} />
+            <CardContainer
+              data={data}
+              goToNews={(id: string) => goToNews(id)}
+              offset={offset}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+            />
+            <PaginationBlock
+              activeId={activePaginationBtn}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              onClickHandler={(e) => offsetHandler(e)}
+              state={state}
+            />
+            <Footer />
+          </main>
+        )
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }
