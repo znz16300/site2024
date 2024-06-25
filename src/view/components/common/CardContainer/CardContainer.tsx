@@ -25,7 +25,7 @@ function CardContaines({ data, offset, itemsPerPage, goToNews }: CardContainesPr
       <div className={classes.cardContainer}>
         {sliceData && sliceData.length > 0 ? (
           sliceData.map((item: DataObject) => {
-            return <NewsCard key={item.id} news={item} goToNews={() => goToNews('0')} />;
+            return <NewsCard key={item.id} news={item} goToNews={(id: string) => goToNews(id)} />;
           })
         ) : (
           <div className={classes.noProduct}>
