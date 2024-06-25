@@ -15,8 +15,11 @@ function AppRoutes({ state, setState }: AppRoutesProps) {
   return (
     <Routes>
       <Route path="/" element={<Main state={state} setState={setState} />} />
+      {/* <Route path="/site2024" element={<Main state={state} setState={setState} />} /> */}
       <Route path="/news" element={<News state={state} setState={setState} />} />
+      {/* <Route path="/site2024/news" element={<News state={state} setState={setState} />} /> */}
       <Route path="/about" element={<About state={state} setState={setState} />} />
+      {/* <Route path="/site2024/about" element={<About state={state} setState={setState} />} /> */}
       {/* <Route path="/catalog" element={<Catalog state={state} setState={setState} />} />
       <Route path="/about" element={<About state={state} setState={setState} />} />
       <Route path="/signup" element={<Signup state={state} setState={setState} />} />

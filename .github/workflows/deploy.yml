@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages  # або інша гілка, яку ви використовуєте
+      - gh-pages # або інша гілка, яку ви використовуєте
 
 jobs:
   build-and-deploy:
