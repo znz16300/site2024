@@ -6,6 +6,7 @@
   align-items: center;
   padding: 2rem;
   flex: 2 1;
+  gap: 4rem;
 
   .textContent {
     max-width: 50%;

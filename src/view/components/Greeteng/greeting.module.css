@@ -4,11 +4,12 @@
   color: var(--light-text-color);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 4rem;
   flex: 2 1;
   gap: 4rem;
+  width: 100%;
 
   .textContent {
     max-width: 50%;
@@ -47,8 +48,6 @@
     height: 50rem;
   }
 }
-
-
 
 .catalogButton {
   font-size: 2rem;
