@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 // import RibbonImages from '../RibbonImages/ribbonImages';
 import PreviewImageComponent from '../PreviewImageComponent/PreviewImageComponent';
@@ -5,6 +6,7 @@ import * as classes from './NewsImagesViewer.module.css';
 import imgPathUtils from '../../../data/utils/imgPathUtils';
 import RibbonImages from '../RibbonImages/ribbonImages';
 import noImage from '../../../assets/img/no-image.png';
+import ImageModal from '../common/ImageModal/ImageModal';
 
 interface DataObject {
   id: string;
@@ -78,62 +80,79 @@ function NewsImagesViewer({ news }: NewsImagesViewerProps) {
 
   return (
     <section className={classes.container}>
-      <div className={classes.wrapper}>
+      <div
+        className={classes.wrapper}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}>
         <div className={classes.card}>
           {isImage ? (
-            <div
-              className={classes.slider}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}>
-              {leftVisible ? (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                <button
-                  type="button"
-                  className={`${classes.sliderBtn} ${classes.sliderBtnLeft}`}
-                  onClick={() => slideLeft()}
-                />
-              ) : (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                <button
-                  type="button"
-                  className={`${classes.sliderBtn} ${classes.sliderBtnDisabled}`}
-                />
-              )}
-              <div className={classes.sliderWrapper}>
-                {images.map((img, index) => (
-                  <PreviewImageComponent
-                    key={img}
-                    index={0}
-                    isSelected={activImage === index}
-                    onClick={() => selectImage(index)}
-                    imgUrl={img}
+            <>
+              <div className={classes.slider}>
+                {leftVisible ? (
+                  // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                  <button
+                    type="button"
+                    className={`${classes.sliderBtn} ${classes.sliderBtnLeft}`}
+                    onClick={() => slideLeft()}
                   />
-                ))}
+                ) : (
+                  // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                  <button
+                    type="button"
+                    className={`${classes.sliderBtn} ${classes.sliderBtnDisabled}`}
+                  />
+                )}
+                <div className={classes.sliderWrapper}>
+                  {images.map((img, index) => (
+                    <PreviewImageComponent
+                      key={img}
+                      index={0}
+                      isSelected={activImage === index}
+                      onClick={() => selectImage(index)}
+                      imgUrl={img}
+                    />
+                  ))}
+                </div>
+
+                {rightVisible ? (
+                  // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                  <button
+                    type="button"
+                    className={`${classes.sliderBtn} ${classes.sliderBtnRight}`}
+                    onClick={() => slideRight()}
+                  />
+                ) : (
+                  // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                  <button
+                    type="button"
+                    className={`${classes.sliderBtn} ${classes.sliderBtnRight} ${classes.sliderBtnDisabled}`}
+                  />
+                )}
               </div>
-              {rightVisible ? (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                <button
-                  type="button"
-                  className={`${classes.sliderBtn} ${classes.sliderBtnRight}`}
-                  onClick={() => slideRight()}
-                />
-              ) : (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                <button
-                  type="button"
-                  className={`${classes.sliderBtn} ${classes.sliderBtnRight} ${classes.sliderBtnDisabled}`}
-                />
-              )}
-            </div>
+              <ImageModal
+                images={images}
+                modal={modal}
+                setModal={setModal}
+                isImage={isImage}
+                leftVisible={leftVisible}
+                rightVisible={rightVisible}
+                slideLeft={slideLeft}
+                slideRight={slideRight}
+                modalShow={() => setModal(true)}
+                activImage={activImage}
+              />
+            </>
           ) : null}
           <div className={classes.preview}>
             {isImage ? (
-              <RibbonImages
-                activImage={activImage}
-                images={images}
-                setModal={() => setModal(true)}
-              />
+              !modal && (
+                <RibbonImages
+                  activImage={activImage}
+                  images={images}
+                  setModal={() => setModal(true)}
+                />
+              )
             ) : (
               <img className={classes.previewNoimage} src={noImage} alt="no aviable" />
             )}

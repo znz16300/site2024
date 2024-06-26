@@ -13,23 +13,23 @@
     width: 30%;
     padding: 1rem;
   }
-
 }
 
 @media (max-width: 768px) {
   .newsWrapper {
     flex-direction: column;
-  .sliderBlock {
-    width: 90%;
-  }
+    .sliderBlock {
+      width: 90%;
+    }
 
-  .description {
-    width: 90%;
-  }}
+    .description {
+      width: 90%;
+    }
+  }
 }
 
-.container> :nth-child(1),
-.container> :nth-child(3) {
+.container > :nth-child(1),
+.container > :nth-child(3) {
   flex: 0 0 auto;
 }
 
@@ -55,8 +55,6 @@
   display: flex;
   gap: 5rem;
 }
-
-
 
 .img {
   height: 30%;

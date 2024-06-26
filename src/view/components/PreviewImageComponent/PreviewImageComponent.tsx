@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import * as classes from './previewImg.module.css';
 
@@ -14,7 +16,6 @@ function PreviewImageComponent({ index, imgUrl, isSelected, onClick }: ImageProp
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       className={`${classes.sliderImgContainer} ${isSelected ? classes.active : ''}`}
       onClick={handleClick}>

@@ -3,12 +3,13 @@ import React, { ReactNode } from 'react';
 import * as cl from './modal.module.css';
 
 interface ModalProps {
+  background: string;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   children: ReactNode;
 }
 
-function Modal({ children, visible, setVisible }: ModalProps) {
+function Modal({ background, children, visible, setVisible }: ModalProps) {
   const rootClasses = [cl.modal];
   if (visible) {
     rootClasses.push(cl.active);
@@ -16,6 +17,7 @@ function Modal({ children, visible, setVisible }: ModalProps) {
 
   return (
     <div
+      style={{ background }}
       className={rootClasses.join(' ')}
       onClick={() => setVisible(false)}
       onKeyDown={() => setVisible(false)}>
