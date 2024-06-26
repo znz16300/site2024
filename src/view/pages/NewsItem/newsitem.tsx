@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as classes from './newsitem.module.css';
 import imagesFromField from '../../../data/utils/imgPathUtils';
 import Button from '../../components/common/Button/Button';
+import Newsimagesviewer from '../../components/NewsImagesViewer/Newsimagesviewer';
 
 interface DataObject {
   id: string;
@@ -41,6 +42,7 @@ function NewsItem({ news }: NewsItemProps) {
       {news ? (
         <>
           <h2>{news['Назва новини']}</h2>
+          <Newsimagesviewer news={news} />
           {img1 ? <img className={classes.img} src={img1} alt="" /> : null}
           <div
             className={classes.description}

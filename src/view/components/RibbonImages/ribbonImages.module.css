@@ -1,0 +1,37 @@
+.ribbon {
+  display: flex;
+  height: 100%;
+  white-space: nowrap;
+  transition: all 0.5s ease-in-out;
+}
+.ribbonImgContainer {
+  flex: 1; /* Робить всі внутрішні контейнери однакової ширини */
+  overflow: hidden; /* Обрізає вміст, що виходить за межі контейнера */
+  display: flex;
+  justify-content: center; /* Вирівнює зображення по горизонталі по центру */
+  align-items: center; /* Вирівнює зображення по вертикалі по центру */
+  position: relative;
+}
+
+.ribbonImg {
+  height: 100%; /* Зображення вписується по висоті контейнера */
+  object-fit: cover; /* Обрізає лівий і правий краї зображення, якщо його ширина перевищує ширину контейнера */
+  position: absolute;
+}
+.previewNoimage {
+  width: 100%;
+  height: auto;
+}
+.ribbonImg img:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 460px) {
+  .ribbonImgContainer {
+    padding: 0;
+  }
+  .ribbonImgContainer:last-child {
+    margin-right: 0;
+  }
+}

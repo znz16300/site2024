@@ -1,0 +1,21 @@
+.sliderImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  border-top: 2px solid transparent;
+
+  .sliderImg {
+    width: 98%;
+    max-height: 10rem;
+  }
+
+  .sliderImg:hover,
+  .sliderImg:focus {
+    cursor: pointer;
+  }
+}
+
+.active {
+  border-top: 2px solid var(--accent-color);
+}
