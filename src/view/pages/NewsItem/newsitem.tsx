@@ -2,7 +2,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as classes from './newsitem.module.css';
-import imagesFromField from '../../../data/utils/imgPathUtils';
 import Button from '../../components/common/Button/Button';
 import Newsimagesviewer from '../../components/NewsImagesViewer/Newsimagesviewer';
 
@@ -17,11 +16,7 @@ interface NewsItemProps {
 
 function NewsItem({ news }: NewsItemProps) {
   const navigate = useNavigate();
-  let img1: string | undefined | null = '';
-  if (news) {
-    const images: string[] | null | undefined = imagesFromField(news['Фото']);
-    img1 = images ? images[0] : null;
-  }
+
   function handlePrev(): void {
     if (news) {
       const newId = parseInt(news.id, 10) - 1;
@@ -42,13 +37,16 @@ function NewsItem({ news }: NewsItemProps) {
       {news ? (
         <>
           <h2>{news['Назва новини']}</h2>
-          <Newsimagesviewer news={news} />
-          {img1 ? <img className={classes.img} src={img1} alt="" /> : null}
-          <div
-            className={classes.description}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: news['Текст новини'] }}
-          />
+          <div className={classes.newsWrapper}>
+            <div className={classes.sliderBlock}>
+              <Newsimagesviewer news={news} />
+            </div>
+            <div
+              className={classes.description}
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: news['Текст новини'] }}
+            />
+          </div>
           <div className={classes.btnBlock}>
             <Button onClick={handlePrev}>Попередня новина</Button>
             <Button onClick={handleNext}>Наступна новина</Button>

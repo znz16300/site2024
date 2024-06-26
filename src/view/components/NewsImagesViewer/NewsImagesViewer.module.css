@@ -22,7 +22,7 @@
       justify-content: center;
       grid-template:
         'slider' 1fr
-        'preview' 7fr;
+        'preview' 4fr;
       gap: 2rem;
       padding: 1.5rem;
 
@@ -67,7 +67,7 @@
 }
 
 .preview {
-  height: 50vh;
+  /* height: 50vh; */
   width: 100%;
   overflow: hidden;
 }

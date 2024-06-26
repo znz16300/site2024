@@ -33,11 +33,12 @@ function NewsImagesViewer({ news }: NewsImagesViewerProps) {
         if (arrImages) {
           setImages(arrImages);
           setIsImage(true);
+          setActivImage(0);
         }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [news]);
 
   const selectImage = (index: number) => {
     setActivImage(index);
@@ -46,11 +47,15 @@ function NewsImagesViewer({ news }: NewsImagesViewerProps) {
   };
 
   function slideLeft(): void {
-    setActivImage(activImage - 1);
+    if (activImage > 0) {
+      selectImage(activImage - 1);
+    }
   }
 
   function slideRight(): void {
-    setActivImage(activImage + 1);
+    if (activImage < images.length - 1) {
+      selectImage(activImage + 1);
+    }
   }
 
   const onTouchStart = (e: React.TouchEvent) => {
