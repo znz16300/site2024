@@ -12,13 +12,15 @@ interface PlainContainerProps {
 
 function PlainContainer({ data }: PlainContainerProps) {
   return (
-    <>
+    <div className={classes.description}>
       {data.map((item: DataObject) => (
-        <div className={classes.paragraph} key={item.id}>
-          {item['Абзац']}
-        </div>
+        <div
+          key={item.id}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: item['Абзац'] }}
+        />
       ))}
-    </>
+    </div>
   );
 }
 

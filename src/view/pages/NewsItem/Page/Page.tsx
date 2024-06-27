@@ -60,10 +60,10 @@ function Page({ state, setState }: MainProps) {
       <Header state={state} setState={setState} page={page} />
       <main className={classes.content}>
         {!loading && data ? (
-          <div>
+          <>
             <h2>{idTitle}</h2>
             <PageContainer data={data} />
-          </div>
+          </>
         ) : (
           <Loader />
         )}
