@@ -170,6 +170,7 @@
     .header-module__title___d_rDV {
       font-size: 1.2rem;
       text-decoration: none;
+      color: var(--primary-text-color);
     }
     .header-module__logo___ELQMU {
       width: 6rem;
@@ -1641,7 +1642,6 @@
   padding: 0.5rem;
   background-color: var(--default-bg-color);
   transition: 0.4s all ease-in-out;
-
 }
 
 .card-module__imgBlock___V0_q4 {
@@ -1649,16 +1649,16 @@
   background-size: contain;
   width: 29rem;
   height: 30rem;
-  
 }
-  .card-module__card___KLNj2:hover {
-    cursor: pointer;
-    box-shadow: 3px 3px lightgrey;
-  }
-  .card-module__card___KLNj2:active {
-    cursor: pointer;
-    box-shadow: 0 0 3px 3px lightgrey;
-  }
+.card-module__card___KLNj2:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px lightgrey;
+}
+.card-module__card___KLNj2:active {
+  cursor: pointer;
+  box-shadow: 0 0 3px 3px lightgrey;
+}
+
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
