@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -39,7 +40,7 @@ function News({ state, setState }: MainProps) {
       if (responseData) {
         const trData: DataObject[] | null = responseToNews('Аркуш1', responseData, true);
         if (trData) {
-          setData(trData);
+          setData(trData.filter((item) => item['show'] && item['show'] === '1'));
         }
       }
     };
