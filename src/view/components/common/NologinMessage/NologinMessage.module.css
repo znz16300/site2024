@@ -19,7 +19,7 @@
 }
 .button {
   position: absolute;
-  background-image: url('../../../../assets/icon/cross.svg');
+  background-image: url('../../../../assets/icons/cross.svg');
   background-size: cover;
   width: 2rem;
   height: 2rem;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 function extractIdFromUrl(url: string) {
   const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
   return match ? match[1] : null;
@@ -12,6 +13,12 @@ export default function imagesFromField(inputString: string) {
           return `https://drive.usercontent.google.com/download?id=${extractIdFromUrl(item)}&export=view&authuser=0`;
         }
         if (item.indexOf('http') === 0) {
+          return item;
+        }
+        if (item.indexOf('./assets') === 0) {
+          return item;
+        }
+        if (item.indexOf('./img-pages') === 0) {
           return item;
         }
         return `./img-news/${item}`;

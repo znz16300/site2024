@@ -23,13 +23,16 @@ const transformData = (input: ResponseNews): DataObject[] => {
     row.id = `${rowIndex}`;
     result.push(row);
   }
-  return result.reverse();
+  return result;
 };
 
-function responseToNews(sheetName: string, responseNews: ResponseNews[]) {
+function responseToNews(sheetName: string, responseNews: ResponseNews[], reverse = false) {
   const sheet: ResponseNews | undefined = responseNews.find((item) => item.templFile === sheetName);
   if (sheet) {
     const trans = transformData(sheet);
+    if (reverse) {
+      return trans.reverse();
+    }
     return trans;
   }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
 import { AppState } from '../../../../data/types/main-props';
-import LogoSVG from '../../../../assets/icon/logo.svg';
-import LogoWhiteSVG from '../../../../assets/icon/logo-white.svg';
+import LogoSVG from '../../../../assets/icons/logo.svg';
+import LogoWhiteSVG from '../../../../assets/icons/logo-white.svg';
 import NologinMessage from '../NologinMessage/NologinMessage';
 import * as classes from './header.module.css';
 

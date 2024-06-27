@@ -46,17 +46,17 @@
           border: none;
           width: 2rem;
           background-color: rgba(255, 255, 255, 0.1);
-          background-image: url('../../../assets/icon/arrow_back.svg');
+          background-image: url('../../../assets/icons/arrow_back.svg');
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center center;
           transition: all 0.4s ease-in-out;
         }
         .sliderBtnLeft {
-          background-image: url('../../../assets/icon/arrow_back.svg');
+          background-image: url('../../../assets/icons/arrow_back.svg');
         }
         .sliderBtnRight {
-          background-image: url('../../../assets/icon/arrow_forward.svg');
+          background-image: url('../../../assets/icons/arrow_forward.svg');
         }
         .sliderBtnDisabled {
           opacity: 0.5;

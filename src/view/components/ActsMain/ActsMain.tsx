@@ -2,14 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as classes from './actsmain.module.css';
 
-import img1 from '../../../assets/icon/acts/5.png';
-import img2 from '../../../assets/icon/acts/menu1.png';
-import img3 from '../../../assets/icon/acts/11.png';
-import img4 from '../../../assets/icon/acts/9.png';
-import img5 from '../../../assets/icon/acts/2.png';
-import img6 from '../../../assets/icon/acts/6.png';
-import img7 from '../../../assets/icon/acts/7.png';
-import img8 from '../../../assets/icon/acts/10.png';
+import img1 from '../../../assets/icons/acts/5.png';
+import img2 from '../../../assets/icons/acts/menu1.png';
+import img3 from '../../../assets/icons/acts/11.png';
+import img4 from '../../../assets/icons/acts/9.png';
+import img5 from '../../../assets/icons/acts/2.png';
+import img6 from '../../../assets/icons/acts/6.png';
+import img7 from '../../../assets/icons/acts/7.png';
+import img8 from '../../../assets/icons/acts/10.png';
 import actsData from '../../../data/types/actsData';
 
 const images: Record<string, string> = {

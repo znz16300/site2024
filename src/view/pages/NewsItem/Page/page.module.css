@@ -15,6 +15,7 @@
     justify-content: flex-start;
     flex: 1 1 auto;
     padding: 1rem;
+    background-color: var(--gray-bg-color);
 
     .title {
       font-size: 12rem;

@@ -5,7 +5,7 @@ import PreviewImageComponent from '../PreviewImageComponent/PreviewImageComponen
 import * as classes from './NewsImagesViewer.module.css';
 import imgPathUtils from '../../../data/utils/imgPathUtils';
 import RibbonImages from '../RibbonImages/ribbonImages';
-import noImage from '../../../assets/img/no-image.png';
+import noImage from '../../../assets/images/no-image.png';
 import ImageModal from '../common/ImageModal/ImageModal';
 
 interface DataObject {

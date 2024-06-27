@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
-import PlainContainer from './PlainContainer';
-import TiledContainer from './TiledContainer';
+import * as classes from './page.module.css';
+import Card from './Card';
 
 interface DataObject {
   id: string;
@@ -13,15 +13,21 @@ interface PageContainerProps {
 }
 
 function PageContainer({ data }: PageContainerProps) {
-  let tiled = false;
-
-  console.log(data[0]);
-  if (data[0]) {
-    tiled = data[0]['Тип (1 - картки, 2- абзаци)'] === '1';
-  }
-  console.log('tiled', tiled);
-
-  return !tiled ? <PlainContainer data={data} /> : <TiledContainer data={data} />;
+  return (
+    <div className={classes.wrapper}>
+      {data.map((item: DataObject) =>
+        item['Тип (1 - картки, 2- абзаци)'] === '1' ? (
+          <Card data={item} />
+        ) : (
+          <div
+            key={item.id}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: item['Абзац'] }}
+          />
+        )
+      )}
+    </div>
+  );
 }
 
 export default PageContainer;

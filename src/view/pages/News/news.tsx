@@ -37,7 +37,7 @@ function News({ state, setState }: MainProps) {
     const fetchData = async () => {
       const responseData: ResponseNews[] | null = await getNews(false);
       if (responseData) {
-        const trData: DataObject[] | null = responseToNews('Аркуш1', responseData);
+        const trData: DataObject[] | null = responseToNews('Аркуш1', responseData, true);
         if (trData) {
           setData(trData);
         }

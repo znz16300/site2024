@@ -1,5 +1,5 @@
 .greeting {
-  background: url('../../../assets/img/noise_transparent@2x.png'),
+  background: url('../../../assets/images/noise_transparent@2x.png'),
     linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
   color: var(--light-text-color);
   display: flex;
@@ -40,7 +40,7 @@
   }
 
   .picture {
-    background-image: url('../../../assets/img/school.png');
+    background-image: url('../../../assets/images/school.png');
     background-repeat: no-repeat;
     background-size: cover;
     min-width: 40rem;
