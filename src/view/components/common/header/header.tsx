@@ -29,6 +29,9 @@ function Header({ state, setState, page }: HeaderProps) {
               alt="rs school Logo"
               className={classes.logo}
             />
+            <div className={classes.title} style={{ color }}>
+              Куликіський ліцей
+            </div>
           </div>
         </Link>
         <Navbar state={state} page={page} />

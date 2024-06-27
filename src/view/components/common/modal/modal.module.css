@@ -1,19 +1,17 @@
 .modal {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: none;
-  /* background: rgba(0, 0, 0, 0.5); */
   z-index: 11000;
+  background: lightblue;
+  border-radius: 1rem;
 }
 
 .modalContent {
   padding: 2rem;
-  /* background: white; */
   border-radius: 1.5rem;
-  /* min-width: 150rem; */
 }
 
 .modal.active {

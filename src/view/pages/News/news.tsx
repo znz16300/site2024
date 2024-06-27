@@ -11,7 +11,7 @@ import Loader from '../../components/common/Loader/Loader';
 import CardContainer from '../../components/common/CardContainer/CardContainer';
 import responseToNews from '../../../data/utils/responseToNews';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
-import NewsItem from '../NewsItem/newsitem';
+import NewsItem from '../../components/NewsItem/newsitem';
 
 const page = 'news';
 export const ITEMS_PER_PAGE_NEWS = 8;

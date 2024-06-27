@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .container > :nth-child(1),
+  .container > :nth-child(3) {
+    flex: 0 0 auto;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    padding: 1rem;
+    background-color: var(--gray-bg-color);
+
+    .title {
+      font-size: 12rem;
+    }
+
+    .subtitle {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+  }
+}

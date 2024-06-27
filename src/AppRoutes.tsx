@@ -5,7 +5,8 @@ import Notfound from './view/pages/NotFound/not-found';
 import { AppState } from './data/types/main-props';
 import News from './view/pages/News/news';
 import About from './view/pages/About/about';
-import Page from './view/pages/NewsItem/Page/Page';
+import Page from './view/pages/Page/Page';
+import Documents from './view/pages/Documents/Documents';
 // import NewsOne from './view/pages/NewsOne/newsone';
 
 interface AppRoutesProps {
@@ -34,6 +35,7 @@ function AppRoutes({ state, setState }: AppRoutesProps) {
       <Route path="/news" element={<News state={state} setState={setState} />} />
       <Route path="/page" element={<Page state={state} setState={setState} />} />
       <Route path="/about" element={<About state={state} setState={setState} />} />
+      <Route path="/documents" element={<Documents state={state} setState={setState} />} />
       <Route
         path="/acts"
         element={
@@ -56,12 +58,6 @@ function AppRoutes({ state, setState }: AppRoutesProps) {
         path="/materials"
         element={
           <RedirectToPage path="/page?titlePages=Матеріально-технічна%20база%20закладу&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI" />
-        }
-      />
-      <Route
-        path="/contacts"
-        element={
-          <RedirectToPage path="/page?titlePages=Контакти&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI" />
         }
       />
 
