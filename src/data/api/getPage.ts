@@ -5,7 +5,7 @@ import axios from 'axios';
 import responseToNews from '../utils/responseToNews';
 import { ResponseNews } from '../types/interfaces/INews';
 
-interface TableNews {
+interface Table {
   tableName: string;
   sheetName: string;
   title: string;
@@ -14,6 +14,10 @@ interface TableNews {
 interface DataObject {
   id: string;
   [key: string]: string;
+}
+
+interface IPageCache {
+  [key: string]: ResponseNews[] | null;
 }
 
 function cachToData(title: string, cache: ResponseNews[] | null): DataObject[] | null {
@@ -27,23 +31,31 @@ function cachToData(title: string, cache: ResponseNews[] | null): DataObject[] |
   return null;
 }
 
-let pageCache: ResponseNews[] | null = null;
+const pageCache: IPageCache = {
+  empty: null
+};
 
-async function getPage(force: boolean, tableNews: TableNews) {
-  console.log('Прийшов заголовок ', tableNews.title);
-  if (!pageCache || force) {
+async function getPage(force: boolean, tableNews: Table) {
+  console.log('pageCache ', pageCache);
+  if (force || !pageCache[tableNews.tableName]) {
     try {
       const response = await axios.get(
         `https://schooltools.pythonanywhere.com/getmultiblock/${tableNews.tableName}`
       );
-      pageCache = response.data;
+      const resp: ResponseNews[] | null = response.data;
+      if (resp) {
+        pageCache[tableNews.tableName] = resp;
+      }
     } catch (err) {
       return null;
     }
   }
-  const result = cachToData(tableNews.title, pageCache);
-  console.log(result);
-  return result;
+
+  if (pageCache[tableNews.tableName]) {
+    const result = cachToData(tableNews.title, pageCache[tableNews.tableName]);
+    return result;
+  }
+  return null;
 }
 
 export default getPage;

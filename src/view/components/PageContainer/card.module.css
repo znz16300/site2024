@@ -5,6 +5,8 @@
   border: none;
   padding: 0.5rem;
   background-color: var(--default-bg-color);
+  transition: 0.4s all ease-in-out;
+
 }
 
 .imgBlock {
@@ -12,4 +14,13 @@
   background-size: contain;
   width: 29rem;
   height: 30rem;
+  
 }
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px lightgrey;
+  }
+  .card:active {
+    cursor: pointer;
+    box-shadow: 0 0 3px 3px lightgrey;
+  }

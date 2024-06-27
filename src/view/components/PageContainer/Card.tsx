@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as classes from './card.module.css';
 import imagesFromField from '../../../data/utils/imgPathUtils';
 import getQueryParams from '../../../data/utils/getQueryParams';
+import noImage from '../../../assets/images/vector-documents-icon.jpg';
 
 interface DataObject {
   id: string;
@@ -25,7 +26,7 @@ function Card({ data }: CardProps) {
       }
     }
   };
-  const image = imagesFromField(data['Фото']);
+  const image = imagesFromField(data['Фото']) || noImage;
   const url = data['Кнопка з посиланням'];
   // eslint-disable-next-line prefer-const
   let urlToNavigate: string = '';

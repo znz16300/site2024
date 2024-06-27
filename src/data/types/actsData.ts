@@ -3,7 +3,7 @@ const actsData = [
     id: '1',
     title: 'Вчителі',
     image: '5.png',
-    url: './teachers'
+    url: '/page?titlePages=Учительська&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '2',
@@ -15,43 +15,43 @@ const actsData = [
     id: '3',
     title: 'Самоврядування',
     image: '11.png',
-    url: './municipality'
+    url: '/page?titlePages=Самоврядування&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '4',
     title: 'Бібліотека',
     image: '9.png',
-    url: './library'
+    url: '/page?titlePages=Бібліотека&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '5',
     title: 'Методична робота',
     image: '2.png',
-    url: './methodological'
+    url: '/page?titlePages=Методична%20робота&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '6',
     title: 'Фінансова інформація',
     image: '6.png',
-    url: './finances'
+    url: '/page?titlePages=Фінансова%20інформація&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '7',
     title: 'Дистанційне навчання',
     image: '7.png',
-    url: './distance-learning'
+    url: '/page?titlePages=Дистанційне%20навчання&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '8',
     title: 'Протидія булінгу',
     image: '10.png',
-    url: './buling'
+    url: '/page?titlePages=Протидія%20булінгу&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   },
   {
     id: '9',
     title: 'Виховна робота',
     image: '11.png',
-    url: './educational-activities'
+    url: '/page?titlePages=Виховна%20робота&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI'
   }
 ];
 

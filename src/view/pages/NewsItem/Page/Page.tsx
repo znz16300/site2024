@@ -51,7 +51,7 @@ function Page({ state, setState }: MainProps) {
     setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idTitle]);
+  }, [idTitle, idTable]);
 
   console.log(data);
 
