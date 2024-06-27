@@ -5,6 +5,7 @@ import Notfound from './view/pages/NotFound/not-found';
 import { AppState } from './data/types/main-props';
 import News from './view/pages/News/news';
 import About from './view/pages/About/about';
+import Page from './view/pages/NewsItem/Page/Page';
 // import NewsOne from './view/pages/NewsOne/newsone';
 
 interface AppRoutesProps {
@@ -17,6 +18,7 @@ function AppRoutes({ state, setState }: AppRoutesProps) {
     <Routes>
       <Route path="/" element={<Main state={state} setState={setState} />} />
       <Route path="/news" element={<News state={state} setState={setState} />} />
+      <Route path="/page" element={<Page state={state} setState={setState} />} />
       <Route path="/about" element={<About state={state} setState={setState} />} />
       {/* <Route path="/news/item/:id" element={<NewsOne state={state} setState={setState} />} /> */}
       {/* <Route path="/news" element={<About state={state} setState={setState} />} /> */}

@@ -50,7 +50,9 @@ function Navbar({ state, page }: NavbarProps) {
         <Link to="/documents" onClick={toggleMenu}>
           Документи
         </Link>
-        <Link to="/acts" onClick={toggleMenu}>
+        <Link
+          to="/page?titlePages=Діяльність&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI"
+          onClick={toggleMenu}>
           Діяльність
         </Link>
         {SHOWLOGIN &&
@@ -74,7 +76,9 @@ function Navbar({ state, page }: NavbarProps) {
             </>
           ))}
 
-        <Link to="/about" onClick={toggleMenu}>
+        <Link
+          to="/page?titlePages=Контакти&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI"
+          onClick={toggleMenu}>
           Контакти
         </Link>
       </div>
