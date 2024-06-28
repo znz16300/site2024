@@ -11,13 +11,14 @@ function SearchBar({ search, onChange }: SearchProps) {
   return (
     <div className={classes.wrapper}>
       <label className={classes.label} htmlFor="sort">
-        Search:&nbsp;
+        Пошук:&nbsp;
         <input
           id="search"
           type="text"
           value={search}
           onChange={onChange}
           className={classes.input}
+          placeholder=" почніть уводити "
         />
       </label>
     </div>

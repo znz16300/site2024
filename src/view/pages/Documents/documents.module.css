@@ -18,7 +18,6 @@
     background-color: var(--gray-bg-color);
 
     .title {
-
     }
 
     .subtitle {
@@ -31,6 +30,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
+
     }
   }
 }

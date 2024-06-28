@@ -83,20 +83,23 @@ function CardDocument({ data }: CardProps) {
             urlsToNavigate.length === 1 ? goToPage(urlsToNavigate[0]) : goToModal(urlsToNavigate)
           }>
           <div className={classes.imgBlock} style={{ backgroundImage: `url(${image})` }} />
-          {title}
+          <h4>{title}</h4>
         </button>
       ) : null}
       {visible ? (
-        <Modal background="var(--gray-bg-color)" visible={visible} setVisible={setVisible}>
-          <button
-            className={classes.btn}
-            type="button"
-            style={{
-              backgroundImage: `url('${cross}')`
-            }}
-            onClick={() => setVisible(false)}
-            aria-label="close"
-          />
+        <Modal background="rgb(248, 248, 248)" visible={visible} setVisible={setVisible}>
+          <div className={classes.btnContainer}>
+            <button
+              className={classes.btn}
+              type="button"
+              style={{
+                backgroundImage: `url('${cross}')`
+              }}
+              onClick={() => setVisible(false)}
+              aria-label="close"
+            />
+          </div>
+
           <ul>
             {urls.map((item, index) => (
               <li key={item}>
@@ -111,9 +114,3 @@ function CardDocument({ data }: CardProps) {
 }
 
 export default CardDocument;
-/*
-https://docs.google.com/forms/d/e/1FAIpQLScQf3nU3fBL49wHU7Lg1KCK8RQijuGY6kbGW2TYHPO14YUI8g/viewform
-./kursi.html
-./page.html?titlePages=Атестація%20педагогічних%20працівників%202023-2024%20н.р.&keyPages=1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI
-`/page?titlePages=${1}&keyPages=${1}`
-*/

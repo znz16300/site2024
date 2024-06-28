@@ -12,9 +12,8 @@
     "prettier": "prettier . --write",
     "lint": "eslint . --ext .tsx --fix",
     "prepare": "husky",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "postdeploy": "node copy404.js"
+    "predeploy": "npm run build && node copy404.js",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",

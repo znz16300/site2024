@@ -5,8 +5,11 @@
   transform: translate(-50%, -50%);
   display: none;
   z-index: 11000;
-  background: lightblue;
   border-radius: 1rem;
+}
+a {
+  text-decoration: none;
+  color: var(--body-text-color);
 }
 
 .modalContent {

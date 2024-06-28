@@ -6,6 +6,10 @@
   padding: 0.5rem;
   background-color: var(--default-bg-color);
   transition: 0.4s all ease-in-out;
+  color: var(--default-text-color);
+  h4 {
+    font-size: 1.5rem;
+  }
 }
 
 .imgBlock {
@@ -29,11 +33,17 @@ li {
   list-style: none;
 }
 
+.btnContainer {
+  position: relative
+}
+
 .btn {
-  align-self: right;
   background-size: contain;
   background-color: unset;
   width: 3rem;
   height: 3rem;
   border: none;
+  position: absolute;
+  top: -4.5rem;
+  right: -4.5rem;
 }
