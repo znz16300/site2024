@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-console */
@@ -33,7 +34,7 @@ function CardDocument({ data }: CardProps) {
   };
 
   // eslint-disable-next-line prettier/prettier
-  const namePhoto = 'Фото (необов\'язково)';
+  const namePhoto = "Фото (необов'язково)";
   const nameTitle = 'Назва документу';
   const nameLink1 = 'Посилання на документ (якщо більше одного, то через кому)';
   const nameLink2 = 'Файл(и) документу';
