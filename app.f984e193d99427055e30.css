@@ -1081,6 +1081,7 @@
 
 .PaginationBlock-module__paginationBtn___rX9uB:disabled {
   cursor: default;
+  background-color: lightpink;
   box-shadow:
     4px 4px 6px 0 var(--light-shadow),
     -4px -4px 6px 0 var(--dark-shadow),
@@ -1667,6 +1668,12 @@ li {
       font-size: 3rem;
       font-weight: 600;
     }
+
+    .documents-module__barWrapper___a3_0g {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
 
@@ -1722,6 +1729,50 @@ li {
   width: 3rem;
   height: 3rem;
   border: none;
+}
+
+/*!******************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/SortBar/SortBar.module.css ***!
+  \******************************************************************************************************************************/
+.SortBar-module__wrapper___A88Pj {
+  align-self: flex-end;
+  font-size: 1.3rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.SortBar-module__select___G_6hM {
+  font-size: inherit;
+  outline: transparent;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  width: 90px;
+  padding: 0.2rem;
+  cursor: pointer;
+  background-color: var(--default-bg-color);
+  color: var(--body-text-color);
+}
+
+/*!**********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/SearchBar/searchBar.module.css ***!
+  \**********************************************************************************************************************************/
+.searchBar-module__wrapper___svaQU {
+  align-self: flex-end;
+  font-size: 1.3rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.searchBar-module__input___V_uXI {
+  font-size: inherit;
+  outline: transparent;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  width: 30rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  background-color: var(--default-bg-color);
+  color: var(--body-text-color);
 }
 
 /*!*****************************************************************!*\
