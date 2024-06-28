@@ -7,8 +7,8 @@ import { AppState } from '../../../data/types/main-props';
 import Header from '../../components/common/header/header';
 import Loader from '../../components/common/Loader/Loader';
 import Footer from '../../components/common/footer/footer';
-import PageContainer from '../../components/PageContainer/PageContainer';
 import getDocuments from '../../../data/api/getDocuments';
+import PageDocumentContainer from '../../components/PageDocumentContainer/PageDocumentContainer';
 
 const page = 'documents';
 export const ITEMS_PER_PAGE_NEWS = 8;
@@ -63,7 +63,7 @@ function Documents({ state, setState }: DocumentsProps) {
         {!loading && data ? (
           <>
             <h2>Документи</h2>
-            <PageContainer data={data} documents={true} />
+            <PageDocumentContainer data={data} />
           </>
         ) : (
           <Loader />

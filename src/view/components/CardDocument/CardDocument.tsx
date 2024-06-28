@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as classes from './card.module.css';
+import * as classes from './cardDocument.module.css';
 import imagesFromField from '../../../data/utils/imgPathUtils';
 import noImage from '../../../assets/images/vector-documents-icon.jpg';
 import Modal from '../common/modal/modal';
@@ -15,12 +15,11 @@ interface DataObject {
 }
 
 interface CardProps {
-  documents: boolean;
   data: DataObject;
 }
 
-function Card({ documents, data }: CardProps) {
-  console.log(documents);
+function CardDocument({ data }: CardProps) {
+  console.log(data);
 
   const navigate = useNavigate();
   const goToPage = (path: string) => {
@@ -32,11 +31,18 @@ function Card({ documents, data }: CardProps) {
       }
     }
   };
-  const title = data['Назва документу'];
+
   // eslint-disable-next-line prettier/prettier
-  const image = imagesFromField(data['Фото (необов\'язково)']) || noImage;
-  const urls1 = data['Посилання на документ (якщо більше одного, то через кому)'];
-  const urls2 = data['Файл(и) документу'];
+  const namePhoto = 'Фото (необов\'язково)';
+  const nameTitle = 'Назва документу';
+  const nameLink1 = 'Посилання на документ (якщо більше одного, то через кому)';
+  const nameLink2 = 'Файл(и) документу';
+
+  const title = data[nameTitle];
+  // eslint-disable-next-line prettier/prettier
+  const image = imagesFromField(data[namePhoto]) || noImage;
+  const urls1 = data[nameLink1];
+  const urls2 = data[nameLink2];
 
   // eslint-disable-next-line @typescript-eslint/dot-notation
   const show = data['show'] || '0';
@@ -51,6 +57,7 @@ function Card({ documents, data }: CardProps) {
       }
     }
   };
+
   addUrls(urls1);
   addUrls(urls2);
 
@@ -102,7 +109,7 @@ function Card({ documents, data }: CardProps) {
   );
 }
 
-export default Card;
+export default CardDocument;
 /*
 https://docs.google.com/forms/d/e/1FAIpQLScQf3nU3fBL49wHU7Lg1KCK8RQijuGY6kbGW2TYHPO14YUI8g/viewform
 ./kursi.html

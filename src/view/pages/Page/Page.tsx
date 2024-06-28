@@ -67,7 +67,7 @@ function Page({ state, setState }: PageProps) {
         {!loading && data ? (
           <>
             <h2>{idTitle}</h2>
-            <PageContainer data={data} documents={false} />
+            <PageContainer data={data} />
           </>
         ) : (
           <Loader />
