@@ -931,41 +931,6 @@
   }
 }
 
-/*!****************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/NotFound/not-found.module.css ***!
-  \****************************************************************************************************************************/
-.not-found-module__notFoundWrapper___eSzXc {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  .not-found-module__container___dNicd > :nth-child(1),
-  .not-found-module__container___dNicd > :nth-child(3) {
-    flex: 0 0 auto;
-  }
-
-  .not-found-module__notFound___YwRJQ {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: url(e86a5dce180e03320078.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    flex: 1 1 auto;
-
-    .not-found-module__title___yhqlM {
-      font-size: 12rem;
-    }
-
-    .not-found-module__subtitle____iXsD {
-      font-size: 3rem;
-      font-weight: 600;
-    }
-  }
-}
-
 /*!*******************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/News/news.module.css ***!
   \*******************************************************************************************************************/
