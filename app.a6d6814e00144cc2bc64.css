@@ -252,7 +252,7 @@
   flex-direction: column;
   align-items: center;
   gap: 5rem;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
   min-height: 85vh;
 }
 
@@ -1064,7 +1064,7 @@
   gap: 0.5rem;
   padding: 0 1rem;
   width: 50%;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .PaginationBlock-module__paginationBtn___rX9uB {
@@ -1736,7 +1736,6 @@ li {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-
     }
   }
 }
@@ -1791,7 +1790,7 @@ li {
 }
 
 .cardDocument-module__btnContainer___dXUaF {
-  position: relative
+  position: relative;
 }
 
 .cardDocument-module__btn___UNw_v {
@@ -1803,6 +1802,41 @@ li {
   position: absolute;
   top: -4.5rem;
   right: -4.5rem;
+}
+
+/*!*********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Login/login.module.css ***!
+  \*********************************************************************************************************************/
+.login-module__notFoundWrapper___HcmSw {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .login-module__container___b833w > :nth-child(1),
+  .login-module__container___b833w > :nth-child(3) {
+    flex: 0 0 auto;
+  }
+
+  .login-module__notFound___qW75n {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url(e86a5dce180e03320078.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1 1 auto;
+
+    .login-module__title___h49FE {
+      font-size: 12rem;
+    }
+
+    .login-module__subtitle___VeKBV {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+  }
 }
 
 /*!*****************************************************************!*\
