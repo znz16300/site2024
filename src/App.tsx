@@ -7,7 +7,7 @@ function App() {
   const [state, setState] = useState<AppState>({
     showMsg: false,
     userLoggedIn: false,
-    productsAmount: 42,
+    productsAmount: 420,
     changesInCart: 0,
     history: []
     // here we can add new parameters

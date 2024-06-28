@@ -26,6 +26,7 @@
 
 .paginationBtn:disabled {
   cursor: default;
+  background-color: lightpink;
   box-shadow:
     4px 4px 6px 0 var(--light-shadow),
     -4px -4px 6px 0 var(--dark-shadow),

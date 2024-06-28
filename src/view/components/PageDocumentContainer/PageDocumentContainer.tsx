@@ -10,12 +10,16 @@ interface DataObject {
 
 interface PageDocumentContainerProps {
   data: DataObject[];
+  offset: number;
+  itemsPerPage: number;
 }
 
-function PageDocumentContainer({ data }: PageDocumentContainerProps) {
+function PageDocumentContainer({ offset, data, itemsPerPage }: PageDocumentContainerProps) {
+  const sliceData: DataObject[] = data.slice(offset, offset + itemsPerPage);
+
   return (
     <div className={classes.wrapper}>
-      {data.map((item: DataObject) => (
+      {sliceData.map((item: DataObject) => (
         <CardDocument data={item} />
       ))}
     </div>

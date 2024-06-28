@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Main from './view/pages/Main/main';
-import Notfound from './view/pages/NotFound/not-found';
 import { AppState } from './data/types/main-props';
 import News from './view/pages/News/news';
 import About from './view/pages/About/about';
@@ -77,7 +76,7 @@ function AppRoutes({ state, setState }: AppRoutesProps) {
       )} */}
       {/* <Route path="catalog/product" element={<Product state={state} setState={setState} />} />
       <Route path="catalog/product/:id" element={<Product state={state} setState={setState} />} /> */}
-      <Route path="/*" element={<Notfound state={state} setState={setState} />} />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

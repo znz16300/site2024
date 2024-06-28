@@ -25,5 +25,11 @@
       font-size: 3rem;
       font-weight: 600;
     }
+
+    .barWrapper {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
