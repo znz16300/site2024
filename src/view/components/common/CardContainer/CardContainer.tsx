@@ -20,21 +20,18 @@ function CardContaines({ data, offset, itemsPerPage, goToNews }: CardContainesPr
   const sliceData: DataObject[] = data.slice(offset, offset + itemsPerPage);
 
   return (
-    <>
-      <h2 className={classes.title}>Останні новини Куликівського ліцею</h2>
-      <div className={classes.cardContainer}>
-        {sliceData && sliceData.length > 0 ? (
-          sliceData.map((item: DataObject) => {
-            return <NewsCard key={item.id} news={item} goToNews={(id: string) => goToNews(id)} />;
-          })
-        ) : (
-          <div className={classes.noProduct}>
-            {/* <img src={NoProductImg} alt="no products" /> */}
-            <h2>NO PRODUCTS FOUND</h2>
-          </div>
-        )}
-      </div>
-    </>
+    <div className={classes.cardContainer}>
+      {sliceData && sliceData.length > 0 ? (
+        sliceData.map((item: DataObject) => {
+          return <NewsCard key={item.id} news={item} goToNews={(id: string) => goToNews(id)} />;
+        })
+      ) : (
+        <div className={classes.noProduct}>
+          {/* <img src={NoProductImg} alt="no products" /> */}
+          <h2>NO PRODUCTS FOUND</h2>
+        </div>
+      )}
+    </div>
   );
 }
 
