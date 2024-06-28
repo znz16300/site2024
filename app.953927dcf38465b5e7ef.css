@@ -1139,18 +1139,18 @@
   }
 }
 
-/*!***************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/NewsItem/newsitem.module.css ***!
-  \***************************************************************************************************************************/
-.newsitem-module__newsWrapper___o_NxB {
+/*!********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/NewsItem/newsitem.module.css ***!
+  \********************************************************************************************************************************/
+.newsitem-module__newsWrapper___xqc2s {
   display: flex;
   flex-wrap: wrap;
 
-  .newsitem-module__sliderBlock___HkyU7 {
+  .newsitem-module__sliderBlock___KWUuF {
     width: 70%;
   }
 
-  .newsitem-module__description___IHk84 {
+  .newsitem-module__description___ASLwY {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1160,24 +1160,24 @@
 }
 
 @media (max-width: 768px) {
-  .newsitem-module__newsWrapper___o_NxB {
+  .newsitem-module__newsWrapper___xqc2s {
     flex-direction: column;
-    .newsitem-module__sliderBlock___HkyU7 {
+    .newsitem-module__sliderBlock___KWUuF {
       width: 90%;
     }
 
-    .newsitem-module__description___IHk84 {
+    .newsitem-module__description___ASLwY {
       width: 90%;
     }
   }
 }
 
-.newsitem-module__container___MMj7d > :nth-child(1),
-.newsitem-module__container___MMj7d > :nth-child(3) {
+.newsitem-module__container___Qr1so > :nth-child(1),
+.newsitem-module__container___Qr1so > :nth-child(3) {
   flex: 0 0 auto;
 }
 
-.newsitem-module__news___QY76T {
+.newsitem-module__news___YUvzW {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1186,21 +1186,21 @@
   flex: 1 1 auto;
 }
 
-.newsitem-module__title___uwchK {
+.newsitem-module__title___vwPF7 {
   font-size: 12rem;
 }
 
-.newsitem-module__subtitle___xKqQM {
+.newsitem-module__subtitle___w09Ku {
   font-size: 3rem;
   font-weight: 600;
 }
 
-.newsitem-module__btnBlock___z_ut1 {
+.newsitem-module__btnBlock___QEUn6 {
   display: flex;
   gap: 5rem;
 }
 
-.newsitem-module__img___FbYNu {
+.newsitem-module__img___vdd97 {
   height: 30%;
 }
 
@@ -1491,20 +1491,18 @@
   \*********************************************************************************************************************************/
 .modal-module__modal___JLzje {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: none;
-  /* background: rgba(0, 0, 0, 0.5); */
   z-index: 11000;
+  background: lightblue;
+  border-radius: 1rem;
 }
 
 .modal-module__modalContent___qCVtL {
   padding: 2rem;
-  /* background: white; */
   border-radius: 1.5rem;
-  /* min-width: 150rem; */
 }
 
 .modal-module__modal___JLzje.modal-module__active___DRc4v {
@@ -1587,19 +1585,19 @@
   }
 }
 
-/*!****************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/NewsItem/Page/page.module.css ***!
-  \****************************************************************************************************************************/
-.page-module__wrapper___j4UQf {
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Page/page.module.css ***!
+  \*******************************************************************************************************************/
+.page-module__wrapper___pyMBe {
   display: flex;
   flex-direction: column;
   height: 100vh;
 
-  .page-module__container___NcKGj > :nth-child(1),
-  .page-module__container___NcKGj > :nth-child(3) {
+  .page-module__container___UR4OZ > :nth-child(1),
+  .page-module__container___UR4OZ > :nth-child(3) {
     flex: 0 0 auto;
   }
-  .page-module__content___vpmQq {
+  .page-module__content___wgbH9 {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1609,21 +1607,21 @@
     padding: 1rem;
     background-color: var(--gray-bg-color);
 
-    .page-module__title___TiPqi {
+    .page-module__title___skBIQ {
       font-size: 12rem;
     }
 
-    .page-module__subtitle___cYX0o {
+    .page-module__subtitle___lrki0 {
       font-size: 3rem;
       font-weight: 600;
     }
   }
 }
 
-/*!*********************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PageContainer/page.module.css ***!
-  \*********************************************************************************************************************************/
-.page-module__wrapper___E6qzm {
+/*!******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PageContainer/pageContainer.module.css ***!
+  \******************************************************************************************************************************************/
+.pageContainer-module__wrapper___OL3d8 {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -1631,10 +1629,10 @@
   max-width: 1300px;
 }
 
-/*!*********************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PageContainer/card.module.css ***!
-  \*********************************************************************************************************************************/
-.card-module__card___KLNj2 {
+/*!************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/Card/card.module.css ***!
+  \************************************************************************************************************************/
+.card-module__card___Fvnmq {
   width: 30rem;
   height: 40rem;
   border-radius: 1rem;
@@ -1644,19 +1642,121 @@
   transition: 0.4s all ease-in-out;
 }
 
-.card-module__imgBlock___V0_q4 {
+.card-module__imgBlock___TRFUz {
   background-repeat: no-repeat;
   background-size: contain;
   width: 29rem;
   height: 30rem;
 }
-.card-module__card___KLNj2:hover {
+
+.card-module__card___Fvnmq:hover {
   cursor: pointer;
   box-shadow: 3px 3px lightgrey;
 }
-.card-module__card___KLNj2:active {
+
+.card-module__card___Fvnmq:active {
   cursor: pointer;
   box-shadow: 0 0 3px 3px lightgrey;
+}
+
+li {
+  list-style: none;
+}
+
+.card-module__btn___udXs0 {
+  align-self: right;
+  background-size: contain;
+  background-color: unset;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+}
+
+/*!*****************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Documents/documents.module.css ***!
+  \*****************************************************************************************************************************/
+.documents-module__wrapper___kGP87 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .documents-module__container___grtHy > :nth-child(1),
+  .documents-module__container___grtHy > :nth-child(3) {
+    flex: 0 0 auto;
+  }
+  .documents-module__content___d6qz9 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    padding: 1rem;
+    background-color: var(--gray-bg-color);
+
+    .documents-module__title___DKt5S {
+      font-size: 12rem;
+    }
+
+    .documents-module__subtitle___EhywL {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PageDocumentContainer/pageDocumentContainer.module.css ***!
+  \**********************************************************************************************************************************************************/
+.pageDocumentContainer-module__wrapper___TMp4a {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1300px;
+}
+
+/*!****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/CardDocument/cardDocument.module.css ***!
+  \****************************************************************************************************************************************/
+.cardDocument-module__card___fIxLw {
+  width: 30rem;
+  height: 40rem;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.5rem;
+  background-color: var(--default-bg-color);
+  transition: 0.4s all ease-in-out;
+}
+
+.cardDocument-module__imgBlock___qomzn {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 29rem;
+  height: 30rem;
+}
+
+.cardDocument-module__card___fIxLw:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px lightgrey;
+}
+
+.cardDocument-module__card___fIxLw:active {
+  cursor: pointer;
+  box-shadow: 0 0 3px 3px lightgrey;
+}
+
+li {
+  list-style: none;
+}
+
+.cardDocument-module__btn___UNw_v {
+  align-self: right;
+  background-size: contain;
+  background-color: unset;
+  width: 3rem;
+  height: 3rem;
+  border: none;
 }
 
 /*!*****************************************************************!*\
