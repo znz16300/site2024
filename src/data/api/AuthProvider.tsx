@@ -55,8 +55,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (response) => {
       const resp: OAuthResp = response as unknown as OAuthResp;
-      localStorage.setItem('token', resp.access_token);
+      localStorage.setItem('token', JSON.stringify(resp));
       const res = await fetchUserDetails(resp.credential);
+      localStorage.setItem('dateCreateToken', Math.floor(Date.now() / 1000).toString());
       window.location.href = `${window.location.origin}/`;
       return true;
     },
@@ -79,6 +80,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     googleLogout();
     setUser(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('dateCreateToken');
     setState((prevState) => ({ ...prevState, userLoggedIn: false, user: null }));
   };
 
@@ -86,11 +88,65 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return user !== null; // Перевіряємо локальний стан користувача
   };
 
+  const refreshToken = async (refreshTok: string) => {
+    try {
+      const response = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          client_id: process.env.APP_GOOGLE_OAUTH_API_CLIENT_ID as string,
+          client_secret: process.env.APP_GOOGLE_OAUTH_API_CLIENT_SECRET as string,
+          refresh_token: refreshTok,
+          grant_type: 'refresh_token'
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', JSON.stringify(data));
+        localStorage.setItem('dateCreateToken', Math.floor(Date.now() / 1000).toString());
+        await fetchUserDetails(data.access_token);
+      } else {
+        console.log('Failed to refresh token', data);
+        logout();
+      }
+    } catch (error) {
+      console.log('Error refreshing token', error);
+      logout();
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const dateCreateTokenStr = localStorage.getItem('dateCreateToken') || '0';
+    const dateCreateToken = parseInt(dateCreateTokenStr, 10);
+
     if (token) {
-      fetchUserDetails(token);
+      const tokenJSON = JSON.parse(token);
+      const authToken = tokenJSON.access_token;
+      const expiresIn = tokenJSON.expires_in;
+      const refreshTokenValue = tokenJSON.access_token;
+
+      const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+      const tokenExpiryTime = dateCreateToken + expiresIn;
+
+      if (currentTimeInSeconds >= tokenExpiryTime) {
+        refreshToken(refreshTokenValue).then(() => {
+          const newToken = localStorage.getItem('token');
+          const newTokenJSON = newToken ? JSON.parse(newToken) : null;
+          if (newTokenJSON) {
+            fetchUserDetails(newTokenJSON.access_token);
+          }
+        });
+      } else {
+        fetchUserDetails(authToken);
+      }
+    } else {
+      googleLogin();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
