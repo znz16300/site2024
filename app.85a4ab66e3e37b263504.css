@@ -1,186 +1,4 @@
 /*!***********************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/navbar/navbar.module.css ***!
-  \***********************************************************************************************************************************/
-.navbar-module__navbar___a3Dh5 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-module__menu___gufc9 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  a {
-    margin-right: 25px;
-    text-decoration: none;
-    color: inherit;
-    transition: 0.4s all ease-in;
-  }
-  a img:hover {
-    width: 3.5rem;
-  }
-
-  a:hover {
-    color: #02282b;
-  }
-}
-
-.navbar-module__basketImg___NDaQX {
-  position: absolute;
-  width: 3rem;
-  transition: 0.4s all ease-in;
-}
-
-.navbar-module__burger___bftPp {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.4s ease-in-out;
-  color: inherit;
-}
-
-.navbar-module__burgerBar___mUYQ0 {
-  width: 25px;
-  height: 3px;
-  margin: 4px 0;
-  transition: 0.4s;
-}
-
-.navbar-module__rotate___j0rqz {
-  transform: rotate(90deg);
-  z-index: 600;
-}
-
-@media (max-width: 768px) {
-  .navbar-module__menu___gufc9 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 4rem;
-    width: 100%;
-    background-color: white;
-    position: absolute;
-    top: 6.5rem;
-    left: 0;
-    padding: 10px 0 25px 0;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    border: none;
-    z-index: 600;
-    transition:
-      max-height 0.4s ease-in-out,
-      opacity 0.4s ease-in-out;
-    a {
-      margin: 10px 0;
-    }
-
-    a:last-child {
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  .navbar-module__menuMain___SH7iH {
-    background: url(e39085ad3889bd9f99c7.png),
-      linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
-  }
-
-  .navbar-module__menu___gufc9.navbar-module__show___RCvB_ {
-    max-height: 600px;
-    opacity: 1;
-  }
-
-  .navbar-module__burger___bftPp {
-    display: flex;
-    z-index: 700;
-  }
-
-  .navbar-module__shadow___lGFtc {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 10rem;
-    left: 0;
-    background: rgba(128, 128, 128, 0.3);
-    z-index: 500;
-  }
-}
-
-/*!***************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/NologinMessage/NologinMessage.module.css ***!
-  \***************************************************************************************************************************************************/
-.NologinMessage-module__nologin___kFl7G {
-  top: 8rem;
-  position: absolute;
-  padding: 0.5rem;
-  display: flex;
-  width: 100%;
-  max-width: 1920px;
-  height: 3rem;
-  background-color: rgba(238, 225, 46, 0.8);
-  align-items: center;
-  transition: 0.4s all ease-in;
-  z-index: 500;
-}
-.NologinMessage-module__wrapper___fP6oc {
-  font-size: 1.2rem;
-  a {
-    padding-left: 2rem;
-  }
-}
-.NologinMessage-module__button___LPc0z {
-  position: absolute;
-  background-image: url(6c222a42920c18d7ed37.svg);
-  background-size: cover;
-  width: 2rem;
-  height: 2rem;
-  border: none;
-  right: 1rem;
-  z-index: 700;
-  cursor: pointer;
-}
-
-.NologinMessage-module__hide___OcZ85 {
-  height: 0;
-  padding: 0;
-}
-
-/*!***********************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/header/header.module.css ***!
-  \***********************************************************************************************************************************/
-.header-module__headerMain___cOEZ7 {
-  background: url(e39085ad3889bd9f99c7.png),
-    linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
-}
-.header-module__header___QLiW3 {
-  position: relative;
-  width: 100%;
-  padding: 1rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.6rem;
-  background-color: #fff;
-  .header-module__logoWrapper___RmfZC {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .header-module__title___d_rDV {
-      font-size: 1.2rem;
-      text-decoration: none;
-      color: var(--primary-text-color);
-    }
-    .header-module__logo___ELQMU {
-      width: 6rem;
-      object-fit: cover;
-      z-index: 2000;
-    }
-  }
-}
-
-/*!***********************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/footer/footer.module.css ***!
   \***********************************************************************************************************************************/
 .footer-module__footer___hHH46 {
@@ -928,6 +746,200 @@
     background-size: contain;
     width: 30rem;
     height: 40rem;
+  }
+}
+
+/*!***********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/navbar/navbar.module.css ***!
+  \***********************************************************************************************************************************/
+.navbar-module__navbar___a3Dh5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-module__menu___gufc9 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.4s all ease-in;
+  }
+  a img:hover {
+    width: 3.5rem;
+  }
+
+  a:hover {
+    color: #02282b;
+  }
+}
+
+.navbar-module__basketImg___NDaQX {
+  position: absolute;
+  width: 3rem;
+  transition: 0.4s all ease-in;
+}
+
+.navbar-module__burger___bftPp {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+  color: inherit;
+}
+
+.navbar-module__burgerBar___mUYQ0 {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.navbar-module__rotate___j0rqz {
+  transform: rotate(90deg);
+  z-index: 600;
+}
+
+@media (max-width: 768px) {
+  .navbar-module__menu___gufc9 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4rem;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 6.5rem;
+    left: 0;
+    padding: 10px 0 25px 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    border: none;
+    z-index: 600;
+    transition:
+      max-height 0.4s ease-in-out,
+      opacity 0.4s ease-in-out;
+    a {
+      margin: 10px 0;
+    }
+
+    a:last-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .navbar-module__menuMain___SH7iH {
+    background: url(e39085ad3889bd9f99c7.png),
+      linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
+  }
+
+  .navbar-module__menu___gufc9.navbar-module__show___RCvB_ {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  .navbar-module__burger___bftPp {
+    display: flex;
+    z-index: 700;
+  }
+
+  .navbar-module__shadow___lGFtc {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 10rem;
+    left: 0;
+    background: rgba(128, 128, 128, 0.3);
+    z-index: 500;
+  }
+}
+
+.navbar-module__icon___CT752 {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.navbar-module__icon___CT752:hover {
+  cursor: pointer;
+}
+
+/*!***************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/NologinMessage/NologinMessage.module.css ***!
+  \***************************************************************************************************************************************************/
+.NologinMessage-module__nologin___kFl7G {
+  top: 8rem;
+  position: absolute;
+  padding: 0.5rem;
+  display: flex;
+  width: 100%;
+  max-width: 1920px;
+  height: 3rem;
+  background-color: rgba(238, 225, 46, 0.8);
+  align-items: center;
+  transition: 0.4s all ease-in;
+  z-index: 500;
+}
+.NologinMessage-module__wrapper___fP6oc {
+  font-size: 1.2rem;
+  a {
+    padding-left: 2rem;
+  }
+}
+.NologinMessage-module__button___LPc0z {
+  position: absolute;
+  background-image: url(6c222a42920c18d7ed37.svg);
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  right: 1rem;
+  z-index: 700;
+  cursor: pointer;
+}
+
+.NologinMessage-module__hide___OcZ85 {
+  height: 0;
+  padding: 0;
+}
+
+/*!***********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/header/header.module.css ***!
+  \***********************************************************************************************************************************/
+.header-module__headerMain___cOEZ7 {
+  background: url(e39085ad3889bd9f99c7.png),
+    linear-gradient(to right, #47a4b4 0%, #02282b 100%), #48336e;
+}
+.header-module__header___QLiW3 {
+  position: relative;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  background-color: #fff;
+  .header-module__logoWrapper___RmfZC {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .header-module__title___d_rDV {
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: var(--primary-text-color);
+    }
+    .header-module__logo___ELQMU {
+      width: 6rem;
+      object-fit: cover;
+      z-index: 2000;
+    }
   }
 }
 
@@ -1803,6 +1815,18 @@ li {
   top: -4.5rem;
   right: -4.5rem;
 }
+
+/*!*********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Login/login.module.css ***!
+  \*********************************************************************************************************************/
+.login-module__login___z99mA {
+  display: flex;
+  justify-content: center;
+}
+
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Profile/profile.module.css ***!
+  \*************************************************************************************************************************/
 
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
