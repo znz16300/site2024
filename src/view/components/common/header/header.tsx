@@ -1,19 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line import/no-cycle
 import Navbar from '../navbar/navbar';
-import { AppState } from '../../../../data/types/main-props';
 import LogoSVG from '../../../../assets/icons/logo.svg';
 import LogoWhiteSVG from '../../../../assets/icons/logo-white.svg';
 import NologinMessage from '../NologinMessage/NologinMessage';
 import * as classes from './header.module.css';
+// eslint-disable-next-line import/no-cycle
 
 interface HeaderProps {
-  state: AppState;
-  setState: React.Dispatch<React.SetStateAction<AppState>>;
   page: string;
 }
 
-function Header({ state, setState, page }: HeaderProps) {
+function Header({ page }: HeaderProps) {
   const color = page === 'main' ? 'var(--light-text-color)' : 'var(--primary-text-color)';
   const backgroundColor = page === 'main' ? 'var(--dark-bg-color)' : 'var(--default-bg-color';
 
@@ -34,9 +33,9 @@ function Header({ state, setState, page }: HeaderProps) {
             </div>
           </div>
         </Link>
-        <Navbar state={state} page={page} />
+        <Navbar page={page} />
       </header>
-      <NologinMessage state={state} setState={setState} />
+      <NologinMessage />
     </>
   );
 }

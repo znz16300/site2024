@@ -4,8 +4,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Header from '../../components/common/header/header';
-import { MainProps } from '../../../data/types/main-props';
 import Footer from '../../components/common/footer/footer';
 import * as classes from './news.module.css';
 import getNews from '../../../data/api/getNews';
@@ -17,8 +15,10 @@ import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import NewsItem from '../../components/NewsItem/newsitem';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SortBar from '../../components/SortBar/SortBar';
+// eslint-disable-next-line import/no-cycle
+import { useAppContext } from '../../../App';
+import Header from '../../components/common/header/header';
 
-const page = 'news';
 export const ITEMS_PER_PAGE_NEWS = 8;
 
 interface DataObject {
@@ -26,7 +26,8 @@ interface DataObject {
   [key: string]: string;
 }
 
-function News({ state, setState }: MainProps) {
+function News() {
+  const { state, setState } = useAppContext();
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
@@ -104,7 +105,7 @@ function News({ state, setState }: MainProps) {
 
   return (
     <div className={classes.newsWrapper}>
-      <Header state={state} setState={setState} page={page} />
+      <Header page="news" />
       <main className={classes.news}>
         {!loading && data ? (
           idKey !== null ? (

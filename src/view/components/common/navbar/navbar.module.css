@@ -21,6 +21,28 @@
   a:hover {
     color: #02282b;
   }
+  .icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .icon:hover {
+    cursor: pointer;
+  }
+
+  .iconWrapper {
+    display: flex;
+    border: solid var(--dark-bg-color) 1px;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    gap: 1rem;
+    a {
+      margin-right: 0;
+    }
+  }
 }
 
 .basketImg {
@@ -102,5 +124,14 @@
     left: 0;
     background: rgba(128, 128, 128, 0.3);
     z-index: 500;
+  }
+
+  .iconWrapper {
+    border: none;
+    justify-content: space-around;
+    width: 30%;
+    a {
+      margin-right: 0;
+    }
   }
 }

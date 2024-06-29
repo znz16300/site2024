@@ -4,8 +4,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import * as classes from './documents.module.css';
-import { AppState } from '../../../data/types/main-props';
-import Header from '../../components/common/header/header';
 import Loader from '../../components/common/Loader/Loader';
 import Footer from '../../components/common/footer/footer';
 import getDocuments from '../../../data/api/getDocuments';
@@ -13,6 +11,9 @@ import PageDocumentContainer from '../../components/PageDocumentContainer/PageDo
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import SortBar from '../../components/SortBar/SortBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
+// eslint-disable-next-line import/no-cycle
+import { useAppContext } from '../../../App';
+import Header from '../../components/common/header/header';
 
 const page = 'documents';
 export const ITEMS_PER_PAGE_NEWS = 8;
@@ -22,18 +23,14 @@ interface DataObject {
   [key: string]: string;
 }
 
-interface DocumentsProps {
-  state: AppState;
-  setState: React.Dispatch<React.SetStateAction<AppState>>;
-}
-
 const tableDocuments = {
   tableName: '',
   sheetName: 'Відповіді форми (1)',
   title: ''
 };
 
-function Documents({ state, setState }: DocumentsProps) {
+function Documents() {
+  const { state, setState } = useAppContext();
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
@@ -101,7 +98,7 @@ function Documents({ state, setState }: DocumentsProps) {
 
   return (
     <div className={classes.wrapper}>
-      <Header state={state} setState={setState} page={page} />
+      <Header page={page} />
       <main className={classes.content}>
         {!loading && data ? (
           <>

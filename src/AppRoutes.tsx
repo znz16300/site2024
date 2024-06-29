@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-cycle
 import Main from './view/pages/Main/main';
-import { AppState } from './data/types/main-props';
 import News from './view/pages/News/news';
 import About from './view/pages/About/about';
 import Page from './view/pages/Page/Page';
 import Documents from './view/pages/Documents/Documents';
-// import NewsOne from './view/pages/NewsOne/newsone';
-
-interface AppRoutesProps {
-  state: AppState;
-  setState: React.Dispatch<React.SetStateAction<AppState>>;
-}
+import { DashboardPage } from './view/components/DashboardPage';
+import LoginPage from './view/pages/Login/GoogleLogin';
+import Profile from './view/pages/Profile/Profile';
+import ProtectedRoute from './view/components/ProtectedRoute/ProtectedRoute';
+import Logout from './view/pages/Logout/Logout';
+import Search from './view/pages/Search/Search';
 
 interface RedirectToPageProps {
   path: string;
@@ -27,14 +27,20 @@ function RedirectToPage({ path }: RedirectToPageProps) {
   return null;
 }
 
-function AppRoutes({ state, setState }: AppRoutesProps) {
+function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Main state={state} setState={setState} />} />
-      <Route path="/news" element={<News state={state} setState={setState} />} />
-      <Route path="/page" element={<Page state={state} setState={setState} />} />
-      <Route path="/about" element={<About state={state} setState={setState} />} />
-      <Route path="/documents" element={<Documents state={state} setState={setState} />} />
+      <Route path="/" element={<Main />} />
+      <Route path="/news" element={<News />} />
+      <Route path="/page" element={<Page />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/documents" element={<Documents />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/logout" element={<Logout />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+      {/* <Route path="/login" element={<Login state={state} setState={setState} />} /> */}
+      <Route path="/dashboard" element={<DashboardPage />} />
       <Route
         path="/acts"
         element={

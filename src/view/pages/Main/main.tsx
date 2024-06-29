@@ -1,20 +1,18 @@
 import React from 'react';
-import Header from '../../components/common/header/header';
 import Footer from '../../components/common/footer/footer';
-import { MainProps } from '../../../data/types/main-props';
 import * as classes from './main.module.css';
 import Greeting from '../../components/Greeteng/greeting';
 import Gotodocuments from '../../components/Gotodocuments/Gotodocuments';
 import MaterialBase from '../../components/MaterialBase/MaterialBase';
 import ActsMain from '../../components/ActsMain/ActsMain';
 import PublicInfo from '../../components/PublicInfo/PublicInfo';
+// eslint-disable-next-line import/no-cycle
+import Header from '../../components/common/header/header';
 
-const page = 'main';
-
-function Main({ state, setState }: MainProps) {
+function Main() {
   return (
     <>
-      <Header state={state} setState={setState} page={page} />
+      <Header page="main" />
       <main className={classes.main}>
         <Greeting />
         <Gotodocuments />

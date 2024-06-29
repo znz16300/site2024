@@ -5,6 +5,7 @@ import EslintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+const Dotenv = require('dotenv-webpack');
 import 'webpack-dev-server';
 
 const config: Configuration = {
@@ -56,7 +57,7 @@ const config: Configuration = {
   devServer: {
     open: true,
     hot: true,
-    port: 8080,
+    port: 80,
     static: path.join(__dirname, 'public'),
     historyApiFallback: {
       disableDotRule: true,
@@ -81,7 +82,8 @@ const config: Configuration = {
         { from: './src/assets/', to: './assets/' },
         { from: './public/', to: './' }
       ]
-    })
+    }),
+    new Dotenv()
   ]
 };
 

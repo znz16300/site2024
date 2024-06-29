@@ -1,9 +1,11 @@
 import React, { KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
 import * as classes from './NologinMessage.module.css';
-import { MainProps } from '../../../../data/types/main-props';
+// eslint-disable-next-line import/no-cycle
+import { useAppContext } from '../../../../App';
 
-function NologinMessage({ state, setState }: MainProps) {
+function NologinMessage() {
+  const { state, setState } = useAppContext();
   function hideMessage() {
     setState((prevState) => ({ ...prevState, showMsg: false }));
   }
