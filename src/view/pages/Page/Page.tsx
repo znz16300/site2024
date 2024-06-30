@@ -20,7 +20,7 @@ interface DataObject {
 
 const tablePage = {
   tableName: '',
-  sheetName: 'Аркуш1',
+  sheetName: process.env.GOOGLESHEETS_TABLE_NEWS_SHEET as string,
   title: ''
 };
 
@@ -41,7 +41,8 @@ function Page() {
         tablePage.tableName = idTable;
         tablePage.title = idTitle;
       }
-      const responseData: DataObject[] | null = await getPage(false, tablePage);
+      const responseData: DataObject[] | null | undefined = await getPage(false, tablePage);
+
       if (responseData) {
         setData(responseData);
       }

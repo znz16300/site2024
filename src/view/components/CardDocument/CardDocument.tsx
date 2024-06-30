@@ -20,8 +20,6 @@ interface CardProps {
 }
 
 function CardDocument({ data }: CardProps) {
-  console.log(data);
-
   const navigate = useNavigate();
   const goToPage = (path: string) => {
     if (path !== '') {

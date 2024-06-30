@@ -2,8 +2,6 @@
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
-import responseToNews from '../utils/responseToNews';
-import { ResponseNews } from '../types/interfaces/INews';
 
 interface Table {
   tableName: string;
@@ -17,20 +15,7 @@ interface DataObject {
 }
 
 interface IPageCache {
-  [key: string]: ResponseNews[] | null;
-}
-
-function cachToData(cache: ResponseNews[] | null, sheetName: string): DataObject[] | null {
-  if (cache) {
-    console.log('cache', cache);
-    console.log('sheetName ', sheetName);
-    const trData: DataObject[] | null = responseToNews(sheetName, cache);
-    if (trData) {
-      console.log('trData', trData);
-      return trData;
-    }
-  }
-  return null;
+  [key: string]: DataObject[] | null;
 }
 
 const pageCache: IPageCache = {
@@ -38,13 +23,12 @@ const pageCache: IPageCache = {
 };
 
 async function getDocuments(force: boolean, tableNews: Table) {
-  console.log('pageCache ', pageCache);
   if (force || !pageCache[tableNews.tableName]) {
     try {
       const response = await axios.get(
-        `https://schooltools.pythonanywhere.com/getmultiblock/${tableNews.tableName}`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:G10000`
       );
-      const resp: ResponseNews[] | null = response.data;
+      const resp: DataObject[] | null = response.data;
       if (resp) {
         pageCache[tableNews.tableName] = resp;
       }
@@ -54,7 +38,7 @@ async function getDocuments(force: boolean, tableNews: Table) {
   }
 
   if (pageCache[tableNews.tableName]) {
-    const result = cachToData(pageCache[tableNews.tableName], tableNews.sheetName);
+    const result = pageCache[tableNews.tableName];
     return result;
   }
   return null;

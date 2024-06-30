@@ -7,10 +7,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../../components/common/footer/footer';
 import * as classes from './news.module.css';
 import getNews from '../../../data/api/getNews';
-import { ResponseNews } from '../../../data/types/interfaces/INews';
 import Loader from '../../components/common/Loader/Loader';
 import CardContainer from '../../components/common/CardContainer/CardContainer';
-import responseToNews from '../../../data/utils/responseToNews';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import NewsItem from '../../components/NewsItem/newsitem';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -43,41 +41,37 @@ function News() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData: ResponseNews[] | null = await getNews(false);
+      const responseData: DataObject[] | null = await getNews(false);
       if (responseData) {
-        const trData: DataObject[] | null = responseToNews('Аркуш1', responseData, true);
-        if (trData) {
-          // console.log('responseDataNews', trData);
-          // const filteredData = trData.filter((item) => item['show'] && item['show'] === '1');
-          // setData(filteredData);
-          // setState((prevState) => ({ ...prevState, productsAmount: filteredData.length }));
-          let sortingData: DataObject[] = [];
-          if (sorting === '') {
-            sortingData = trData;
-          } else if (sorting === 'name.en asc') {
-            sortingData = trData.sort((a: DataObject, b: DataObject) =>
-              a['Назва новини'].localeCompare(b['Назва новини'])
-            );
-          } else if (sorting === 'name.en desc') {
-            sortingData = trData.sort((a: DataObject, b: DataObject) =>
-              b['Назва новини'].localeCompare(a['Назва новини'])
-            );
-          } else if (sorting === 'date asc') {
-            sortingData = trData.sort(
-              (a: DataObject, b: DataObject) => parseInt(a.id, 10) - parseInt(b.id, 10)
-            );
-          } else if (sorting === 'date desc') {
-            sortingData = trData.sort(
-              (a: DataObject, b: DataObject) => parseInt(b.id, 10) - parseInt(a.id, 10)
-            );
-          }
-          const sortingSearchingData: DataObject[] = sortingData.filter(
-            (item: DataObject) =>
-              item['Назва новини'].toLowerCase().indexOf(search.toLowerCase()) !== -1
+        let sortingData: DataObject[] = [];
+        if (sorting === '') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(b.id, 10) - parseInt(a.id, 10)
           );
-          setData(sortingSearchingData);
-          setState((prevState) => ({ ...prevState, productsAmount: sortingSearchingData.length }));
+        } else if (sorting === 'name.en asc') {
+          sortingData = responseData.sort((a: DataObject, b: DataObject) =>
+            a['Назва новини'].localeCompare(b['Назва новини'])
+          );
+        } else if (sorting === 'name.en desc') {
+          sortingData = responseData.sort((a: DataObject, b: DataObject) =>
+            b['Назва новини'].localeCompare(a['Назва новини'])
+          );
+        } else if (sorting === 'date asc') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(a.id, 10) - parseInt(b.id, 10)
+          );
+        } else if (sorting === 'date desc') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(b.id, 10) - parseInt(a.id, 10)
+          );
         }
+        const sortingSearchingData: DataObject[] = sortingData.filter(
+          (item: DataObject) =>
+            item['Назва новини'].toLowerCase().indexOf(search.toLowerCase()) !== -1
+        );
+        sortingData = sortingData.reverse();
+        setData(sortingSearchingData);
+        setState((prevState) => ({ ...prevState, productsAmount: sortingSearchingData.length }));
       }
     };
     setLoading(true);

@@ -2,8 +2,6 @@
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
-import responseToNews from '../utils/responseToNews';
-import { ResponseNews } from '../types/interfaces/INews';
 
 interface Table {
   tableName: string;
@@ -17,18 +15,7 @@ interface DataObject {
 }
 
 interface IPageCache {
-  [key: string]: ResponseNews[] | null;
-}
-
-function cachToData(title: string, cache: ResponseNews[] | null): DataObject[] | null {
-  if (cache) {
-    const trData: DataObject[] | null = responseToNews('Аркуш1', cache);
-    if (trData) {
-      const result = trData.filter((item: DataObject) => item['Розділ'] === title);
-      return result;
-    }
-  }
-  return null;
+  [key: string]: DataObject[] | null;
 }
 
 const pageCache: IPageCache = {
@@ -40,9 +27,9 @@ async function getPage(force: boolean, tableNews: Table) {
   if (force || !pageCache[tableNews.tableName]) {
     try {
       const response = await axios.get(
-        `https://schooltools.pythonanywhere.com/getmultiblock/${tableNews.tableName}`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:F10000`
       );
-      const resp: ResponseNews[] | null = response.data;
+      const resp: DataObject[] | null = response.data;
       if (resp) {
         pageCache[tableNews.tableName] = resp;
       }
@@ -52,7 +39,10 @@ async function getPage(force: boolean, tableNews: Table) {
   }
 
   if (pageCache[tableNews.tableName]) {
-    const result = cachToData(tableNews.title, pageCache[tableNews.tableName]);
+    // TODO тут прибрати фільтр після реалізації фільтрації на бекенді
+    const result = pageCache[tableNews.tableName]?.filter(
+      (item) => item['Розділ'] === tableNews.title
+    );
     return result;
   }
   return null;

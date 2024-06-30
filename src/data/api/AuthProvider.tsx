@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { state, setState } = useAppContext();
 
   const fetchUserDetails = async (token: string) => {
-    const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+    const response = await fetch(process.env.APP_GOOGLE_OAUTH_API_URL_USERINFO as string, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -90,7 +90,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const refreshToken = async (refreshTok: string) => {
     try {
-      const response = await fetch('https://oauth2.googleapis.com/token', {
+      const response = await fetch(process.env.APP_GOOGLE_OAUTH_API_URL_REFRESH_TOKEN as string, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
