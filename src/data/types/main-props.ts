@@ -5,6 +5,7 @@ export interface AppState {
   changesInCart: number;
   user: OAuthResp | null;
   history: string[];
+  oauth: OAuthObject | null;
   // here we can add new parameters
 }
 
@@ -33,4 +34,10 @@ export interface GoogleUser {
   picture: string;
   email: string;
   email_verified: boolean;
+}
+
+export interface OAuthObject {
+  google_api_key: string;
+  google_api_client_id: string;
+  google_api_client_secret: string;
 }

@@ -24,25 +24,23 @@ const pageCache: IPageCache = {
 
 async function getPage(force: boolean, tableNews: Table) {
   console.log('pageCache ', pageCache);
-  if (force || !pageCache[tableNews.tableName]) {
+  const indexCach = `${tableNews.tableName}-${tableNews.title}`;
+  if (force || !pageCache[indexCach]) {
     try {
       const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:F10000`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:F10000?field=Розділ&value=${tableNews.title}`
       );
       const resp: DataObject[] | null = response.data;
       if (resp) {
-        pageCache[tableNews.tableName] = resp;
+        pageCache[indexCach] = resp;
       }
     } catch (err) {
       return null;
     }
   }
 
-  if (pageCache[tableNews.tableName]) {
-    // TODO тут прибрати фільтр після реалізації фільтрації на бекенді
-    const result = pageCache[tableNews.tableName]?.filter(
-      (item) => item['Розділ'] === tableNews.title
-    );
+  if (pageCache[indexCach]) {
+    const result = pageCache[indexCach];
     return result;
   }
   return null;

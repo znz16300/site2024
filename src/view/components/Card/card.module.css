@@ -6,6 +6,11 @@
   padding: 0.5rem;
   background-color: var(--default-bg-color);
   transition: 0.4s all ease-in-out;
+  line-height: 1.5;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  font-size: 1.5rem;
+  color: var(--default-text-color);
 }
 
 .imgBlock {
