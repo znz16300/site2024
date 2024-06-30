@@ -775,6 +775,28 @@
   a:hover {
     color: #02282b;
   }
+  .navbar-module__icon___CT752 {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .navbar-module__icon___CT752:hover {
+    cursor: pointer;
+  }
+
+  .navbar-module__iconWrapper___acvLd {
+    display: flex;
+    border: solid var(--dark-bg-color) 1px;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    gap: 1rem;
+    a {
+      margin-right: 0;
+    }
+  }
 }
 
 .navbar-module__basketImg___NDaQX {
@@ -857,18 +879,15 @@
     background: rgba(128, 128, 128, 0.3);
     z-index: 500;
   }
-}
 
-.navbar-module__icon___CT752 {
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-}
-
-.navbar-module__icon___CT752:hover {
-  cursor: pointer;
+  .navbar-module__iconWrapper___acvLd {
+    border: none;
+    justify-content: space-around;
+    width: 30%;
+    a {
+      margin-right: 0;
+    }
+  }
 }
 
 /*!***************************************************************************************************************************************************!*\
@@ -1681,7 +1700,12 @@ a {
   padding: 0.5rem;
   background-color: var(--default-bg-color);
   transition: 0.4s all ease-in-out;
-}
+  line-height: 1.5;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  font-size: 1.5rem;
+  color: var(--default-text-color);
+  }
 
 .card-module__imgBlock___TRFUz {
   background-repeat: no-repeat;
@@ -1816,17 +1840,48 @@ li {
   right: -4.5rem;
 }
 
-/*!*********************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Login/login.module.css ***!
-  \*********************************************************************************************************************/
-.login-module__login___z99mA {
-  display: flex;
-  justify-content: center;
-}
-
 /*!*************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Profile/profile.module.css ***!
   \*************************************************************************************************************************/
+
+/*!***********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Search/search.module.css ***!
+  \***********************************************************************************************************************/
+.search-module__searchWrapper___rtfKO {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .search-module__container___fr3TP > :nth-child(1),
+  .search-module__container___fr3TP > :nth-child(3) {
+    flex: 0 0 auto;
+  }
+
+  .search-module__search___W6KyQ {
+    flex: 1 1 auto;
+    position: relative;
+  }
+
+  .search-module__modalContainer___xoHXJ {
+    position: absolute;
+    background-color: lightblue;
+    border-radius: 1rem;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .search-module__btn___B2vpw {
+    background-size: contain;
+    background-color: unset;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    position: absolute;
+    top: -4.5rem;
+    right: -4.5rem;
+  }
+}
 
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
