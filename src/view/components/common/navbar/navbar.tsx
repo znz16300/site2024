@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { useState, KeyboardEvent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as classes from './navbar.module.css';
@@ -10,6 +11,9 @@ import logoutWhiteIcon from '../../../../assets/icons/logout_white.svg';
 import searchDarkIcon from '../../../../assets/icons/search.svg';
 import searchWhiteIcon from '../../../../assets/icons/search_white.svg';
 import { useAuth } from '../../../../data/api/AuthProvider';
+import Modal from '../modal/modal';
+import AdvMenu from '../../AdvMenu/AdvMenu';
+import cross from '../../../../assets/icons/cross.svg';
 
 const SHOWLOGIN = true;
 
@@ -18,6 +22,7 @@ interface NavbarProps {
 }
 
 function Navbar({ page }: NavbarProps) {
+  const [advVisible, setAdvVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { state, setState } = useAppContext();
   const loginIcon = page === 'main' ? loginWhiteIcon : loginDarkIcon;
@@ -50,6 +55,10 @@ function Navbar({ page }: NavbarProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  function handleMore(): void {
+    setAdvVisible(true);
+  }
+
   return (
     <nav className={classes.navbar}>
       <div
@@ -79,6 +88,7 @@ function Navbar({ page }: NavbarProps) {
         <Link to="/contacts" onClick={toggleMenu}>
           Контакти
         </Link>
+        <button onClick={handleMore}>Більше...</button>
         <Link to="/search" onClick={toggleMenu} title="Пошук на сайті">
           <div className={classes.icon} style={{ backgroundImage: `url('${searchIcon}')` }} />
         </Link>
@@ -111,6 +121,26 @@ function Navbar({ page }: NavbarProps) {
       ) : (
         <div />
       )}
+
+      <Modal
+        style={{ backgroundColor: 'var(--menu-bg-color)', top: 0, transform: 'unset' }}
+        visible={advVisible}
+        setVisible={setAdvVisible}>
+        <div className={classes.btnContainer}>
+          <button
+            className={classes.btn}
+            type="button"
+            style={{
+              backgroundImage: `url('${cross}')`
+            }}
+            onClick={() => setAdvVisible(false)}
+            aria-label="close"
+          />
+        </div>
+        <div className={classes.amenuWrapper}>
+          <AdvMenu />
+        </div>
+      </Modal>
     </nav>
   );
 }

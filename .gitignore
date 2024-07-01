@@ -109,3 +109,5 @@ build
 
 # Visual Studio Code
 .vscode/
+tmp*
+

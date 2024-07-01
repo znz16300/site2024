@@ -3,8 +3,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as classes from './card.module.css';
 import imagesFromField from '../../../data/utils/imgPathUtils';
-import getQueryParams from '../../../data/utils/getQueryParams';
 import noImage from '../../../assets/images/vector-documents-icon.jpg';
+import urlUpdate from '../../../data/utils/urlUpdater';
 
 interface DataObject {
   id: string;
@@ -28,17 +28,8 @@ function Card({ data }: CardProps) {
   };
   const image = imagesFromField(data['Фото']) || noImage;
   const url = data['Кнопка з посиланням'];
-  // eslint-disable-next-line prefer-const
-  let urlToNavigate: string = '';
-  if (url.indexOf('./page') === 0 || url.indexOf('/page') === 0 || url.indexOf('page') === 0) {
-    const params = getQueryParams(url);
-    if (params) {
-      const { titlePages, keyPages } = params;
-      urlToNavigate = `/page?titlePages=${titlePages}&keyPages=${keyPages}`;
-    }
-  } else if (url.indexOf('http') === 0) {
-    urlToNavigate = url;
-  }
+
+  const urlToNavigate: string = urlUpdate(url);
 
   return (
     <button

@@ -85,7 +85,10 @@ function CardDocument({ data }: CardProps) {
         </button>
       ) : null}
       {visible ? (
-        <Modal background="rgb(248, 248, 248)" visible={visible} setVisible={setVisible}>
+        <Modal
+          style={{ background: 'rgb(248, 248, 248)' }}
+          visible={visible}
+          setVisible={setVisible}>
           <div className={classes.btnContainer}>
             <button
               className={classes.btn}

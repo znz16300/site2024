@@ -16,7 +16,10 @@ function Search() {
         <div className={classes.resultContainer} />
         <button onClick={() => setVisible(true)}>Новий пошук</button>
         {/* <div className={classes.modalContainer}>Search</div> */}
-        <Modal background="rgb(248, 248, 248)" visible={visible} setVisible={setVisible}>
+        <Modal
+          style={{ background: 'rgb(248, 248, 248)' }}
+          visible={visible}
+          setVisible={setVisible}>
           <div className={classes.btnContainer}>
             <button
               className={classes.btn}

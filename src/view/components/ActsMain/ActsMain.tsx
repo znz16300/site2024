@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/jsx-no-bind */
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as classes from './actsmain.module.css';
 
@@ -11,6 +12,8 @@ import img6 from '../../../assets/icons/acts/6.png';
 import img7 from '../../../assets/icons/acts/7.png';
 import img8 from '../../../assets/icons/acts/10.png';
 import actsData from '../../../data/types/actsData';
+import Button from '../common/Button/Button';
+import AdvMenu from '../AdvMenu/AdvMenu';
 
 const images: Record<string, string> = {
   '5.png': img1,
@@ -23,15 +26,14 @@ const images: Record<string, string> = {
   '10.png': img8
 };
 
-// interface Btn {
-//   id: string;
-//   title: string;
-//   image: string;
-//   url: string;
-// }
-
 function ActsMain() {
   const navigate = useNavigate();
+  const [more, setMore] = useState<boolean>(false);
+
+  function handleAdvmenu() {
+    setMore(!more);
+  }
+
   return (
     <section className={classes.materials}>
       <h2 className={classes.title}>Діяльність</h2>
@@ -52,6 +54,8 @@ function ActsMain() {
           // </Link>
         ))}
       </div>
+      <Button onClick={handleAdvmenu}>{!more ? 'Більше' : 'Менше'}</Button>
+      {more ? <AdvMenu /> : null}
     </section>
   );
 }
