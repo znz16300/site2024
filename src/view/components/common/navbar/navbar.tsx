@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
 import React, { useState, KeyboardEvent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -88,9 +90,14 @@ function Navbar({ page }: NavbarProps) {
         <Link to="/contacts" onClick={toggleMenu}>
           Контакти
         </Link>
-        <button onClick={handleMore}>Більше...</button>
+        <div className={classes.btnMore} onClick={handleMore}>
+          Більше...
+        </div>
         <Link to="/search" onClick={toggleMenu} title="Пошук на сайті">
-          <div className={classes.icon} style={{ backgroundImage: `url('${searchIcon}')` }} />
+          <div
+            className={classes.icon}
+            style={{ marginLeft: '5rem', backgroundImage: `url('${searchIcon}')` }}
+          />
         </Link>
 
         {SHOWLOGIN &&
@@ -123,20 +130,25 @@ function Navbar({ page }: NavbarProps) {
       )}
 
       <Modal
-        style={{ backgroundColor: 'var(--menu-bg-color)', top: 0, transform: 'unset' }}
+        style={{ backgroundColor: 'var(--menu-bg-color)', top: '5rem', transform: 'unset' }}
         visible={advVisible}
         setVisible={setAdvVisible}>
-        <div className={classes.btnContainer}>
-          <button
-            className={classes.btn}
-            type="button"
-            style={{
-              backgroundImage: `url('${cross}')`
-            }}
-            onClick={() => setAdvVisible(false)}
-            aria-label="close"
-          />
-        </div>
+        <button
+          type="button"
+          style={{
+            backgroundImage: `url('${cross}')`,
+            backgroundSize: 'contain',
+            backgroundColor: 'unset',
+            width: '3rem',
+            height: '3rem',
+            border: 'none',
+            position: 'absolute',
+            top: '0rem',
+            right: '0rem'
+          }}
+          onClick={() => setAdvVisible(false)}
+          aria-label="close"
+        />
         <div className={classes.amenuWrapper}>
           <AdvMenu />
         </div>
