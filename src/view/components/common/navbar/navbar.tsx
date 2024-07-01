@@ -13,7 +13,6 @@ import logoutWhiteIcon from '../../../../assets/icons/logout_white.svg';
 import searchDarkIcon from '../../../../assets/icons/search.svg';
 import searchWhiteIcon from '../../../../assets/icons/search_white.svg';
 import { useAuth } from '../../../../data/api/AuthProvider';
-import Modal from '../modal/modal';
 import AdvMenu from '../../AdvMenu/AdvMenu';
 import cross from '../../../../assets/icons/cross.svg';
 
@@ -58,6 +57,7 @@ function Navbar({ page }: NavbarProps) {
   }, [user]);
 
   function handleMore(): void {
+    toggleMenu();
     setAdvVisible(true);
   }
 
@@ -128,31 +128,29 @@ function Navbar({ page }: NavbarProps) {
       ) : (
         <div />
       )}
-
-      <Modal
-        style={{ backgroundColor: 'var(--menu-bg-color)', top: '5rem', transform: 'unset' }}
-        visible={advVisible}
-        setVisible={setAdvVisible}>
-        <button
-          type="button"
-          style={{
-            backgroundImage: `url('${cross}')`,
-            backgroundSize: 'contain',
-            backgroundColor: 'unset',
-            width: '3rem',
-            height: '3rem',
-            border: 'none',
-            position: 'absolute',
-            top: '0rem',
-            right: '0rem'
-          }}
-          onClick={() => setAdvVisible(false)}
-          aria-label="close"
-        />
-        <div className={classes.amenuWrapper}>
-          <AdvMenu />
+      {advVisible ? (
+        <div className={classes.rightMenu}>
+          <button
+            type="button"
+            style={{
+              backgroundImage: `url('${cross}')`,
+              backgroundSize: 'contain',
+              backgroundColor: 'unset',
+              width: '3rem',
+              height: '3rem',
+              border: 'none',
+              position: 'absolute',
+              top: '0rem',
+              right: '0rem'
+            }}
+            onClick={() => setAdvVisible(false)}
+            aria-label="close"
+          />
+          <div className={classes.amenuWrapper}>
+            <AdvMenu />
+          </div>
         </div>
-      </Modal>
+      ) : null}
     </nav>
   );
 }

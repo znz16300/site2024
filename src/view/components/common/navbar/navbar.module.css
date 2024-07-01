@@ -85,6 +85,19 @@
   z-index: 600;
 }
 
+.rightMenu {
+  position: absolute;
+  background-color: var(--menu-bg-color);
+  top: 10rem;
+  right: 1rem;
+  padding: 2rem 2rem 5rem 2rem;
+  height: 85vh;
+  overflow: auto;
+  width: 30%;
+
+}
+
+
 @media (max-width: 768px) {
   .menu {
     display: flex;
@@ -113,6 +126,7 @@
       margin-left: 0;
       margin-right: 0;
     }
+
   }
 
   .menuMain {
@@ -148,4 +162,13 @@
       margin-right: 0;
     }
   }
+
+  .rightMenu {
+
+    width: 100%;
+    font-size: 3rem;
+  
+  }
 }
+
+
