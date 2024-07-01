@@ -1,5 +1,17 @@
 .materials {
   max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: 15rem;
+    transition: 0.4s all ease-in-out;
+  }
+  button:hover {
+    cursor: pointer;
+    border-color: aliceblue;
+  }
 }
 .title {
   line-height: 130%;
@@ -48,4 +60,8 @@
   letter-spacing: 0.06em;
   text-align: center;
   color: #545454;
+}
+
+.btn {
+  text-align: center;
 }

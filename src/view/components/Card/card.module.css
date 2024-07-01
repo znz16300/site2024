@@ -1,0 +1,44 @@
+.card {
+  width: 30rem;
+  height: 40rem;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.5rem;
+  background-color: var(--default-bg-color);
+  transition: 0.4s all ease-in-out;
+  line-height: 1.5;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  font-size: 1.5rem;
+  color: var(--default-text-color);
+}
+
+.imgBlock {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 29rem;
+  height: 30rem;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px lightgrey;
+}
+
+.card:active {
+  cursor: pointer;
+  box-shadow: 0 0 3px 3px lightgrey;
+}
+
+li {
+  list-style: none;
+}
+
+.btn {
+  align-self: right;
+  background-size: contain;
+  background-color: unset;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+}

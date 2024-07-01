@@ -14,9 +14,13 @@
     align-items: center;
     justify-content: space-between;
     flex: 1 1 auto;
-
+    .barWrapper {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
     .title {
-      font-size: 12rem;
     }
 
     .subtitle {

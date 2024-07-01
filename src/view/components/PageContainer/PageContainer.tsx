@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
-import * as classes from './page.module.css';
-import Card from './Card';
+import * as classes from './pageContainer.module.css';
+import Card from '../Card/Card';
 
 interface DataObject {
   id: string;

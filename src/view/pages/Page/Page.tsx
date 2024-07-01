@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as classes from './page.module.css';
-import { MainProps } from '../../../../data/types/main-props';
-import getPage from '../../../../data/api/getPage';
-import Header from '../../../components/common/header/header';
-import Loader from '../../../components/common/Loader/Loader';
-import Footer from '../../../components/common/footer/footer';
-import PageContainer from '../../../components/PageContainer/PageContainer';
+import getPage from '../../../data/api/getPage';
+import Loader from '../../components/common/Loader/Loader';
+import Footer from '../../components/common/footer/footer';
+import PageContainer from '../../components/PageContainer/PageContainer';
+// eslint-disable-next-line import/no-cycle
+import Header from '../../components/common/header/header';
 
 const page = 'page';
 export const ITEMS_PER_PAGE_NEWS = 8;
@@ -20,11 +20,11 @@ interface DataObject {
 
 const tablePage = {
   tableName: '',
-  sheetName: 'Аркуш1',
+  sheetName: process.env.GOOGLESHEETS_TABLE_NEWS_SHEET as string,
   title: ''
 };
 
-function Page({ state, setState }: MainProps) {
+function Page() {
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation();
@@ -41,7 +41,8 @@ function Page({ state, setState }: MainProps) {
         tablePage.tableName = idTable;
         tablePage.title = idTitle;
       }
-      const responseData: DataObject[] | null = await getPage(false, tablePage);
+      const responseData: DataObject[] | null | undefined = await getPage(false, tablePage);
+
       if (responseData) {
         setData(responseData);
       }
@@ -57,7 +58,7 @@ function Page({ state, setState }: MainProps) {
 
   return (
     <div className={classes.wrapper}>
-      <Header state={state} setState={setState} page={page} />
+      <Header page={page} />
       <main className={classes.content}>
         {!loading && data ? (
           <>

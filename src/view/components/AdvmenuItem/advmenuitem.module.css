@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  border: 1px solid var(--primary-text-color);
+  width: 100%;
+  padding: 1rem;
+  .label {
+    /* position: absolute;
+    top: -2rem;
+    left: 2rem; */
+    font-size: 1rem;
+    background-color: white;
+  }
+}

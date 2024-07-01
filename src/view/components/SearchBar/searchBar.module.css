@@ -1,0 +1,24 @@
+.wrapper {
+  align-self: flex-end;
+  font-size: 1.3rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.input {
+  font-size: inherit;
+  outline: transparent;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  /* width: 30rem; */
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--body-text-color);
+  background-color: var(--gray-bg-color);
+}
+
+@media (max-width: 577px) {
+  .input {
+    max-width: 90%;
+  }
+}

@@ -12,14 +12,14 @@
     "prettier": "prettier . --write",
     "lint": "eslint . --ext .tsx --fix",
     "prepare": "husky",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "postdeploy": "node copy404.js"
+    "predeploy": "npm run build && node copy404.js",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
@@ -49,6 +49,7 @@
     "axios": "^1.7.2",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.1",
+    "dotenv-webpack": "^8.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",

@@ -1,19 +1,22 @@
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Header from '../../components/common/header/header';
-import { MainProps } from '../../../data/types/main-props';
 import Footer from '../../components/common/footer/footer';
 import * as classes from './news.module.css';
 import getNews from '../../../data/api/getNews';
-import { ResponseNews } from '../../../data/types/interfaces/INews';
 import Loader from '../../components/common/Loader/Loader';
 import CardContainer from '../../components/common/CardContainer/CardContainer';
-import responseToNews from '../../../data/utils/responseToNews';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
-import NewsItem from '../NewsItem/newsitem';
+import NewsItem from '../../components/NewsItem/newsitem';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import SortBar from '../../components/SortBar/SortBar';
+// eslint-disable-next-line import/no-cycle
+import { useAppContext } from '../../../App';
+import Header from '../../components/common/header/header';
 
-const page = 'news';
 export const ITEMS_PER_PAGE_NEWS = 8;
 
 interface DataObject {
@@ -21,11 +24,14 @@ interface DataObject {
   [key: string]: string;
 }
 
-function News({ state, setState }: MainProps) {
+function News() {
+  const { state, setState } = useAppContext();
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
+  const [sorting, setSorting] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -35,18 +41,44 @@ function News({ state, setState }: MainProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData: ResponseNews[] | null = await getNews(false);
+      const responseData: DataObject[] | null = await getNews(false);
       if (responseData) {
-        const trData: DataObject[] | null = responseToNews('Аркуш1', responseData, true);
-        if (trData) {
-          setData(trData);
+        let sortingData: DataObject[] = [];
+        if (sorting === '') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(b.id, 10) - parseInt(a.id, 10)
+          );
+        } else if (sorting === 'name.en asc') {
+          sortingData = responseData.sort((a: DataObject, b: DataObject) =>
+            a['Назва новини'].localeCompare(b['Назва новини'])
+          );
+        } else if (sorting === 'name.en desc') {
+          sortingData = responseData.sort((a: DataObject, b: DataObject) =>
+            b['Назва новини'].localeCompare(a['Назва новини'])
+          );
+        } else if (sorting === 'date asc') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(a.id, 10) - parseInt(b.id, 10)
+          );
+        } else if (sorting === 'date desc') {
+          sortingData = responseData.sort(
+            (a: DataObject, b: DataObject) => parseInt(b.id, 10) - parseInt(a.id, 10)
+          );
         }
+        const sortingSearchingData: DataObject[] = sortingData.filter(
+          (item: DataObject) =>
+            item['Назва новини'].toLowerCase().indexOf(search.toLowerCase()) !== -1
+        );
+        sortingData = sortingData.reverse();
+        setData(sortingSearchingData);
+        setState((prevState) => ({ ...prevState, productsAmount: sortingSearchingData.length }));
       }
     };
     setLoading(true);
     fetchData();
     setLoading(false);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, sorting]);
 
   function goToNews(id: string) {
     // eslint-disable-next-line no-console
@@ -61,15 +93,24 @@ function News({ state, setState }: MainProps) {
     }
   }
 
+  function searchHandler(event: React.ChangeEvent<HTMLInputElement>): void {
+    setSearch(event.currentTarget.value);
+  }
+
   return (
     <div className={classes.newsWrapper}>
-      <Header state={state} setState={setState} page={page} />
+      <Header page="news" />
       <main className={classes.news}>
         {!loading && data ? (
           idKey !== null ? (
             <NewsItem news={data.find((item) => item.id === idKey)} />
           ) : (
             <>
+              <h2 className={classes.title}>Останні новини Куликівського ліцею</h2>
+              <div className={classes.barWrapper}>
+                <SearchBar search={search} onChange={searchHandler} />
+                <SortBar value={sorting} onChange={(e) => setSorting(e.target.value)} />
+              </div>
               <CardContainer
                 data={data}
                 goToNews={(id: string) => goToNews(id)}

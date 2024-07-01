@@ -1,26 +1,25 @@
-import React from 'react';
-import * as classes from './tiled.module.css';
-import Card from './Card';
+// import React from 'react';
+// import * as classes from './tiled.module.css';
+// import Card from './Card';
 
-interface DataObject {
-  id: string;
-  [key: string]: string;
-}
+// interface DataObject {
+//   id: string;
+//   [key: string]: string;
+// }
 
-interface TiledContainerProps {
-  data: DataObject[];
-}
+// interface TiledContainerProps {
+//   documents: boolean;
+//   data: DataObject[];
+// }
 
-function TiledContainer({ data }: TiledContainerProps) {
-  // eslint-disable-next-line no-console
-  console.log('tiled');
-  return (
-    <div className={classes.wrapper}>
-      {data.map((item: DataObject) => (
-        <Card data={item} />
-      ))}
-    </div>
-  );
-}
+// function TiledContainer({ documents, data }: TiledContainerProps) {
+//   return (
+//     <div className={classes.wrapper}>
+//       {data.map((item: DataObject) => (
+//         <Card documents={documents} data={item} />
+//       ))}
+//     </div>
+//   );
+// }
 
-export default TiledContainer;
+// export default TiledContainer;

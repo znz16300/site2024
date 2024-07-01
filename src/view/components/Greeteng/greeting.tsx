@@ -11,7 +11,7 @@ function Greeting() {
   return (
     <section className={classes.greeting}>
       <div className={classes.textContent}>
-        <h2>Вітаємо на сайті Куликівського ліцею</h2>
+        <h2>Вітаємо на сайті Куликівського ліцею!</h2>
         <p className={classes.subtitle}>
           Куликівський ліцей Куликівської селищної ради Чернігівського району Чернігівської області.
         </p>

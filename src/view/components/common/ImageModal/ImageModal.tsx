@@ -52,7 +52,7 @@ function ImageModal(param: ImageModalParam) {
   const background = 'background: rgba(0, 0, 0, 0);';
 
   return (
-    <Modal visible={modal} setVisible={setModal} background={background}>
+    <Modal visible={modal} setVisible={setModal} style={{ background }}>
       {isImage ? (
         <div
           className={classes.modalWrapper}

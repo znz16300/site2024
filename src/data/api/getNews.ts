@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import { ResponseNews } from '../types/interfaces/INews';
 
 const tableNews = {
-  tableName: '1Dk0WYpOKeRoDATgzMkIkFjUcFwNAG5MRn4W7bEyzd0M',
-  sheetName: 'Аркуш1'
+  tableName: process.env.GOOGLESHEETS_TABLE_NEWS as string,
+  sheetName: process.env.GOOGLESHEETS_TABLE_NEWS_SHEET as string
 };
 
 let newsCache: ResponseNews[] | null = null;
@@ -14,7 +15,8 @@ async function getNews(force: boolean) {
   if (!newsCache || force) {
     try {
       const response = await axios.get(
-        `https://schooltools.pythonanywhere.com/getmultiblock/${tableNews.tableName}`
+        // `${process.env.PYTHONANYWHERE_SERVER_URL}/getrange/${tableNews.tableName}`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000`
       );
       newsCache = response.data;
       return response.data;
@@ -22,6 +24,7 @@ async function getNews(force: boolean) {
       return null;
     }
   }
+  console.log('newsCache', newsCache);
   return newsCache;
 }
 

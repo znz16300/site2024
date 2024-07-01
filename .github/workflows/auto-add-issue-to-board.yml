@@ -1,0 +1,36 @@
+name: Auto Add Issues to Project Board
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-board:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add issue to project board
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const projectBoardNumber = 1; // Змініть на номер вашого проекту
+            const columnId = 'f75ad846'; // Змініть на ID стовпця, куди ви хочете додати Issue
+
+            const issue = context.payload.issue;
+
+            // Отримання ID картки проекту
+            const { data: projectCards } = await github.projects.listCards({
+              column_id: columnId,
+            });
+
+            // Перевірка, чи Issue вже додано
+            const issueExists = projectCards.some(card => card.content_url === issue.url);
+
+            if (!issueExists) {
+              await github.projects.createCard({
+                column_id: columnId,
+                content_id: issue.id,
+                content_type: 'Issue'
+              });
+            }
+          github-token: ${{ secrets.GITHUB_TOKEN }}

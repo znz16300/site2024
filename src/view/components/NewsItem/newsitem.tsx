@@ -2,8 +2,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as classes from './newsitem.module.css';
-import Button from '../../components/common/Button/Button';
-import Newsimagesviewer from '../../components/NewsImagesViewer/Newsimagesviewer';
+import Button from '../common/Button/Button';
+import Newsimagesviewer from '../NewsImagesViewer/Newsimagesviewer';
 
 interface DataObject {
   id: string;
