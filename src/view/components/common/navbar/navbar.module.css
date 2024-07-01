@@ -12,14 +12,11 @@
   cursor: pointer;
 }
 .btnContainer {
-  
   .amenuWrapper {
     max-height: 90vh;
     overflow-y: auto;
   }
 }
-
-
 
 .menu {
   display: flex;
