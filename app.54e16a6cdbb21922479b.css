@@ -890,9 +890,7 @@
   height: 85vh;
   overflow: auto;
   width: 30%;
-
 }
-
 
 @media (max-width: 768px) {
   .navbar-module__menu___gufc9 {
@@ -922,7 +920,6 @@
       margin-left: 0;
       margin-right: 0;
     }
-
   }
 
   .navbar-module__menuMain___SH7iH {
@@ -960,14 +957,10 @@
   }
 
   .navbar-module__rightMenu___nhnaV {
-
     width: 100%;
     font-size: 3rem;
-  
   }
 }
-
-
 
 /*!***************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/NologinMessage/NologinMessage.module.css ***!
@@ -1962,6 +1955,147 @@ li {
   }
 }
 
+/*!*************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/pages/Сourses/сourses.module.css ***!
+  \*************************************************************************************************************************/
+.сourses-module__coursesWrapper___mLOYL {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .сourses-module__container___Q8IT4> :nth-child(1),
+  .сourses-module__container___Q8IT4> :nth-child(3) {
+    flex: 0 0 auto;
+  }
+
+  main {
+    font-size: 1.2rem;
+    padding: 1rem;
+    flex: 1 1 auto;
+
+
+    .сourses-module__row___qalQO {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--gray-bg-color);
+
+      .сourses-module__cell____ppSP {
+        /* background-color: lightcyan; */
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        word-break: break-all;
+        align-items: center;
+      }
+
+      .сourses-module__nameCol___zF8A3 {
+        width: 20%;
+      }
+
+      .сourses-module__titleCol___CcfT4 {
+        width: 40%;
+      }
+
+      .сourses-module__durationCol___x42h0 {
+        width: 5%;
+      }
+
+      .сourses-module__schoolCol___DXxH5 {
+        width: 20%;
+      }
+
+      .сourses-module__buttonsCol___dYoiV {
+        width: 5%;
+        min-width: 10rem;
+      }
+
+      .сourses-module__btn___eUn9L {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .сourses-module__btn___eUn9L:hover {
+        cursor: pointer;
+      }
+
+      .сourses-module__btnEdit___rhoOC {
+        background-image: url(e66f40b42b9d067d459d.svg);
+      }
+
+      .сourses-module__btnView___I5juG {
+        background-image: url(8b0ae39bacccd96e016f.svg);
+      }
+      .сourses-module__btnRemove___rusZE {
+        background-image: url(5dea5c232eb4bd3492a7.svg);
+      }
+    }
+
+    .сourses-module__row___qalQO:nth-child(2n+1) {
+      background: lightcyan;
+    }
+
+    .сourses-module__row___qalQO:nth-child(1) {
+      font-weight: 600;
+    }
+  }
+}
+
+.сourses-module__fix___JHZee {
+  overflow: hidden;
+  padding-right: 16px;
+}
+
+@media (max-width: 768px) {
+  .сourses-module__coursesWrapper___mLOYL {
+    main {
+      .сourses-module__row___qalQO {
+        .сourses-module__schoolCol___DXxH5 {
+          display: none;
+        }
+
+        .сourses-module__durationCol___x42h0 {
+          width: 10%;
+        }
+        .сourses-module__buttonsCol___dYoiV {
+          width: 15%;
+        }
+      }
+    }
+  }
+}
+/*!***************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/ModalWithCloseButton/modalWithCloseButton.module.css ***!
+  \***************************************************************************************************************************************************************/
+.modalWithCloseButton-module__shadow___eAd7J {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--gray-bg-color);
+  .modalWithCloseButton-module__wrapper___xVwBc {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background-color: aqua;
+
+    .modalWithCloseButton-module__closeBtn___Yj0Rj {
+      background-image: url(6c222a42920c18d7ed37.svg);
+      background-size: contain;
+      background-color: unset;
+      width: 3rem;
+      height: 3rem;
+      border: none;
+    }
+  }
+}
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
