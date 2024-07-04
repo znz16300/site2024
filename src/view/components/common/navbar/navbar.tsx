@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
@@ -52,6 +53,7 @@ function Navbar({ page }: NavbarProps) {
   useEffect(() => {
     if (user) {
       setState((prevState) => ({ ...prevState, userLoggedIn: true, user }));
+      userImg = user.picture;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -77,6 +79,9 @@ function Navbar({ page }: NavbarProps) {
       <div className={`${classes.menu} ${menuMainBg} ${isOpen ? classes.show : ''}`}>
         <Link to="/" onClick={toggleMenu}>
           Головна
+        </Link>
+        <Link to="/courses" onClick={toggleMenu}>
+          Курси
         </Link>
         <Link to="/news" onClick={toggleMenu}>
           Новини

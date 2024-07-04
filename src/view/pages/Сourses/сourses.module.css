@@ -1,0 +1,109 @@
+.coursesWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .container> :nth-child(1),
+  .container> :nth-child(3) {
+    flex: 0 0 auto;
+  }
+
+  main {
+    font-size: 1.2rem;
+    padding: 1rem;
+    flex: 1 1 auto;
+
+
+    .row {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--gray-bg-color);
+
+      .cell {
+        /* background-color: lightcyan; */
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        word-break: break-all;
+        align-items: center;
+      }
+
+      .nameCol {
+        width: 20%;
+      }
+
+      .titleCol {
+        width: 40%;
+      }
+
+      .durationCol {
+        width: 5%;
+      }
+
+      .schoolCol {
+        width: 20%;
+      }
+
+      .buttonsCol {
+        width: 5%;
+        min-width: 10rem;
+      }
+
+      .btn {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .btn:hover {
+        cursor: pointer;
+      }
+
+      .btnEdit {
+        background-image: url('../../../assets/icons/edit_24dp_FILL0_wght400_GRAD0_opsz24.svg');
+      }
+
+      .btnView {
+        background-image: url('../../../assets/icons/visibility_24dp_FILL0_wght400_GRAD0_opsz24.svg');
+      }
+      .btnRemove {
+        background-image: url('../../../assets/icons/delete_24dp_FILL0_wght400_GRAD0_opsz24.svg');
+      }
+    }
+
+    .row:nth-child(2n+1) {
+      background: lightcyan;
+    }
+
+    .row:nth-child(1) {
+      font-weight: 600;
+    }
+  }
+}
+
+.fix {
+  overflow: hidden;
+  padding-right: 16px;
+}
+
+@media (max-width: 768px) {
+  .coursesWrapper {
+    main {
+      .row {
+        .schoolCol {
+          display: none;
+        }
+
+        .durationCol {
+          width: 10%;
+        }
+        .buttonsCol {
+          width: 15%;
+        }
+      }
+    }
+  }
+}

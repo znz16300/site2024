@@ -94,9 +94,8 @@
   height: 85vh;
   overflow: auto;
   width: 30%;
-
+  z-index: 2600;
 }
-
 
 @media (max-width: 768px) {
   .menu {
@@ -126,7 +125,6 @@
       margin-left: 0;
       margin-right: 0;
     }
-
   }
 
   .menuMain {
@@ -164,11 +162,8 @@
   }
 
   .rightMenu {
-
     width: 100%;
     font-size: 3rem;
-  
+    z-index: 2600;
   }
 }
-
-

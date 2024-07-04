@@ -32,6 +32,8 @@ function App() {
   });
 
   const [clientId, setClientId] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const { refreshToken } = useAuth();
 
   useEffect(() => {
     async function fetchOAuth() {

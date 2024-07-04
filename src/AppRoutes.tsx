@@ -12,6 +12,11 @@ import Profile from './view/pages/Profile/Profile';
 import ProtectedRoute from './view/components/ProtectedRoute/ProtectedRoute';
 import Logout from './view/pages/Logout/Logout';
 import Search from './view/pages/Search/Search';
+import Сourses from './view/pages/Сourses/Сourses';
+import FileInfoTest from './view/components/FileInfoTest/FileInfoTest';
+import FacebookPost from './view/components/FacebookPost/FacebookPost';
+import GoogleDriveImage from './view/components/GoogleDriveImage/GoogleDriveImage';
+// import { useAuth } from './data/api/AuthProvider';
 
 interface RedirectToPageProps {
   path: string;
@@ -28,6 +33,18 @@ function RedirectToPage({ path }: RedirectToPageProps) {
 }
 
 function AppRoutes() {
+  // const { refreshToken } = useAuth();
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const tokenJSON = JSON.parse(token);
+  //     if (tokenJSON.access_token) {
+  //       refreshToken(tokenJSON.access_token);
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Main />} />
@@ -38,7 +55,15 @@ function AppRoutes() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/sss" element={<FileInfoTest />} />
+      <Route
+        path="/aaa"
+        element={<GoogleDriveImage fileId="1-BAaHXv7p_tywRUZb3QVyxdNNs-NRygM" />}
+      />
+      <Route path="/fb" element={<FacebookPost postId="fbid=2146080399098653" accessToken="" />} />
+      {/* <Route path="/courses" element={<Сourses />} /> */}
       <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+      <Route path="/courses" element={<ProtectedRoute element={<Сourses />} />} />
       {/* <Route path="/login" element={<Login state={state} setState={setState} />} /> */}
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route

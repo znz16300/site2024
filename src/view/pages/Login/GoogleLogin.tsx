@@ -10,14 +10,11 @@ import { useAuth } from '../../../data/api/AuthProvider';
 function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-
   const handleLogin = async () => {
     const success = await login();
     if (success) {
       // window.location.href = `${window.location.origin}/`;
       navigate('/');
-      // eslint-disable-next-line no-console
-      console.log('44444');
     }
   };
 

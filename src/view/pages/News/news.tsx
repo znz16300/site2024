@@ -17,7 +17,7 @@ import SortBar from '../../components/SortBar/SortBar';
 import { useAppContext } from '../../../App';
 import Header from '../../components/common/header/header';
 
-export const ITEMS_PER_PAGE_NEWS = 8;
+export const ITEMS_PER_PAGE_NEWS = 12;
 
 interface DataObject {
   id: string;
@@ -41,7 +41,10 @@ function News() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseData: DataObject[] | null = await getNews(false);
+      const responseData: DataObject[] | null = await getNews(
+        false,
+        state.oauth?.google_public_api_key as string
+      );
       if (responseData) {
         let sortingData: DataObject[] = [];
         if (sorting === '') {
