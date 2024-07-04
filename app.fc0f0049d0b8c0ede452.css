@@ -1965,8 +1965,8 @@ li {
   flex-direction: column;
   height: 100vh;
 
-  .сourses-module__container___Q8IT4> :nth-child(1),
-  .сourses-module__container___Q8IT4> :nth-child(3) {
+  .сourses-module__container___Q8IT4 > :nth-child(1),
+  .сourses-module__container___Q8IT4 > :nth-child(3) {
     flex: 0 0 auto;
   }
 
@@ -1974,7 +1974,6 @@ li {
     font-size: 1.2rem;
     padding: 1rem;
     flex: 1 1 auto;
-
 
     .сourses-module__row___qalQO {
       display: flex;
@@ -2036,7 +2035,7 @@ li {
       }
     }
 
-    .сourses-module__row___qalQO:nth-child(2n+1) {
+    .сourses-module__row___qalQO:nth-child(2n + 1) {
       background: lightcyan;
     }
 
@@ -2069,6 +2068,7 @@ li {
     }
   }
 }
+
 /*!***************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/ModalWithCloseButton/modalWithCloseButton.module.css ***!
   \***************************************************************************************************************************************************************/
@@ -2098,6 +2098,7 @@ li {
     }
   }
 }
+
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
