@@ -1162,14 +1162,14 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PaginationBlock/PaginationBlock.module.css ***!
   \**********************************************************************************************************************************************/
 .PaginationBlock-module__paginationWrapper___biqPH {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(30px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   align-content: center;
   gap: 0.5rem;
   padding: 0 1rem;
-  width: 50%;
+  width:90%;
   margin: 1rem;
+  justify-content: space-between;
 }
 
 .PaginationBlock-module__paginationBtn___rX9uB {
@@ -1205,12 +1205,6 @@
       -4px -4px 6px 0 var(--dark-shadow),
       inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
       inset 4px 4px 6px 0 var(--dark-shadow);
-  }
-}
-
-@media (max-width: 670px) {
-  .PaginationBlock-module__paginationWrapper___biqPH {
-    width: 90%;
   }
 }
 
@@ -2069,6 +2063,10 @@ li {
   }
 }
 
+.сourses-module__hide___njhMF {
+  background-color: red;
+}
+
 /*!***************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/ModalWithCloseButton/modalWithCloseButton.module.css ***!
   \***************************************************************************************************************************************************************/
@@ -2097,6 +2095,121 @@ li {
       border: none;
     }
   }
+}
+
+/*!************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/CoursesContainer/coursesContainer.module.css ***!
+  \************************************************************************************************************************************************/
+.coursesContainer-module__coursesWrapper___Gg4cL {
+  display: flex;
+  flex-direction: column;
+
+  .coursesContainer-module__container___r3gT4 > :nth-child(1),
+  .coursesContainer-module__container___r3gT4 > :nth-child(3) {
+    flex: 0 0 auto;
+  }
+
+  .coursesContainer-module__table___DDnh1 {
+    font-size: 1.2rem;
+    padding: 1rem;
+    flex: 1 1 auto;
+
+    .coursesContainer-module__row___hP_xb {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--gray-bg-color);
+
+      .coursesContainer-module__cell___jFeh5 {
+        /* background-color: lightcyan; */
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        word-break: break-all;
+        align-items: center;
+      }
+
+      .coursesContainer-module__nameCol___LSrAZ {
+        width: 20%;
+      }
+
+      .coursesContainer-module__titleCol___Mkw6n {
+        width: 40%;
+      }
+
+      .coursesContainer-module__durationCol___Gc8ol {
+        width: 5%;
+      }
+
+      .coursesContainer-module__schoolCol___e5HfY {
+        width: 20%;
+      }
+
+      .coursesContainer-module__buttonsCol___X0z99 {
+        width: 5%;
+        min-width: 10rem;
+      }
+
+      .coursesContainer-module__btn___JxuhJ {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .coursesContainer-module__btn___JxuhJ:hover {
+        cursor: pointer;
+      }
+
+      .coursesContainer-module__btnEdit___GHuu8 {
+        background-image: url(e66f40b42b9d067d459d.svg);
+      }
+
+      .coursesContainer-module__btnView___fDROP {
+        background-image: url(8b0ae39bacccd96e016f.svg);
+      }
+      .coursesContainer-module__btnRemove___zN3TJ {
+        background-image: url(5dea5c232eb4bd3492a7.svg);
+      }
+    }
+
+    .coursesContainer-module__row___hP_xb:nth-child(2n + 1) {
+      background: lightcyan;
+    }
+
+    .coursesContainer-module__row___hP_xb:nth-child(1) {
+      font-weight: 600;
+    }
+  }
+}
+
+.coursesContainer-module__fix___kOFeM {
+  overflow: hidden;
+  padding-right: 16px;
+}
+
+@media (max-width: 768px) {
+  .coursesContainer-module__coursesWrapper___Gg4cL {
+    .coursesContainer-module__table___DDnh1 {
+      .coursesContainer-module__row___hP_xb {
+        .coursesContainer-module__schoolCol___e5HfY {
+          display: none;
+        }
+
+        .coursesContainer-module__durationCol___Gc8ol {
+          width: 10%;
+        }
+        .coursesContainer-module__buttonsCol___X0z99 {
+          width: 15%;
+        }
+      }
+    }
+  }
+}
+
+.coursesContainer-module__hide___j_Lof {
+  background-color: red;
 }
 
 /*!*****************************************************************!*\
