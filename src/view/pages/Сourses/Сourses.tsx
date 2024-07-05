@@ -5,7 +5,6 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../../App';
 import Footer from '../../components/common/footer/footer';
 import * as classes from './сourses.module.css';
@@ -16,9 +15,6 @@ import ModalWithCloseButton from '../../components/common/ModalWithCloseButton/M
 import TEACHERS from '../../../constants';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import CoursesContainer from '../../components/CoursesContainer/CoursesContainer';
-// import upIcon from '../../../assets/icons/arrow_upward_24dp_FILL0_wght400_GRAD0_opsz24.svg';
-// import viewIcon from '../../../assets/icons/visibility_24dp_FILL0_wght400_GRAD0_opsz24.svg';
-// import editIcon from '../../../assets/icons/edit_24dp_FILL0_wght400_GRAD0_opsz24.svg';
 
 export const ITEMS_PER_PAGE_NEWS = 10;
 
@@ -29,37 +25,33 @@ interface DataObject {
 
 function Сourses() {
   const [data, setData] = useState<DataObject[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const location = useLocation();
+  const [loading, setLoading] = useState<boolean>(false);
   const [visibleDetails, setVisibleDetails] = useState(false);
-  const [teacher, setTeacher] = useState<string>('*');
+  const [teacher, setTeacher] = useState<string>('');
   const [searchValue, setSearchValue] = useState<string>('');
   const [offset, setOffset] = useState<number>(0);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
   const { state, setState } = useAppContext();
-  const searchParams = new URLSearchParams(location.search);
-  const idKey = searchParams.get('id');
-  // eslint-disable-next-line no-console
-  console.log('idKey', idKey);
-  console.log('state', state);
 
   useEffect(() => {
     const fetchData = async () => {
-      const eMail = state.user?.email;
-      console.log('eMail', eMail);
-      const responseData: DataObject[] | null = await getCourses(true, teacher);
+      setLoading(true); // Початок завантаження
+      const responseData: DataObject[] | null = await getCourses(false, teacher);
       if (responseData) {
         setData(responseData);
         console.log(responseData);
         setState((prevState) => ({ ...prevState, productsAmount: responseData.length }));
       }
+      setLoading(false); // Завершення завантаження
     };
-    setLoading(true);
-    fetchData();
-    setLoading(false);
+    console.log('teacher===', teacher);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [teacher]);
+    if (teacher === '') {
+      setData(null);
+    } else {
+      fetchData();
+    }
+  }, [teacher, setTeacher, setState]);
 
   function handleEdit(id: string) {
     console.log('edit', id);
@@ -95,32 +87,38 @@ function Сourses() {
       <Header page="courses" />
       <main className={classes.courses}>
         <h2>Підвищення кваліфікації</h2>
-        <label className={classes.label} htmlFor="teacher">
-          Педагогічний працівник:&nbsp;
-          <select
-            className={classes.select}
-            id="teacher"
-            value={teacher}
-            onChange={(e) => setTeacher(e.currentTarget.value)}>
-            <option key="*" value="*">
-              Всі
-            </option>
-            {TEACHERS.map((item) => (
-              <option key={item} value={item}>
-                {item}
+        <div className={classes.filterSearchWrapper}>
+          <label className={classes.label} htmlFor="teacher">
+            Педагогічний працівник:&nbsp;
+            <select
+              className={classes.select}
+              id="teacher"
+              value={teacher}
+              onChange={(e) => setTeacher(e.currentTarget.value)}>
+              <option key="empty" value="" aria-label="empty" />
+              <option key="*" value="*">
+                Всі
               </option>
-            ))}
-          </select>
-        </label>
-        <label className={classes.label} htmlFor="search">
-          Пошук:&nbsp;
-          <input
-            type="text"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.currentTarget.value)}
-          />
-        </label>
-        {!loading && data ? (
+              {TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className={classes.label} htmlFor="search">
+            Пошук:&nbsp;
+            <input
+              id="search"
+              type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.currentTarget.value)}
+            />
+          </label>
+        </div>
+        {loading ? (
+          <Loader />
+        ) : data ? (
           <>
             <CoursesContainer
               data={data}
@@ -138,7 +136,7 @@ function Сourses() {
             />
           </>
         ) : (
-          <Loader />
+          <div className={classes.noData}>Оберіть педагогічного працівника зі списку</div>
         )}
         {visibleDetails && (
           <ModalWithCloseButton setVisible={setVisibleDetails}>

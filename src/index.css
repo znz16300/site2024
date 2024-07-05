@@ -38,6 +38,13 @@ a {
   text-decoration: none;
 }
 
+select,
+input[type='text'] {
+  border: none;
+  outline: none;
+}
+
+select:focus,
 input[type='text']:focus {
   border: none;
   outline: none;

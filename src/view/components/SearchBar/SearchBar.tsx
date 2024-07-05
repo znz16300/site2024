@@ -18,7 +18,6 @@ function SearchBar({ search, onChange }: SearchProps) {
           value={search}
           onChange={onChange}
           className={classes.input}
-          placeholder=" почніть уводити "
         />
       </label>
     </div>

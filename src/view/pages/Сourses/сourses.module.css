@@ -2,12 +2,32 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  
 
   .container > :nth-child(1),
   .container > :nth-child(3) {
     flex: 0 0 auto;
   }
+
+    
+  .filterSearchWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+        .label {
+        select,
+        input {
+          font-size: inherit;
+          padding: 0.5rem;
+          background-color: var(--gray-bg-color);
+          border-radius: 0.2rem;
+        }
+    }
+
+  }
+
+
 
   main {
     font-size: 1.2rem;
@@ -15,7 +35,7 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
-justify-content: space-between;
+    justify-content: flex-start;
     .row {
       display: flex;
       width: 100%;
@@ -82,6 +102,12 @@ justify-content: space-between;
 
     .row:nth-child(1) {
       font-weight: 600;
+    }
+
+    .noData {
+      font-size: 1.2rem;
+      margin: 2rem 1rem;
+
     }
   }
 }

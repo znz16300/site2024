@@ -30,8 +30,7 @@
 
 .paginationBtn:disabled {
   cursor: default;
-  background-color:   #9db6d0;
-  ;
+  background-color: #9db6d0;
   box-shadow:
     4px 4px 6px 0 var(--light-shadow),
     -4px -4px 6px 0 var(--dark-shadow),
@@ -54,7 +53,7 @@
   border-radius: 0.2rem;
   border: none;
 }
-.pagIconArr:hover{
+.pagIconArr:hover {
   cursor: pointer;
   background-color: #c4c8cd;
 }
