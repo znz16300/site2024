@@ -34,6 +34,6 @@ getGoogleDriveImageBase64(fileId, apiKey)
     }
   })
   // eslint-disable-next-line prettier/prettier
-  .catch(error => {
+  .catch((error) => {
     console.error('Error:', error);
   });

@@ -63,7 +63,7 @@ function AppRoutes() {
       <Route path="/fb" element={<FacebookPost postId="fbid=2146080399098653" accessToken="" />} />
       {/* <Route path="/courses" element={<Сourses />} /> */}
       <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
-      <Route path="/courses" element={<ProtectedRoute element={<Сourses />} />} />
+      <Route path="/courses" element={<Сourses />} />
       {/* <Route path="/login" element={<Login state={state} setState={setState} />} /> */}
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route

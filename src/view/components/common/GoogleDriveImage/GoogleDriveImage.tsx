@@ -12,7 +12,7 @@ function GoogleDriveImage({ fileId }: ImageProps) {
   const [error, setError] = useState<string | null>(null);
   const { state } = useAppContext();
   // eslint-disable-next-line no-unneeded-ternary, prettier/prettier
-  const puvlicApiKey = state.oauth?.google_public_api_key as string;
+  const publicApiKey = state.oauth?.google_public_api_key as string;
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -20,7 +20,7 @@ function GoogleDriveImage({ fileId }: ImageProps) {
         const response = await axios.get(`https://www.googleapis.com/drive/v3/files/${fileId}`, {
           params: {
             alt: 'media',
-            key: puvlicApiKey
+            key: publicApiKey
           },
           responseType: 'blob'
         });
@@ -33,7 +33,7 @@ function GoogleDriveImage({ fileId }: ImageProps) {
     };
 
     fetchImage();
-  }, [fileId, puvlicApiKey]);
+  }, [fileId, publicApiKey]);
 
   if (error) {
     return <div>{error}</div>;

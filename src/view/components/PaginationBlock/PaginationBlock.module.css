@@ -1,19 +1,18 @@
 .paginationWrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(30px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   align-content: center;
   gap: 0.5rem;
   padding: 0 1rem;
-  width: 50%;
   margin: 1rem;
+  justify-content: center;
 }
 
 .paginationBtn {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   cursor: pointer;
   box-shadow:
     -7px -7px 20px 0px var(--light-shadow),
@@ -24,15 +23,59 @@
   color: var(--body-text-color);
   font-weight: bold;
 }
+.paginationBtn:hover {
+  cursor: pointer;
+  background-color: #c4c8cd;
+}
 
 .paginationBtn:disabled {
   cursor: default;
-  background-color: lightpink;
+  background-color:   #9db6d0;
+  ;
   box-shadow:
     4px 4px 6px 0 var(--light-shadow),
     -4px -4px 6px 0 var(--dark-shadow),
     inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
     inset 4px 4px 6px 0 var(--dark-shadow);
+}
+
+.pagIconArr {
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: rgba(255, 255, 255, 0);
+  transition: all ease 0.5s;
+  color: var(--body-text-color);
+  box-shadow:
+    4px 4px 6px 0 var(--light-shadow),
+    -4px -4px 6px 0 var(--dark-shadow),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+    inset 4px 4px 6px 0 var(--dark-shadow);
+  border-radius: 0.2rem;
+  border: none;
+}
+.pagIconArr:hover{
+  cursor: pointer;
+  background-color: #c4c8cd;
+}
+
+.iconFirst {
+  background-image: url('../../../assets/icons/first_page_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg');
+}
+.iconLast {
+  background-image: url('../../../assets/icons/last_page_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg');
+}
+.iconPrev {
+  background-image: url('../../../assets/icons/chevron_left_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg');
+}
+.iconNext {
+  background-image: url('../../../assets/icons/chevron_right_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg');
+}
+
+.activePageBtn {
+  background-color: #007bff; /* Зміна фону для підсвічування */
+  color: white; /* Зміна кольору тексту */
+  font-weight: bold; /* Жирний текст */
 }
 
 @media (hover: hover) {
@@ -42,11 +85,5 @@
       -4px -4px 6px 0 var(--dark-shadow),
       inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
       inset 4px 4px 6px 0 var(--dark-shadow);
-  }
-}
-
-@media (max-width: 670px) {
-  .paginationWrapper {
-    width: 90%;
   }
 }

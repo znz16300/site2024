@@ -91,8 +91,19 @@ function News() {
 
   function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (e.currentTarget) {
-      setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
-      setActivePaginationBtn(+e.currentTarget.id);
+      if (e.currentTarget.id === 'pagLeft') {
+        setOffset((activePaginationBtn - 1) * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(activePaginationBtn - 1);
+      } else if (e.currentTarget.id === 'pagRight') {
+        setOffset((activePaginationBtn + 1) * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(activePaginationBtn + 1);
+      } else if (e.currentTarget.id === 'pagFirst') {
+        setOffset(0);
+        setActivePaginationBtn(0);
+      } else {
+        setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(+e.currentTarget.id);
+      }
     }
   }
 

@@ -12,15 +12,15 @@ import * as classes from './сourses.module.css';
 import Loader from '../../components/common/Loader/Loader';
 import Header from '../../components/common/header/header';
 import getCourses from '../../../data/api/getCourses';
-import filterIcon from '../../../assets/icons/filter_alt_24dp_FILL0_wght400_GRAD0_opsz24.svg';
-// import noFilterIcon from '../../../assets/icons/filter_alt_off_24dp_FILL0_wght400_GRAD0_opsz24.svg';
-import downIcon from '../../../assets/icons/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24.svg';
 import ModalWithCloseButton from '../../components/common/ModalWithCloseButton/ModalWithCloseButton';
+import TEACHERS from '../../../constants';
+import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
+import CoursesContainer from '../../components/CoursesContainer/CoursesContainer';
 // import upIcon from '../../../assets/icons/arrow_upward_24dp_FILL0_wght400_GRAD0_opsz24.svg';
 // import viewIcon from '../../../assets/icons/visibility_24dp_FILL0_wght400_GRAD0_opsz24.svg';
 // import editIcon from '../../../assets/icons/edit_24dp_FILL0_wght400_GRAD0_opsz24.svg';
 
-export const ITEMS_PER_PAGE_NEWS = 8;
+export const ITEMS_PER_PAGE_NEWS = 10;
 
 interface DataObject {
   id: string;
@@ -31,23 +31,27 @@ function Сourses() {
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation();
-  const { state } = useAppContext();
   const [visibleDetails, setVisibleDetails] = useState(false);
-
+  const [teacher, setTeacher] = useState<string>('*');
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [offset, setOffset] = useState<number>(0);
+  const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
+  const { state, setState } = useAppContext();
   const searchParams = new URLSearchParams(location.search);
   const idKey = searchParams.get('id');
   // eslint-disable-next-line no-console
   console.log('idKey', idKey);
+  console.log('state', state);
 
   useEffect(() => {
     const fetchData = async () => {
       const eMail = state.user?.email;
-      if (eMail) {
-        const responseData: DataObject[] | null = await getCourses(false, eMail);
-        if (responseData) {
-          setData(responseData);
-          console.log(responseData);
-        }
+      console.log('eMail', eMail);
+      const responseData: DataObject[] | null = await getCourses(true, teacher);
+      if (responseData) {
+        setData(responseData);
+        console.log(responseData);
+        setState((prevState) => ({ ...prevState, productsAmount: responseData.length }));
       }
     };
     setLoading(true);
@@ -55,25 +59,8 @@ function Сourses() {
     setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const cols = [
-    'Позначка часу',
-    'Електронна адреса',
-    'Працівник, який пройшов курсову підготовку',
-    'Назва курсів, семінару, вебінару тощо',
-    'Кількість годин',
-    'З них з інклюзії',
-    'З них з надання психологічної підтримки учасникам освітнього процесу',
-    'Тип документа',
-    'Номер документа (якщо номера немає, вкажіть "бн" без лапок)',
-    'Дата видачі документа',
-    'Назва організації чи платформи, на базі якої проходила підготовка, навчання',
-    'Форма навчання',
-    'Фотокопія сертифікату, свідоцтва тощо	Програма курсів, заходу',
-    'Потребує зарахування рішенням педради',
-    'Рішення педради про зарахування',
-    'Рік атестації'
-  ];
+  }, [teacher]);
+
   function handleEdit(id: string) {
     console.log('edit', id);
   }
@@ -85,47 +72,70 @@ function Сourses() {
     console.log('remove', id);
   }
 
+  function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (e.currentTarget) {
+      if (e.currentTarget.id === 'pagLeft') {
+        setOffset((activePaginationBtn - 1) * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(activePaginationBtn - 1);
+      } else if (e.currentTarget.id === 'pagRight') {
+        setOffset((activePaginationBtn + 1) * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(activePaginationBtn + 1);
+      } else if (e.currentTarget.id === 'pagFirst') {
+        setOffset(0);
+        setActivePaginationBtn(0);
+      } else {
+        setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+        setActivePaginationBtn(+e.currentTarget.id);
+      }
+    }
+  }
+
   return (
     <div className={`${classes.coursesWrapper} ${visibleDetails ? classes.fix : ''}`}>
       <Header page="courses" />
       <main className={classes.courses}>
+        <h2>Підвищення кваліфікації</h2>
+        <label className={classes.label} htmlFor="teacher">
+          Педагогічний працівник:&nbsp;
+          <select
+            className={classes.select}
+            id="teacher"
+            value={teacher}
+            onChange={(e) => setTeacher(e.currentTarget.value)}>
+            <option key="*" value="*">
+              Всі
+            </option>
+            {TEACHERS.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={classes.label} htmlFor="search">
+          Пошук:&nbsp;
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.currentTarget.value)}
+          />
+        </label>
         {!loading && data ? (
           <>
-            <div className={classes.row}>
-              <div className={`${classes.cell} ${classes.nameCol}`}>
-                <span>ПІБ</span>
-                <span>
-                  <img src={downIcon} alt="" />
-                  <img src={filterIcon} alt="" />
-                </span>
-              </div>
-              <div className={`${classes.cell} ${classes.titleCol}`}>Назва</div>
-              <div className={`${classes.cell} ${classes.durationCol}`}>Годин</div>
-              <div className={`${classes.cell} ${classes.schoolCol}`}>Суб&#39;єкт підвищення</div>
-              <div className={`${classes.cell} ${classes.buttonsCol}`} />
-            </div>
-            {data.map((item) => (
-              <div className={classes.row} key={`${item[cols[0]]}`}>
-                <div className={`${classes.cell} ${classes.nameCol}`}>{item[cols[2]]}</div>
-                <div className={`${classes.cell} ${classes.titleCol}`}>{item[cols[3]]}</div>
-                <div className={`${classes.cell} ${classes.durationCol}`}>{item[cols[4]]}</div>
-                <div className={`${classes.cell} ${classes.schoolCol}`}>{item[cols[10]]}</div>
-                <div className={`${classes.cell} ${classes.buttonsCol}`}>
-                  <div
-                    className={`${classes.btn} ${classes.btnView}`}
-                    onClick={() => handleView(item.id)}
-                  />
-                  <div
-                    className={`${classes.btn} ${classes.btnEdit}`}
-                    onClick={() => handleEdit(item.id)}
-                  />
-                  <div
-                    className={`${classes.btn} ${classes.btnRemove}`}
-                    onClick={() => handleRemove(item.id)}
-                  />
-                </div>
-              </div>
-            ))}
+            <CoursesContainer
+              data={data}
+              offset={offset}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              handleView={handleView}
+              handleEdit={handleEdit}
+              handleRemove={handleRemove}
+            />
+            <PaginationBlock
+              activeId={activePaginationBtn}
+              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              onClickHandler={(e) => offsetHandler(e)}
+              state={state}
+            />
           </>
         ) : (
           <Loader />
