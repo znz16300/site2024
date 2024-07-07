@@ -1031,7 +1031,6 @@
     .header-module__logo___ELQMU {
       width: 6rem;
       object-fit: cover;
-      z-index: 2000;
     }
   }
 }
@@ -1161,22 +1160,29 @@
 /*!**********************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/PaginationBlock/PaginationBlock.module.css ***!
   \**********************************************************************************************************************************************/
+.PaginationBlock-module__wrapper___Gkd0G {
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  .PaginationBlock-module__label___o691Z {
+    font-size: 1.5rem;
+  }
+}
 .PaginationBlock-module__paginationWrapper___biqPH {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   gap: 0.5rem;
   padding: 0 1rem;
-  width:90%;
   margin: 1rem;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .PaginationBlock-module__paginationBtn___rX9uB {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   cursor: pointer;
   box-shadow:
     -7px -7px 20px 0px var(--light-shadow),
@@ -1187,15 +1193,58 @@
   color: var(--body-text-color);
   font-weight: bold;
 }
+.PaginationBlock-module__paginationBtn___rX9uB:hover {
+  cursor: pointer;
+  background-color: #c4c8cd;
+}
 
 .PaginationBlock-module__paginationBtn___rX9uB:disabled {
   cursor: default;
-  background-color: lightpink;
+  background-color: #9db6d0;
   box-shadow:
     4px 4px 6px 0 var(--light-shadow),
     -4px -4px 6px 0 var(--dark-shadow),
     inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
     inset 4px 4px 6px 0 var(--dark-shadow);
+}
+
+.PaginationBlock-module__pagIconArr___rWUKc {
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: rgba(255, 255, 255, 0);
+  transition: all ease 0.5s;
+  color: var(--body-text-color);
+  box-shadow:
+    4px 4px 6px 0 var(--light-shadow),
+    -4px -4px 6px 0 var(--dark-shadow),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+    inset 4px 4px 6px 0 var(--dark-shadow);
+  border-radius: 0.2rem;
+  border: none;
+}
+.PaginationBlock-module__pagIconArr___rWUKc:hover {
+  cursor: pointer;
+  background-color: #c4c8cd;
+}
+
+.PaginationBlock-module__iconFirst___A8uPB {
+  background-image: url(ed9c1113be687161c791.svg);
+}
+.PaginationBlock-module__iconLast___qkMCn {
+  background-image: url(1da5d7dbffe746ae0da1.svg);
+}
+.PaginationBlock-module__iconPrev___dgx8A {
+  background-image: url(06946aa0866c690635c6.svg);
+}
+.PaginationBlock-module__iconNext___R4c2S {
+  background-image: url(a55dcc5ec01bca7fd032.svg);
+}
+
+.PaginationBlock-module__activePageBtn___MmMYz {
+  background-color: #007bff; /* Зміна фону для підсвічування */
+  color: white; /* Зміна кольору тексту */
+  font-weight: bold; /* Жирний текст */
 }
 
 @media (hover: hover) {
@@ -1964,11 +2013,30 @@ li {
     flex: 0 0 auto;
   }
 
+  .сourses-module__filterSearchWrapper___aajPf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    .сourses-module__label___Ed9AR {
+      select,
+      input {
+        font-size: inherit;
+        padding: 0.5rem;
+        background-color: var(--gray-bg-color);
+        border-radius: 0.2rem;
+      }
+    }
+  }
+
   main {
     font-size: 1.2rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
-
+    justify-content: flex-start;
     .сourses-module__row___qalQO {
       display: flex;
       width: 100%;
@@ -2036,12 +2104,23 @@ li {
     .сourses-module__row___qalQO:nth-child(1) {
       font-weight: 600;
     }
+
+    .сourses-module__noData___IBRxd {
+      font-size: 1.2rem;
+      margin: 2rem 1rem;
+    }
   }
 }
 
 .сourses-module__fix___JHZee {
   overflow: hidden;
   padding-right: 16px;
+}
+
+
+
+img.сourses-module__portrait___PuKjL {
+  transform: rotate(-90deg);
 }
 
 @media (max-width: 768px) {
@@ -2065,36 +2144,6 @@ li {
 
 .сourses-module__hide___njhMF {
   background-color: red;
-}
-
-/*!***************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/ModalWithCloseButton/modalWithCloseButton.module.css ***!
-  \***************************************************************************************************************************************************************/
-.modalWithCloseButton-module__shadow___eAd7J {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: var(--gray-bg-color);
-  .modalWithCloseButton-module__wrapper___xVwBc {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
-    background-color: aqua;
-
-    .modalWithCloseButton-module__closeBtn___Yj0Rj {
-      background-image: url(6c222a42920c18d7ed37.svg);
-      background-size: contain;
-      background-color: unset;
-      width: 3rem;
-      height: 3rem;
-      border: none;
-    }
-  }
 }
 
 /*!************************************************************************************************************************************************!*\
@@ -2135,7 +2184,7 @@ li {
       }
 
       .coursesContainer-module__titleCol___Mkw6n {
-        width: 40%;
+        width: 30%;
       }
 
       .coursesContainer-module__durationCol___Gc8ol {
@@ -2147,7 +2196,7 @@ li {
       }
 
       .coursesContainer-module__buttonsCol___X0z99 {
-        width: 5%;
+        width: 15%;
         min-width: 10rem;
       }
 
@@ -2169,6 +2218,7 @@ li {
       .coursesContainer-module__btnView___fDROP {
         background-image: url(8b0ae39bacccd96e016f.svg);
       }
+
       .coursesContainer-module__btnRemove___zN3TJ {
         background-image: url(5dea5c232eb4bd3492a7.svg);
       }
@@ -2200,6 +2250,7 @@ li {
         .coursesContainer-module__durationCol___Gc8ol {
           width: 10%;
         }
+
         .coursesContainer-module__buttonsCol___X0z99 {
           width: 15%;
         }
@@ -2212,6 +2263,94 @@ li {
   background-color: red;
 }
 
+/*!*******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/InputField/inputField.module.css ***!
+  \*******************************************************************************************************************************************/
+.inputField-module__wrapper___t1Av7 {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+
+  .inputField-module__label___qmXbA {
+    width: 30%;
+  }
+
+  .inputField-module__input___nSAfo {
+    width: 55%;
+    padding: 0.5rem;
+  }
+
+}
+/*!***************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/ModalWithCloseButton/modalWithCloseButton.module.css ***!
+  \***************************************************************************************************************************************************************/
+.modalWithCloseButton-module__shadow___eAd7J {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--gray-bg-color);
+  .modalWithCloseButton-module__wrapper___xVwBc {
+    position: absolute;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-color: var(--menu-bg-color);
+    box-shadow: 0 0 3px 3px lightgrey;
+    padding: 1rem;
+    overflow: hidden;
+    /* cursor: move; */
+    display: flex;
+    flex-direction: column;
+
+
+    .modalWithCloseButton-module__btnWrapper___q6V3V {
+      /* position: absolute; */
+      /* top:-2.5rem;
+      right: -2.5rem; */
+      width: 100%;
+      
+
+      .modalWithCloseButton-module__closeBtn___Yj0Rj {
+        background-image: url(6c222a42920c18d7ed37.svg);
+        background-size: contain;
+        background-color: unset;
+        width: 3rem;
+        height: 3rem;
+        border: none;
+        right: 0;
+      }
+    }
+
+
+  }
+}
+
+@media (max-width: 768px) {
+  .modalWithCloseButton-module__shadow___eAd7J {
+    .modalWithCloseButton-module__wrapper___xVwBc {
+    width: 80%;
+  }
+  }
+  
+}
+
+/*!*******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/CoursesDetails/сoursesDetail.module.css ***!
+  \*******************************************************************************************************************************************/
+.сoursesDetail-module__fileWrapper___LiLnu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 165px;
+  .сoursesDetail-module__fileBlock___I8WyN {
+    padding: 1rem;
+  }
+}
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
@@ -2255,6 +2394,13 @@ a {
   text-decoration: none;
 }
 
+select,
+input[type='text'] {
+  border: none;
+  outline: none;
+}
+
+select:focus,
 input[type='text']:focus {
   border: none;
   outline: none;
