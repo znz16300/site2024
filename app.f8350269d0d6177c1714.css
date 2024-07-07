@@ -2184,7 +2184,7 @@ img.сourses-module__portrait___PuKjL {
       }
 
       .coursesContainer-module__titleCol___Mkw6n {
-        width: 30%;
+        width: 40%;
       }
 
       .coursesContainer-module__durationCol___Gc8ol {
@@ -2196,7 +2196,7 @@ img.сourses-module__portrait___PuKjL {
       }
 
       .coursesContainer-module__buttonsCol___X0z99 {
-        width: 15%;
+        width: 10%;
         min-width: 10rem;
       }
 
@@ -2261,6 +2261,13 @@ img.сourses-module__portrait___PuKjL {
 
 .coursesContainer-module__hide___j_Lof {
   background-color: red;
+}
+
+.coursesContainer-module__btnWrapper___Lawba {
+  display: flex;
+  gap: 2rem;
+  justify-content: end;
+  padding-right: 1rem;
 }
 
 /*!*******************************************************************************************************************************************!*\
