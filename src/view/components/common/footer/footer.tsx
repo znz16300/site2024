@@ -5,9 +5,7 @@ import * as classes from './footer.module.css';
 function Footer() {
   return (
     <footer className={classes.footer}>
-      <div className={classes.footerItem}>
-        © 2024 &quot;Куликівський ліцей&quot;. All rights reserved.
-      </div>
+      <div className={classes.footerItem}>© 2024 &quot;Куликівський ліцей</div>
       <div className={`${classes.footerItem} ${classes.minimal}`}>
         <p>Contact Information:</p>
         <Link to="tel:+380464321208">

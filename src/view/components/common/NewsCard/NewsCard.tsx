@@ -15,6 +15,7 @@ interface NewsCardProps {
 
 function NewsCard({ news, goToNews }: NewsCardProps) {
   const images: string[] | null = imagesFromField(news['Фото']);
+
   const img1: string | null = images ? images[0] : null;
   const backgroundImage: string = img1 ? `url(${img1})` : 'unset';
 

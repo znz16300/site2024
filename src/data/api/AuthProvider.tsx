@@ -58,14 +58,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('token', JSON.stringify(resp));
       const res = await fetchUserDetails(resp.credential);
       localStorage.setItem('dateCreateToken', Math.floor(Date.now() / 1000).toString());
-      // eslint-disable-next-line no-console
-      console.log('logined');
       setState((prevState) => ({ ...prevState, userLoggedIn: false, user: res.user }));
-      // window.location.href = `${window.location.origin}/`;
+      window.location.href = `${window.location.origin}/`;
       return true;
     },
     onError: () => {
-      console.log('Login Failed');
       return false;
     },
     scope:
@@ -112,11 +109,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem('dateCreateToken', Math.floor(Date.now() / 1000).toString());
         await fetchUserDetails(data.access_token);
       } else {
-        console.log('Failed to refresh token', data);
         logout();
       }
     } catch (error) {
-      console.log('Error refreshing token', error);
       logout();
     }
   };

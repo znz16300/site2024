@@ -24,9 +24,10 @@ const pageCache: IPageCache = {
 
 async function getDocuments(force: boolean, tableNews: Table) {
   if (force || !pageCache[tableNews.tableName]) {
+    const searchString = '?field=show&value=1';
     try {
       const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:G10000`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:G10000${searchString}`
       );
       const resp: DataObject[] | null = response.data;
       if (resp) {

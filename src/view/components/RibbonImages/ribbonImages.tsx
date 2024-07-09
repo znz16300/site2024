@@ -9,8 +9,6 @@ interface ImageProps {
 }
 
 export default function RibbonImages({ activImage, images, setModal }: ImageProps) {
-  // eslint-disable-next-line no-console
-  console.log(activImage);
   const ribbonLength = Math.floor(100 * images.length);
   const ribbonOffset = Math.floor((ribbonLength / images.length) * activImage);
   return (

@@ -1,8 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-bind */
-/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from '../../../App';
@@ -11,16 +9,18 @@ import * as classes from './сourses.module.css';
 import Loader from '../../components/common/Loader/Loader';
 import Header from '../../components/common/header/header';
 import getCourses from '../../../data/api/getCourses';
-import ModalWithCloseButton from '../../components/common/ModalWithCloseButton/ModalWithCloseButton';
-import TEACHERS from '../../../constants';
+import { TEACHERS } from '../../../constants';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import CoursesContainer from '../../components/CoursesContainer/CoursesContainer';
+import CoursesDetails from '../../components/CoursesDetails/CoursesDetails';
+import { DriveFile } from '../../../data/types/interfaces/googleFileInfo';
 
-export const ITEMS_PER_PAGE_NEWS = 10;
+// export const ITEMS_PER_PAGE_NEWS = 10;
 
 interface DataObject {
   id: string;
-  [key: string]: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 function Сourses() {
@@ -31,52 +31,69 @@ function Сourses() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [offset, setOffset] = useState<number>(0);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const { state, setState } = useAppContext();
+  const [selectedItem, setSelectedItem] = useState<DataObject | null>(null);
+  const [fileInfo, setFileInfo] = useState<DriveFile | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true); // Початок завантаження
-      const responseData: DataObject[] | null = await getCourses(false, teacher);
+      const responseData: DataObject[] | null = await getCourses(
+        false,
+        teacher,
+        state.oauth?.google_public_api_key as string
+      );
       if (responseData) {
         setData(responseData);
-        console.log(responseData);
         setState((prevState) => ({ ...prevState, productsAmount: responseData.length }));
       }
-      setLoading(false); // Завершення завантаження
+      setLoading(false);
     };
-    console.log('teacher===', teacher);
 
     if (teacher === '') {
       setData(null);
     } else {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teacher, setTeacher, setState]);
 
   function handleEdit(id: string) {
+    // eslint-disable-next-line no-console
     console.log('edit', id);
   }
-  function handleView(id: string) {
-    console.log('view', id);
-    setVisibleDetails(true);
+
+  function handleView(e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string) {
+    e.stopPropagation();
+    if (data) {
+      const item = data.find((i) => i.id === id);
+      if (item) {
+        setSelectedItem(item);
+        setFileInfo(item.fileInfo);
+        setVisibleDetails(true);
+      }
+    }
   }
+
   function handleRemove(id: string) {
+    // eslint-disable-next-line no-console
     console.log('remove', id);
   }
 
   function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (e.currentTarget) {
       if (e.currentTarget.id === 'pagLeft') {
-        setOffset((activePaginationBtn - 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn - 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn - 1);
       } else if (e.currentTarget.id === 'pagRight') {
-        setOffset((activePaginationBtn + 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn + 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn + 1);
       } else if (e.currentTarget.id === 'pagFirst') {
         setOffset(0);
         setActivePaginationBtn(0);
       } else {
-        setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+        setOffset(+e.currentTarget.id * itemsPerPage);
         setActivePaginationBtn(+e.currentTarget.id);
       }
     }
@@ -123,14 +140,15 @@ function Сourses() {
             <CoursesContainer
               data={data}
               offset={offset}
-              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              itemsPerPage={itemsPerPage}
               handleView={handleView}
               handleEdit={handleEdit}
               handleRemove={handleRemove}
             />
             <PaginationBlock
               activeId={activePaginationBtn}
-              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              itemsPerPage={itemsPerPage}
+              setItemsPerPage={setItemsPerPage}
               onClickHandler={(e) => offsetHandler(e)}
               state={state}
             />
@@ -138,10 +156,12 @@ function Сourses() {
         ) : (
           <div className={classes.noData}>Оберіть педагогічного працівника зі списку</div>
         )}
-        {visibleDetails && (
-          <ModalWithCloseButton setVisible={setVisibleDetails}>
-            <div>wwwww</div>
-          </ModalWithCloseButton>
+        {visibleDetails && selectedItem && (
+          <CoursesDetails
+            selectedItem={selectedItem}
+            fileInfo={fileInfo}
+            setVisibleDetails={setVisibleDetails}
+          />
         )}
       </main>
       <Footer />

@@ -1,17 +1,21 @@
-/* eslint-disable no-console */
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
 
 function extractIdFromUrl(url: string) {
-  const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
+  const match = url.match(
+    /https?:\/\/drive\.google\.com\/(?:open\?id=|uc\?export=view&id=)([^&]+)/
+  );
   return match ? match[1] : null;
 }
 
 async function transformPhotoFunction(inputString: string, apiKey: string) {
   if (inputString) {
-    if (inputString.indexOf('https://drive.google.com/open?id=') === 0) {
+    if (
+      inputString.indexOf('https://drive.google.com/open?id=') === 0 ||
+      inputString.indexOf('http://drive.google.com/uc?export=view&id=') === 0
+    ) {
       const fileId = extractIdFromUrl(inputString);
       if (fileId) {
         try {
@@ -32,6 +36,12 @@ const tableNews = {
   tableName: process.env.GOOGLESHEETS_TABLE_NEWS as string,
   sheetName: process.env.GOOGLESHEETS_TABLE_NEWS_SHEET as string
 };
+
+interface Table {
+  tableName: string;
+  sheetName: string;
+  title: string;
+}
 
 interface DataObject {
   id: string;
@@ -57,15 +67,13 @@ async function processNewsArray(newsArray: DataObject[], apiKey: string): Promis
 
 async function getNews(force: boolean, apiKey: string) {
   if (!newsCache || force) {
+    const searchString = '?field=show&value=1';
     try {
       const response = await axios.get(
-        // `${process.env.PYTHONANYWHERE_SERVER_URL}/getrange/${tableNews.tableName}`
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000${searchString}`
       );
-      console.log('response.data:', response.data);
       // Оновлення новин з обробленими фотографіями
       const updatedNewsArray = await processNewsArray(response.data, apiKey);
-      console.log('Updated news array:', updatedNewsArray);
 
       newsCache = updatedNewsArray;
       return updatedNewsArray;
@@ -74,9 +82,39 @@ async function getNews(force: boolean, apiKey: string) {
       return null;
     }
   }
-
-  console.log('Returning cached news:', newsCache);
   return newsCache;
+}
+
+interface IPageCache {
+  [key: string]: DataObject[] | null;
+}
+
+const pageCache: IPageCache = {
+  empty: null
+};
+
+export async function getPage(force: boolean, apiKey: string, tablePage: Table) {
+  const indexCach = `${tablePage.tableName}-${tablePage.title}`;
+  if (force || !pageCache[indexCach]) {
+    try {
+      const response = await axios.get(
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tablePage.tableName}/${tablePage.sheetName}/A1:F10000?field=Розділ&value=${tablePage.title}`
+      );
+      // Оновлення новин з обробленими фотографіями
+      const updatedNewsArray = await processNewsArray(response.data, apiKey);
+      if (updatedNewsArray) {
+        pageCache[indexCach] = updatedNewsArray;
+      }
+    } catch (err) {
+      return null;
+    }
+  }
+
+  if (pageCache[indexCach]) {
+    const result = pageCache[indexCach];
+    return result;
+  }
+  return null;
 }
 
 export default getNews;

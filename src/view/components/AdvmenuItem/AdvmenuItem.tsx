@@ -24,7 +24,6 @@ function AdvmenuItem({ menues, level, title }: AdvmenuItemProps) {
   const levelsMenu: DataObject[] | null = menues.filter(
     (item) => item.FathMenu === level && item.show === '1'
   );
-  console.log(title, levelsMenu);
 
   return (
     <div className={classes.container}>

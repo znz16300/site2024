@@ -14,8 +14,6 @@ async function getPublicFileData(fileId: string, publicApiKey: string) {
         Accept: 'application/json'
       }
     });
-    // eslint-disable-next-line no-console
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching file data:', error);

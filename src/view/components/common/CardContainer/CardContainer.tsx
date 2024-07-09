@@ -15,8 +15,6 @@ interface CardContainesProps {
 }
 
 function CardContaines({ data, offset, itemsPerPage, goToNews }: CardContainesProps) {
-  // eslint-disable-next-line no-console
-  console.log(offset, itemsPerPage);
   const sliceData: DataObject[] = data.slice(offset, offset + itemsPerPage);
 
   return (

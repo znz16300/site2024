@@ -23,7 +23,6 @@
     .logo {
       width: 6rem;
       object-fit: cover;
-      z-index: 2000;
     }
   }
 }

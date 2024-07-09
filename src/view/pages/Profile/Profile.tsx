@@ -15,7 +15,6 @@ function Profile() {
   // const { state, setState } = useAppContext();
   const { user, logout } = useAuth();
   const googleUser: GoogleUser = user;
-  console.log('user', user);
 
   return (
     <div className={classes.profileWrapper}>

@@ -18,7 +18,6 @@ function Login() {
       <section className={classes.login}>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
             setState((prevState) => ({ ...prevState, oAuthResp: credentialResponse as OAuthResp }));
           }}
           onError={() => {

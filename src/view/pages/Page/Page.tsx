@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as classes from './page.module.css';
-import getPage from '../../../data/api/getPage';
 import Loader from '../../components/common/Loader/Loader';
 import Footer from '../../components/common/footer/footer';
 import PageContainer from '../../components/PageContainer/PageContainer';
 // eslint-disable-next-line import/no-cycle
 import Header from '../../components/common/header/header';
+import { getPage } from '../../../data/api/getData';
+import { useAppContext } from '../../../App';
 
 const page = 'page';
 export const ITEMS_PER_PAGE_NEWS = 8;
@@ -28,12 +29,10 @@ function Page() {
   const [data, setData] = useState<DataObject[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const location = useLocation();
-  // const navigate = useNavigate();
+  const { state } = useAppContext();
   const searchParams = new URLSearchParams(location.search);
   const idTable = searchParams.get('keyPages');
   const idTitle = searchParams.get('titlePages');
-  // eslint-disable-next-line no-console
-  console.log(idTable, idTitle);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +40,11 @@ function Page() {
         tablePage.tableName = idTable;
         tablePage.title = idTitle;
       }
-      const responseData: DataObject[] | null | undefined = await getPage(false, tablePage);
+      const responseData: DataObject[] | null | undefined = await getPage(
+        false,
+        state.oauth?.google_public_api_key as string,
+        tablePage
+      );
 
       if (responseData) {
         setData(responseData);
@@ -53,8 +56,6 @@ function Page() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idTitle, idTable]);
-
-  console.log(data);
 
   return (
     <div className={classes.wrapper}>

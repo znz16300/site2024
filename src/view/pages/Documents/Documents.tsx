@@ -16,7 +16,6 @@ import { useAppContext } from '../../../App';
 import Header from '../../components/common/header/header';
 
 const page = 'documents';
-export const ITEMS_PER_PAGE_NEWS = 8;
 
 interface DataObject {
   id: string;
@@ -37,6 +36,7 @@ function Documents() {
   const [offset, setOffset] = useState<number>(0);
   const [sorting, setSorting] = useState<string>('');
   const [search, setSearch] = useState<string>('');
+  const [itemsPerPage, setItemsPerPage] = useState<number>(8);
   // const navigate = useNavigate();
   const idTable = '1O_bJjH8TAHww34uxA51rdyJoX4PaxMGOzL57N8G7H34';
   const sheetName = 'Відповіді форми (1)';
@@ -84,20 +84,19 @@ function Documents() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, sorting, sheetName, idTable]);
 
-  console.log(data);
   function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (e.currentTarget) {
       if (e.currentTarget.id === 'pagLeft') {
-        setOffset((activePaginationBtn - 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn - 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn - 1);
       } else if (e.currentTarget.id === 'pagRight') {
-        setOffset((activePaginationBtn + 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn + 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn + 1);
       } else if (e.currentTarget.id === 'pagFirst') {
         setOffset(0);
         setActivePaginationBtn(0);
       } else {
-        setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+        setOffset(+e.currentTarget.id * itemsPerPage);
         setActivePaginationBtn(+e.currentTarget.id);
       }
     }
@@ -118,11 +117,12 @@ function Documents() {
               <SearchBar search={search} onChange={searchHandler} />
               <SortBar value={sorting} onChange={(e) => setSorting(e.target.value)} />
             </div>
-            <PageDocumentContainer offset={offset} itemsPerPage={ITEMS_PER_PAGE_NEWS} data={data} />
+            <PageDocumentContainer offset={offset} itemsPerPage={itemsPerPage} data={data} />
 
             <PaginationBlock
               activeId={activePaginationBtn}
-              itemsPerPage={ITEMS_PER_PAGE_NEWS}
+              itemsPerPage={itemsPerPage}
+              setItemsPerPage={setItemsPerPage}
               onClickHandler={(e) => offsetHandler(e)}
               state={state}
             />

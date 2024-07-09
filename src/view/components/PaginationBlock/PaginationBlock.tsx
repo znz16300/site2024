@@ -1,15 +1,23 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { AppState } from '../../../data/types/main-props';
 import * as classes from './PaginationBlock.module.css';
 
 interface PaginationProps {
   activeId: number;
+  setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   state: AppState;
   itemsPerPage: number;
 }
 
-function PaginationBlock({ activeId, itemsPerPage, onClickHandler, state }: PaginationProps) {
+function PaginationBlock({
+  activeId,
+  itemsPerPage,
+  setItemsPerPage,
+  onClickHandler,
+  state
+}: PaginationProps) {
   const { productsAmount } = state;
   const pagesAmount = Math.ceil(productsAmount / itemsPerPage);
 
@@ -143,7 +151,28 @@ function PaginationBlock({ activeId, itemsPerPage, onClickHandler, state }: Pagi
     return buttons;
   };
 
-  return <div className={classes.paginationWrapper}>{renderPageButtons()}</div>;
+  function handleItemsPerPage(e: React.FocusEvent<HTMLInputElement, Element>) {
+    setItemsPerPage(+e.currentTarget.value);
+  }
+
+  // function handleBlur(e: React.FocusEvent<HTMLInputElement, Element>) {
+  //   setItemsPerPage(+e.currentTarget.value);
+  // }
+
+  return (
+    <div className={classes.wrapper}>
+      <div className={classes.paginationWrapper}>{renderPageButtons()}</div>
+      <label className={classes.label}>
+        на сторінці&nbsp;
+        <input
+          type="text"
+          value={itemsPerPage}
+          onChange={handleItemsPerPage}
+          // onBlur={(e) => handleBlur(e)}
+        />
+      </label>
+    </div>
+  );
 }
 
 export default PaginationBlock;

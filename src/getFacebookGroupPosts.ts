@@ -18,7 +18,6 @@ const getFacebookGroupPosts = async (
         access_token: accessToken
       }
     });
-    console.log('posts_list', response.data.data);
     return response.data.data;
   } catch (error) {
     console.error('Error fetching Facebook group posts:', error);

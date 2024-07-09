@@ -1,9 +1,9 @@
 // import getGoogleDriveImageUrl from '../api/getGoogleDriveImageUrl';
 
-// function extractIdFromUrl(url: string) {
-//   const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
-//   return match ? match[1] : null;
-// }
+export function extractIdFromUrl(url: string) {
+  const match = url.match(/https:\/\/drive\.google\.com\/open\?id=([^&]+)/);
+  return match ? match[1] : null;
+}
 
 export default function imagesFromField(inputString: string) {
   if (inputString) {

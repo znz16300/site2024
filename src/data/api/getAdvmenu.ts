@@ -54,8 +54,6 @@ async function getAdvmenu(force: boolean) {
     const result = pageCache[tableMenu.tableName];
     if (result) {
       const menuTree = buildMenuTree(result);
-      console.log(menuTree);
-
       return menuTree;
     }
 

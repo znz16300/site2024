@@ -17,7 +17,7 @@ function PageContainer({ data }: PageContainerProps) {
     <div className={classes.wrapper}>
       {data.map((item: DataObject) =>
         item['Тип (1 - картки, 2- абзаци)'] === '1' ? (
-          <Card data={item} />
+          <Card data={item} key={item.id} />
         ) : (
           <div
             key={item.id}

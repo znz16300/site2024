@@ -11,7 +11,6 @@ import { GoogleUser } from '../../data/types/main-props';
 export const DashboardPage: React.FC = () => {
   const { user, logout } = useAuth();
   const googleUser: GoogleUser = user;
-  console.log(googleUser);
 
   return (
     <div>

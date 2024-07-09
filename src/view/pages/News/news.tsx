@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../../components/common/footer/footer';
 import * as classes from './news.module.css';
-import getNews from '../../../data/api/getNews';
+import getNews from '../../../data/api/getData';
 import Loader from '../../components/common/Loader/Loader';
 import CardContainer from '../../components/common/CardContainer/CardContainer';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
@@ -16,8 +16,6 @@ import SortBar from '../../components/SortBar/SortBar';
 // eslint-disable-next-line import/no-cycle
 import { useAppContext } from '../../../App';
 import Header from '../../components/common/header/header';
-
-export const ITEMS_PER_PAGE_NEWS = 12;
 
 interface DataObject {
   id: string;
@@ -30,14 +28,13 @@ function News() {
   const [loading, setLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [activePaginationBtn, setActivePaginationBtn] = useState<number>(0);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(12);
   const [sorting, setSorting] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const idKey = searchParams.get('id');
-  // eslint-disable-next-line no-console
-  console.log('idKey', idKey);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,24 +81,22 @@ function News() {
   }, [search, sorting]);
 
   function goToNews(id: string) {
-    // eslint-disable-next-line no-console
-    console.log('показуємо новину', id);
     navigate(`/news?id=${id}`);
   }
 
   function offsetHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (e.currentTarget) {
       if (e.currentTarget.id === 'pagLeft') {
-        setOffset((activePaginationBtn - 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn - 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn - 1);
       } else if (e.currentTarget.id === 'pagRight') {
-        setOffset((activePaginationBtn + 1) * ITEMS_PER_PAGE_NEWS);
+        setOffset((activePaginationBtn + 1) * itemsPerPage);
         setActivePaginationBtn(activePaginationBtn + 1);
       } else if (e.currentTarget.id === 'pagFirst') {
         setOffset(0);
         setActivePaginationBtn(0);
       } else {
-        setOffset(+e.currentTarget.id * ITEMS_PER_PAGE_NEWS);
+        setOffset(+e.currentTarget.id * itemsPerPage);
         setActivePaginationBtn(+e.currentTarget.id);
       }
     }
@@ -129,11 +124,12 @@ function News() {
                 data={data}
                 goToNews={(id: string) => goToNews(id)}
                 offset={offset}
-                itemsPerPage={ITEMS_PER_PAGE_NEWS}
+                itemsPerPage={itemsPerPage}
               />
               <PaginationBlock
                 activeId={activePaginationBtn}
-                itemsPerPage={ITEMS_PER_PAGE_NEWS}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={setItemsPerPage}
                 onClickHandler={(e) => offsetHandler(e)}
                 state={state}
               />

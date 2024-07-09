@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+
+  .label {
+    width: 30%;
+  }
+
+  .input {
+    width: 55%;
+    padding: 0.5rem;
+  }
+
+}

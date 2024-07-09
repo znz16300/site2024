@@ -16,6 +16,7 @@ import Сourses from './view/pages/Сourses/Сourses';
 import FileInfoTest from './view/components/FileInfoTest/FileInfoTest';
 import FacebookPost from './view/components/FacebookPost/FacebookPost';
 import GoogleDriveImage from './view/components/GoogleDriveImage/GoogleDriveImage';
+import Tabels from './view/pages/Tabels/Tabels';
 // import { useAuth } from './data/api/AuthProvider';
 
 interface RedirectToPageProps {
@@ -56,6 +57,7 @@ function AppRoutes() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/search" element={<Search />} />
       <Route path="/sss" element={<FileInfoTest />} />
+      <Route path="/tabels" element={<Tabels />} />
       <Route
         path="/aaa"
         element={<GoogleDriveImage fileId="1-BAaHXv7p_tywRUZb3QVyxdNNs-NRygM" />}

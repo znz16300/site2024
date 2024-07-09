@@ -20,7 +20,7 @@ function PageDocumentContainer({ offset, data, itemsPerPage }: PageDocumentConta
   return (
     <div className={classes.wrapper}>
       {sliceData.map((item: DataObject) => (
-        <CardDocument data={item} />
+        <CardDocument data={item} key={item.id} />
       ))}
     </div>
   );

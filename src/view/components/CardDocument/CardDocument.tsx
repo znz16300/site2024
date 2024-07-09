@@ -64,8 +64,6 @@ function CardDocument({ data }: CardProps) {
   const [urls, setUrls] = useState<string[]>([]);
 
   function goToModal(urlsParam: string[]): void {
-    console.log('rrrrrr');
-
     setVisible(true);
     setUrls(urlsParam);
   }

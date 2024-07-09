@@ -12,8 +12,6 @@ async function getGoogleDriveImageUrl(fileId: string, apiKey: string): Promise<s
       responseType: 'blob'
     });
     const url = URL.createObjectURL(response.data);
-    // eslint-disable-next-line no-console
-    console.log('url', url);
     return url;
   } catch (err) {
     console.error('Error fetching image:', err);

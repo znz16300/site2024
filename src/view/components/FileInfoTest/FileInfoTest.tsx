@@ -10,7 +10,6 @@ function FileInfoTest() {
   const { state } = useAppContext();
   useEffect(() => {
     async function fetchData() {
-      console.log();
       const response = await getPublicFileData(
         '10wHe9rqHLDfHg_JsneGBePcNPH0A04Uz',
         state.oauth?.google_public_api_key as string

@@ -39,7 +39,8 @@ a {
 }
 
 select,
-input[type='text'] {
+input[type='text'],
+input[type='date'] {
   border: none;
   outline: none;
 }
