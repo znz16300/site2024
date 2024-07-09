@@ -22,6 +22,11 @@
     ],
     "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "copy404.js", "src/view/components/common/InputField/TextAreaField.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "copy404.js",
+    "src/view/components/common/InputField/TextAreaField.tsx"
+  ],
   "exclude": ["./node_modules", "./dist", "webpack.config.ts"]
 }

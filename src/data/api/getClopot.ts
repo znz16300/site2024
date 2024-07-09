@@ -56,7 +56,9 @@ function createContext(records: DataObject[], golova: string, zaklad: string): C
   const currentDate = new Date();
   const teacher = records[0][COURSES_TABLE_COLLS[2].field];
   const teacherParts = fullNameToParts(teacher);
-  const teacherRod = getGenitiveAll(`${teacherParts.lastName} ${teacherParts.firstName} ${teacherParts.middleName}`);
+  const teacherRod = getGenitiveAll(
+    `${teacherParts.lastName} ${teacherParts.firstName} ${teacherParts.middleName}`
+  );
 
   const teacherINIC = fullNameToInic(teacher);
   const formattedDate = formatDate(currentDate);
