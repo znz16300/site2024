@@ -962,7 +962,7 @@
   visibility: hidden;
   top: 0;
   left: 100%;
-  width: 380px;
+  width: 320px;
   height: 100vh;
   padding: 6rem 1rem 1rem 1rem;
   background: white;
@@ -973,7 +973,7 @@
 }
 .mobileMenu-module__mobileMenuBoxShow___VFZpm {
   visibility: visible;
-  left: calc(100% - 380px);
+  left: calc(100% - 320px);
 }
 .mobileMenu-module__menuHeader___VtuI6 {
   background-color: var(--accent-color);
