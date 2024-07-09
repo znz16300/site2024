@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps } from '../../../../data/types/interfaces/iconProps';
 
-function ArrowLeftIcon({ width, height, fill = '#000' }: IconProps) {
+function ArrowLeftIcon({ width = '24px', height = '24px', fill = '#000' }: IconProps) {
   return (
     <svg
       width={width}

@@ -2,18 +2,9 @@
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
+import { IMenuItem } from '../types/interfaces/mobileMenu';
 
-interface DataObject {
-  id: string;
-  N: string;
-  Title: string;
-  FathMenu: string;
-  show: string;
-  link: string;
-  children?: DataObject[];
-}
-
-function buildMenuTree(menuItems: DataObject[], parentId: string = '0'): DataObject[] {
+function buildMenuTree(menuItems: IMenuItem[], parentId: string = '0'): IMenuItem[] {
   return menuItems
     .filter((item) => item.FathMenu === parentId)
     .map((item) => ({
@@ -23,7 +14,7 @@ function buildMenuTree(menuItems: DataObject[], parentId: string = '0'): DataObj
 }
 
 interface IPageCache {
-  [key: string]: DataObject[] | null;
+  [key: string]: IMenuItem[] | null;
 }
 
 const pageCache: IPageCache = {
@@ -41,7 +32,7 @@ async function getAdvmenu(force: boolean) {
       const response = await axios.get(
         `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableMenu.tableName}/${tableMenu.sheetName}/A1:E10000`
       );
-      const resp: DataObject[] | null = response.data;
+      const resp: IMenuItem[] | null = response.data;
       if (resp) {
         pageCache[tableMenu.tableName] = resp;
       }
@@ -54,6 +45,7 @@ async function getAdvmenu(force: boolean) {
     const result = pageCache[tableMenu.tableName];
     if (result) {
       const menuTree = buildMenuTree(result);
+      console.log('menuTree', menuTree);
       return menuTree;
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps } from '../../../../data/types/interfaces/iconProps';
 
-export default function CloseXIcon({ width, height, fill = 'red' }: IconProps) {
+export default function CloseXIcon({ width = '24px', height = '24px', fill = 'black' }: IconProps) {
   return (
     <svg
       width={width}

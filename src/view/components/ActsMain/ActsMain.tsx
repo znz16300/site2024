@@ -13,7 +13,6 @@ import img7 from '../../../assets/icons/acts/7.png';
 import img8 from '../../../assets/icons/acts/10.png';
 import actsData from '../../../data/types/actsData';
 import Button from '../common/Button/Button';
-import AdvMenu from '../AdvMenu/AdvMenu';
 
 const images: Record<string, string> = {
   '5.png': img1,
@@ -55,7 +54,6 @@ function ActsMain() {
         ))}
       </div>
       <Button onClick={handleAdvmenu}>{!more ? 'Більше' : 'Менше'}</Button>
-      {more ? <AdvMenu /> : null}
     </section>
   );
 }

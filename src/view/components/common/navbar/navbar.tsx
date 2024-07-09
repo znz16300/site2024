@@ -14,8 +14,9 @@ import logoutWhiteIcon from '../../../../assets/icons/logout_white.svg';
 import searchDarkIcon from '../../../../assets/icons/search.svg';
 import searchWhiteIcon from '../../../../assets/icons/search_white.svg';
 import { useAuth } from '../../../../data/api/AuthProvider';
-import AdvMenu from '../../AdvMenu/AdvMenu';
-import cross from '../../../../assets/icons/cross.svg';
+import MobileMenu from '../MobileMenu/MobileMenu';
+import { IMenuItem } from '../../../../data/types/interfaces/mobileMenu';
+import getAdvmenu from '../../../../data/api/getAdvmenu';
 
 const SHOWLOGIN = true;
 
@@ -24,7 +25,8 @@ interface NavbarProps {
 }
 
 function Navbar({ page }: NavbarProps) {
-  const [advVisible, setAdvVisible] = useState(false);
+  // const [advVisible, setAdvVisible] = useState(false);
+  const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const { state, setState } = useAppContext();
   const loginIcon = page === 'main' ? loginWhiteIcon : loginDarkIcon;
@@ -58,9 +60,27 @@ function Navbar({ page }: NavbarProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  const [advmenu, setAdvmenu] = useState<IMenuItem[] | null>(null);
+  useEffect(() => {
+    async function fetchAdvmenu() {
+      try {
+        const menu: IMenuItem[] | null = await getAdvmenu(false);
+        if (menu) {
+          // eslint-disable-next-line no-console
+          console.log(menu);
+          setAdvmenu(menu);
+        }
+      } catch {
+        // eslint-disable-next-line no-console
+        console.log('noMenu');
+      }
+    }
+    fetchAdvmenu();
+  }, []);
+
   function handleMore(): void {
     toggleMenu();
-    setAdvVisible(true);
+    setIsMenuOpened(true);
   }
 
   return (
@@ -133,7 +153,7 @@ function Navbar({ page }: NavbarProps) {
       ) : (
         <div />
       )}
-      {advVisible ? (
+      {/* {advVisible ? (
         <div className={classes.rightMenu}>
           <button
             type="button"
@@ -155,7 +175,14 @@ function Navbar({ page }: NavbarProps) {
             <AdvMenu />
           </div>
         </div>
-      ) : null}
+      ) : null} */}
+      {advmenu && isMenuOpened && (
+        <MobileMenu
+          menuAll={advmenu}
+          isMenuOpened={isMenuOpened}
+          setIsMenuOpened={setIsMenuOpened}
+        />
+      )}
     </nav>
   );
 }
