@@ -82,7 +82,7 @@
   background: transparent;
   border: 1px solid teal;
   cursor: pointer;
-  border-radius: 5rem;
+  border-radius: 2rem;
   padding: 1rem 2rem;
   background-color: rgba(255, 255, 255, 0.5);
   transition: 0.4s all ease-in;
@@ -2406,6 +2406,11 @@ img.сourses-module__portrait___PuKjL {
   }
 }
 
+.modalWithCloseButton-module__resizable___ipqJA {
+  overflow: auto;
+  resize: both;
+}
+
 @media (max-width: 768px) {
   .modalWithCloseButton-module__shadow___eAd7J {
     .modalWithCloseButton-module__wrapper___xVwBc {
@@ -2433,6 +2438,12 @@ img.сourses-module__portrait___PuKjL {
   \***********************************************************************************************************************/
 .tabels-module__wrapper___lbcE1 {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  .tabels-module__container___JpVYV > :nth-child(1),
+  .tabels-module__container___JpVYV > :nth-child(3) {
+    flex: 0 0 auto;
+  }
 
   * {
     padding: 0.3rem;
@@ -2444,13 +2455,49 @@ img.сourses-module__portrait___PuKjL {
     display: flex;
     flex-wrap: wrap;
   }
+
   input,
   select,
   textarea {
     background-color: beige;
   }
-}
 
+  .tabels-module__blocsWrapper___KaE1P {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .tabels-module__tabelWrapper___nQFVb {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid blue;
+      border-radius: 1rem;
+      justify-content: space-around;
+      position: relative;
+
+      .tabels-module__labelWrapper___tJL5I {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .tabels-module__labelBlock___FbNnA {
+        position: absolute;
+        font-size: 1.2rem;
+        top: -1.5rem;
+        left: 1rem;
+        background-color: white;
+        /* background-color: var(--default-dg-color); */
+      }
+    }
+  }
+
+  .tabels-module__resultLabel___s1e8X {
+    color: blue;
+    font-weight: 600;
+    font-size: 5rem;
+  }
+
+}
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
