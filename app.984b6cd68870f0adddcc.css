@@ -1067,7 +1067,7 @@
   z-index: 1001;
   background-color: aqua;
   border-radius: 0.5rem;
-  min-width: 70%;  
+  min-width: 70%;
   background: white;
   box-shadow: 4px 4px 30px 5px rgba(128, 128, 128, 1);
   transition-duration: 0.25s;
@@ -1086,10 +1086,10 @@
 .searchPanel-module__btn___gjCrv {
   width: 3rem;
   height: 3rem;
-  
+
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1116,6 +1116,7 @@
   font-size: 2rem;
   font-weight: 600;
 }
+
 /*!***************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/NologinMessage/NologinMessage.module.css ***!
   \***************************************************************************************************************************************************/
@@ -2572,13 +2573,13 @@ img.сourses-module__portrait___PuKjL {
     font-weight: 600;
     font-size: 5rem;
   }
-
 }
+
 /*!*****************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/index.css ***!
   \*****************************************************************/
 :root {
-  --accent-color: #17454C;
+  --accent-color: #17454c;
   --default-bg-color: rgb(255, 255, 255);
   --primary-text-color: rgb(84, 84, 84);
   --body-text-color: rgb(75, 85, 99);
