@@ -1040,6 +1040,82 @@
   min-width: calc(100% + 24px);
 }
 
+/*!**************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/SearchPanel/searchPanel.module.css ***!
+  \**************************************************************************************************************************************/
+.searchPanel-module__cover___X2GJp {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(gray-bg-color);
+  z-index: 1000;
+  display: none;
+}
+.searchPanel-module__coverShow___kvA3N {
+  display: block;
+}
+
+.searchPanel-module__searchPanelBox___TbP6g {
+  position: absolute;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  z-index: 1001;
+  background-color: aqua;
+  border-radius: 0.5rem;
+  min-width: 70%;  
+  background: white;
+  box-shadow: 4px 4px 30px 5px rgba(128, 128, 128, 1);
+  transition-duration: 0.25s;
+}
+.searchPanel-module__searchHeader___wajVZ {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.searchPanel-module__searchPanelBoxShow___TExzh {
+  visibility: visible;
+  /* top: -0.5rem; */
+  top: 0;
+}
+
+.searchPanel-module__btn___gjCrv {
+  width: 3rem;
+  height: 3rem;
+  
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+
+.searchPanel-module__searchBtn___BxRqp {
+  background-image: url(61ecf01d160ec5e0fa79.svg);
+}
+.searchPanel-module__closeBtn___pKhMQ {
+  background-image: url(6c222a42920c18d7ed37.svg);
+}
+
+.searchPanel-module__input___ZwUtM {
+  padding: 0.2rem;
+  min-width: calc(100% - 8rem);
+  font-size: 2rem;
+}
+.searchPanel-module__contentResultSearch___JD14D {
+  color: var(--body-text-color);
+}
+
+.searchPanel-module__title___tmxyU {
+  font-size: 2rem;
+  font-weight: 600;
+}
 /*!***************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/view/components/common/NologinMessage/NologinMessage.module.css ***!
   \***************************************************************************************************************************************************/
