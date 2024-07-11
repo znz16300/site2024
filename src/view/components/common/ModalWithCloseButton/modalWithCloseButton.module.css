@@ -39,6 +39,11 @@
   }
 }
 
+.resizable {
+  overflow: auto;
+  resize: both;
+}
+
 @media (max-width: 768px) {
   .shadow {
     .wrapper {

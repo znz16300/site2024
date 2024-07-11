@@ -59,7 +59,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const res = await fetchUserDetails(resp.credential);
       localStorage.setItem('dateCreateToken', Math.floor(Date.now() / 1000).toString());
       setState((prevState) => ({ ...prevState, userLoggedIn: false, user: res.user }));
-      window.location.href = `${window.location.origin}/`;
+      const oldHref = localStorage.getItem('oldHref');
+      if (oldHref) {
+        window.location.href = oldHref;
+      } else {
+        window.location.href = `${window.location.origin}/`;
+      }
       return true;
     },
     onError: () => {

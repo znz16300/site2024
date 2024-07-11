@@ -17,6 +17,8 @@ import { useAuth } from '../../../../data/api/AuthProvider';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { IMenuItem } from '../../../../data/types/interfaces/mobileMenu';
 import getAdvmenu from '../../../../data/api/getAdvmenu';
+import SearchPanel from '../../SearchPanel/SearchPanel';
+import getSearch from '../../../../data/api/getSearch';
 
 const SHOWLOGIN = true;
 
@@ -25,9 +27,9 @@ interface NavbarProps {
 }
 
 function Navbar({ page }: NavbarProps) {
-  // const [advVisible, setAdvVisible] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearch, setIsSearch] = useState<boolean>(false);
   const { state, setState } = useAppContext();
   const loginIcon = page === 'main' ? loginWhiteIcon : loginDarkIcon;
   const logoutIcon = page === 'main' ? logoutWhiteIcon : logoutDarkIcon;
@@ -40,6 +42,20 @@ function Navbar({ page }: NavbarProps) {
 
   const menuMainBg = page === 'main' ? classes.menuMain : '';
   const colorText = page === 'main' ? '#fff' : '#000';
+  const { login } = useAuth();
+  const { logout } = useAuth();
+
+  const toggleLog = async (act: string) => {
+    if (act === 'login') {
+      localStorage.setItem('oldHref', window.location.href);
+      await login();
+    } else if (act === 'logout') {
+      localStorage.setItem('oldHref', window.location.href);
+      await logout();
+      setState((prevState) => ({ ...prevState, userLoggedIn: false, user: null }));
+    }
+    setIsOpen(!isOpen);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -83,6 +99,14 @@ function Navbar({ page }: NavbarProps) {
     setIsMenuOpened(true);
   }
 
+  function handleSearch(): void {
+    toggleMenu();
+    // оновлюємо новини, документи та сторінки
+    getSearch('', state.oauth?.google_public_api_key as string);
+
+    setIsSearch(true);
+  }
+
   return (
     <nav className={classes.navbar}>
       <div
@@ -118,26 +142,26 @@ function Navbar({ page }: NavbarProps) {
         <div className={classes.btnMore} onClick={handleMore}>
           Більше...
         </div>
-        <Link to="/search" onClick={toggleMenu} title="Пошук на сайті">
+        <div onClick={handleSearch} title="Пошук на сайті">
           <div
             className={classes.icon}
             style={{ marginLeft: '5rem', backgroundImage: `url('${searchIcon}')` }}
           />
-        </Link>
+        </div>
 
         {SHOWLOGIN &&
           (!state.userLoggedIn ? (
-            <Link to="/login" onClick={toggleMenu} title="Зайти">
+            <div onClick={() => toggleLog('login')} title="Зайти">
               <div className={classes.icon} style={{ backgroundImage: `url('${loginIcon}')` }} />
-            </Link>
+            </div>
           ) : (
             <div className={classes.iconWrapper}>
               <Link to="/profile" onClick={toggleMenu} title="Профіль">
                 <div className={classes.icon} style={{ backgroundImage: `url('${userImg}')` }} />
               </Link>
-              <Link to="/logout" onClick={toggleMenu} title="Вийти">
+              <div onClick={() => toggleLog('logout')} title="Вийти">
                 <div className={classes.icon} style={{ backgroundImage: `url('${logoutIcon}')` }} />
-              </Link>
+              </div>
             </div>
           ))}
       </div>
@@ -153,29 +177,6 @@ function Navbar({ page }: NavbarProps) {
       ) : (
         <div />
       )}
-      {/* {advVisible ? (
-        <div className={classes.rightMenu}>
-          <button
-            type="button"
-            style={{
-              backgroundImage: `url('${cross}')`,
-              backgroundSize: 'contain',
-              backgroundColor: 'unset',
-              width: '3rem',
-              height: '3rem',
-              border: 'none',
-              position: 'absolute',
-              top: '0rem',
-              right: '0rem'
-            }}
-            onClick={() => setAdvVisible(false)}
-            aria-label="close"
-          />
-          <div className={classes.amenuWrapper}>
-            <AdvMenu />
-          </div>
-        </div>
-      ) : null} */}
       {advmenu && isMenuOpened && (
         <MobileMenu
           menuAll={advmenu}
@@ -183,6 +184,7 @@ function Navbar({ page }: NavbarProps) {
           setIsMenuOpened={setIsMenuOpened}
         />
       )}
+      {isSearch && <SearchPanel isSearch={isSearch} setIsSearch={setIsSearch} />}
     </nav>
   );
 }

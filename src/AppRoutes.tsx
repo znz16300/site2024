@@ -63,10 +63,8 @@ function AppRoutes() {
         element={<GoogleDriveImage fileId="1-BAaHXv7p_tywRUZb3QVyxdNNs-NRygM" />}
       />
       <Route path="/fb" element={<FacebookPost postId="fbid=2146080399098653" accessToken="" />} />
-      {/* <Route path="/courses" element={<Сourses />} /> */}
       <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
       <Route path="/courses" element={<Сourses />} />
-      {/* <Route path="/login" element={<Login state={state} setState={setState} />} /> */}
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route
         path="/acts"

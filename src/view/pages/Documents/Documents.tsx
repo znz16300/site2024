@@ -46,6 +46,7 @@ function Documents() {
       if (idTable && sheetName) {
         tableDocuments.tableName = idTable;
         tableDocuments.sheetName = sheetName;
+        tableDocuments.title = '';
       }
       const responseData: DataObject[] | null = await getDocuments(false, tableDocuments);
       if (responseData) {

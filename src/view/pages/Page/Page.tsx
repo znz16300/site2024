@@ -38,6 +38,7 @@ function Page() {
     const fetchData = async () => {
       if (idTable && idTitle) {
         tablePage.tableName = idTable;
+        tablePage.sheetName = process.env.GOOGLESHEETS_TABLE_PAGES_SHEET as string;
         tablePage.title = idTitle;
       }
       const responseData: DataObject[] | null | undefined = await getPage(

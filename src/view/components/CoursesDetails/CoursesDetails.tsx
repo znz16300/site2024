@@ -94,6 +94,10 @@ function CoursesDetails({ selectedItem, fileInfo, setVisibleDetails }: CoursesDe
   } else {
     src = getImage(fieldUpdater(12)).url;
   }
+  let downloadLink = '';
+  if (selectedItem) {
+    downloadLink = selectedItem[fieldUpdater(12)];
+  }
 
   return (
     <ModalWithCloseButton setVisible={setVisibleDetails} initialX={100} initialY={50}>
@@ -103,7 +107,7 @@ function CoursesDetails({ selectedItem, fileInfo, setVisibleDetails }: CoursesDe
         <div>Документ</div>
         <div className={classes.fileWrapper}>
           <div className={classes.fileBlock}>
-            <a href={fieldUpdater(12)} target="_blank" download rel="noreferrer">
+            <a href={downloadLink} target="_blank" download rel="noreferrer">
               Завантажити документ
             </a>
           </div>

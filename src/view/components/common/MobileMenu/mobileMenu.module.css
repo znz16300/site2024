@@ -18,22 +18,25 @@
   visibility: hidden;
   top: 0;
   left: 100%;
-  width: 380px;
+  width: 320px;
   height: 100vh;
-  padding: 3rem 1rem 1rem 1rem;
+  padding: 6rem 1rem 1rem 1rem;
   background: white;
-  box-shadow: 4px 4px 30px 5px rgba(128 ,128 ,128 ,1);
+  box-shadow: 4px 4px 30px 5px rgba(128, 128, 128, 1);
   transition-duration: 0.25s;
   overflow-y: auto;
   overflow-x: hidden;
 }
 .mobileMenuBoxShow {
   visibility: visible;
-  left: calc(100% - 380px);
+  left: calc(100% - 320px);
 }
 .menuHeader {
-
-  background-color: lightgreen;
+  background-color: var(--accent-color);
+  color: var(--light-text-color);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.2;
   position: absolute;
   right: 0;
   left: 0;
@@ -53,11 +56,12 @@
   line-height: 1.2;
 }
 .backButton {
-  background: none;
-  border: none;
+  color: var(--light-text-color);
   font-weight: 600;
   font-size: 2rem;
   line-height: 1.2;
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -81,15 +85,13 @@
   /* white-space: nowrap;
   overflow: hidden; */
   text-align: left;
-  }
+}
 
-  .level {
-    display: flex;
-    transition: transform 0.2s;
-    padding-top: 2rem;
+.level {
+  display: flex;
+  transition: transform 0.2s;
+}
 
-  }
-
-  .level > div {
-    min-width: calc(100% + 24px);
-  }
+.level > div {
+  min-width: calc(100% + 24px);
+}

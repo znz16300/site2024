@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
@@ -7,23 +8,18 @@ import Header from '../../components/common/header/header';
 import Footer from '../../components/common/footer/footer';
 import Button from '../../components/common/Button/Button';
 import getTabel from '../../../data/api/getTabel';
+import Modal from '../../components/common/modal/modal';
 
 function Tabels() {
   const [teacher, setTeacher] = useState<string>('');
   const [reasons, setReasons] = useState<string>('');
   const [month, setMonth] = useState<number>(new Date().getMonth() + 1);
   const [year, setYear] = useState<number>(new Date().getFullYear());
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [resultTabel, setResultTabel] = useState<string>('');
+  const [resultTabel, setResultTabel] = useState<boolean>(false);
   async function handlerGetTable(): Promise<void> {
-    const result = await getTabel(month, year);
-    let content = '';
-    if (result) {
-      for (let i = 0; i < result.length; i += 1) {
-        content += `${result[i]}\n`;
-      }
-    }
-    setResultTabel(content);
+    await getTabel(month, year);
+    setResultTabel(true);
+    setTimeout(() => setResultTabel(false), 3000);
   }
 
   const MONTH = [
@@ -59,36 +55,37 @@ function Tabels() {
       <Header page="tables" />
       <main className={classes.wrapper}>
         <div className={classes.filter}>
-          <div>
-            <label className={classes.label} htmlFor="teacher">
-              Педагогічний працівник:&nbsp;
-              <select
-                className={classes.select}
-                id="teacher"
-                value={teacher}
-                onChange={(e) => setTeacher(e.currentTarget.value)}>
-                <option key="empty" value="" aria-label="empty" />
-                <option key="*" value="*">
-                  Всі
-                </option>
-                {TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
-                  <option key={item} value={item}>
-                    {item}
+          <div className={classes.blocsWrapper}>
+            <div className={classes.tabelWrapper}>
+              <div className={classes.labelBlock}>Відсутні</div>
+              <label className={classes.labelWrapper} htmlFor="teacher">
+                Педагогічний працівник:&nbsp;
+                <select
+                  className={classes.select}
+                  id="teacher"
+                  value={teacher}
+                  onChange={(e) => setTeacher(e.currentTarget.value)}>
+                  <option key="empty" value="" aria-label="empty" />
+                  <option key="*" value="*">
+                    Всі
                   </option>
-                ))}
-              </select>
-            </label>
-            <div>
-              <label htmlFor="from">
+                  {TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className={classes.labelWrapper} htmlFor="from">
                 З якого
                 <input id="from" type="date" />
               </label>
-              <label htmlFor="to">
+              <label className={classes.labelWrapper} htmlFor="to">
                 по яке
                 <input id="to" type="date" />
               </label>
               <div>
-                <label className={classes.label} htmlFor="reasons">
+                <label className={classes.labelWrapper} htmlFor="reasons">
                   Причина відсутності:&nbsp;
                   <select
                     className={classes.select}
@@ -104,55 +101,56 @@ function Tabels() {
                   </select>
                 </label>
               </div>
-            </div>
-            <label htmlFor="month">
-              місяць
-              <select
-                name="month"
-                id="month"
-                value={month}
-                onChange={(e) => setMonth(parseInt(e.currentTarget.value, 10))}>
-                {MONTH.map((item) => (
-                  <option value={item.value} key={item.value}>
-                    {item.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label htmlFor="year">
-              рік
-              <select
-                name="year"
-                id="year"
-                value={year}
-                onChange={(e) => setYear(parseInt(e.currentTarget.value, 10))}>
-                {YEAR.map((item) => (
-                  <option value={item.value} key={item.value}>
-                    {item.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div>
-              <Button className={classes.btn} onClick={handlerGetTable} aria-label="get">
-                Отримати
+              <Button className={classes.btn} onClick={handler123} aria-label="get">
+                Додати
               </Button>
             </div>
-          </div>
-
-          <div>
-            <Button className={classes.btn} onClick={handler123} aria-label="get">
-              123
-            </Button>
+            <div className={classes.tabelWrapper}>
+              <div className={classes.labelBlock}>Табель</div>
+              <label className={classes.labelWrapper} htmlFor="month">
+                місяць
+                <select
+                  name="month"
+                  id="month"
+                  value={month}
+                  onChange={(e) => setMonth(parseInt(e.currentTarget.value, 10))}>
+                  {MONTH.map((item) => (
+                    <option value={item.value} key={item.value}>
+                      {item.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className={classes.labelWrapper} htmlFor="year">
+                рік
+                <select
+                  name="year"
+                  id="year"
+                  value={year}
+                  onChange={(e) => setYear(parseInt(e.currentTarget.value, 10))}>
+                  {YEAR.map((item) => (
+                    <option value={item.value} key={item.value}>
+                      {item.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div>
+                <Button className={classes.btn} onClick={handlerGetTable} aria-label="get">
+                  Отримати
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        <textarea
-          name="resultTabel"
-          id="resultTabel"
-          defaultValue={resultTabel}
-          rows={50}
-          cols={150}
-        />
+        {resultTabel && (
+          <Modal
+            style={undefined}
+            visible={resultTabel}
+            setVisible={setResultTabel}
+            children={<div className={classes.resultLabel}>Виконано</div>}
+          />
+        )}
       </main>
       <Footer />
     </>

@@ -1,15 +1,13 @@
-/* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as classes from './mobileMenu.module.css';
 import { IMenuItem } from '../../../../data/types/interfaces/mobileMenu';
 import ArrowLeftIcon from '../icons/ArrowLeftIcon';
@@ -28,7 +26,6 @@ export default function MobileMenu({
   isMenuOpened,
   setIsMenuOpened
 }: MobileMenuProps): JSX.Element {
-  // const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [level, setLevel] = useState(1);
   const [currentMenu, setCurrentMenu] = useState<IMenuItem[][]>([menuAll]);
   // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -65,13 +62,13 @@ export default function MobileMenu({
           <div className={classes.menuHeader}>
             {level > 1 && (
               <button className={classes.backButton} onClick={() => backLevel()}>
-                <ArrowLeftIcon />
+                <ArrowLeftIcon width="2rem" height="2rem" fill="var(--light-text-color)" />
                 Назад
               </button>
             )}
             {level === 1 && <div className={classes.backButton}>Menu</div>}
             <button className={classes.closeButton} onClick={() => setIsMenuOpened(false)}>
-              <CloseXIcon width="2rem" height="2rem" />
+              <CloseXIcon width="2rem" height="2rem" fill="var(--light-text-color)" />
             </button>
           </div>
           <div
@@ -79,7 +76,7 @@ export default function MobileMenu({
             style={{ transform: `translateX(calc(-100% * ${level - 1} - 24px * ${level - 1}))` }}>
             {currentMenu.map((item, index) => (
               <div key={index}>
-                {item.map((m, i) => (
+                {item.map((m) => (
                   <div key={m.Title}>
                     {m.children && m.link === '#' && (
                       <button

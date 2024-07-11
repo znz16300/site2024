@@ -73,7 +73,10 @@ async function getNews(force: boolean, apiKey: string) {
         `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000${searchString}`
       );
       // Оновлення новин з обробленими фотографіями
-      const updatedNewsArray = await processNewsArray(response.data, apiKey);
+      let updatedNewsArray = response.data;
+      if (apiKey !== '') {
+        updatedNewsArray = await processNewsArray(response.data, apiKey);
+      }
 
       newsCache = updatedNewsArray;
       return updatedNewsArray;
@@ -95,16 +98,24 @@ const pageCache: IPageCache = {
 
 export async function getPage(force: boolean, apiKey: string, tablePage: Table) {
   const indexCach = `${tablePage.tableName}-${tablePage.title}`;
+  // eslint-disable-next-line no-console
+  console.log('tablePage', tablePage);
+  const paramFilter = tablePage.title === '' ? '' : `?field=Розділ&value=${tablePage.title}`;
   if (force || !pageCache[indexCach]) {
     try {
       const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tablePage.tableName}/${tablePage.sheetName}/A1:F10000?field=Розділ&value=${tablePage.title}`
+        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tablePage.tableName}/${tablePage.sheetName}/A1:F10000${paramFilter}`
       );
       // Оновлення новин з обробленими фотографіями
-      const updatedNewsArray = await processNewsArray(response.data, apiKey);
-      if (updatedNewsArray) {
-        pageCache[indexCach] = updatedNewsArray;
+      let updatedNewsArray = response.data;
+      if (apiKey !== '') {
+        updatedNewsArray = await processNewsArray(response.data, apiKey);
       }
+      pageCache[indexCach] = updatedNewsArray;
+      // const updatedNewsArray = await processNewsArray(response.data, apiKey);
+      // if (updatedNewsArray) {
+      //   pageCache[indexCach] = updatedNewsArray;
+      // }
     } catch (err) {
       return null;
     }

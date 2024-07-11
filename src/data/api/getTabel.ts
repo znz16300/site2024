@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getDaysInMonth from '../utils/getDaysInMonth';
-import { parseDate } from '../utils/parseDate';
+import { formatDate, parseDate } from '../utils/parseDate';
 
 interface DataObject {
   id: string;
@@ -28,7 +28,6 @@ async function getAbsenTeachers() {
     const response = await axios.get(
       `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${process.env.GOOGLESHEETS_TABLE_ZAMINI as string}/${nameSheet}/T2:W1000`
     );
-    console.log(response.data);
     return response.data;
   } catch (err) {
     console.error('Error fetching news:', err);
@@ -127,6 +126,11 @@ function buildTable(
 ): string[] {
   const result = [];
   const daysInMonth = getDaysInMonth(month, year);
+  const tabCount = 31 - daysInMonth;
+  result.push(
+    `ПІБ, посада\t${Array.from({ length: daysInMonth }, (_, i) => i + 1).join('\t')}${'\t'.repeat(tabCount)}`
+  );
+  result.push('');
   for (let i = 0; i < workloadTeachers.length; i += 1) {
     const teacher = workloadTeachers[i];
     const teacherAbsent = absentTeachers.filter((item) => item['Працівник'] === teacher.worker);
@@ -162,12 +166,51 @@ function buildTable(
         row4 += '\t';
       }
     }
+    // Якщо кількість днів у місяці менша ніж 31, додаємо таби
+    row1 += '\t'.repeat(tabCount);
+    row2 += '\t'.repeat(tabCount);
+    row3 += '\t'.repeat(tabCount);
+    row4 += '\t'.repeat(tabCount);
     result.push(row1);
     result.push(row2);
     result.push(row3);
     result.push(row4);
   }
+  result.push(
+    `${formatDate(new Date())}\t${formatDate(new Date(year, month - 1, 1))}\t${formatDate(new Date(year, month - 1, daysInMonth))}`
+  );
+
   return result;
+}
+
+async function sendToTabelSheet(table: string[]) {
+  if (table.length > 0) {
+    const arraysTable = table.map((row) => row.split('\t'));
+    console.log('table', arraysTable);
+    const url = `${process.env.PYTHONANYWHERE_SERVER_URL}/tabel`;
+    const formData = new URLSearchParams();
+    formData.append(
+      'text',
+      JSON.stringify({
+        idSSheet: process.env.GOOGLESHEETS_TABLE_ZAMINI_TABLE_TABEL as string,
+        nameSheet: process.env.GOOGLESHEETS_TABLE_ZAMINI_SHEET_TABEL as string,
+        addr: 'D3',
+        table: arraysTable
+      })
+    );
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 
 async function getTabel(month: number, year: number) {
@@ -179,6 +222,7 @@ async function getTabel(month: number, year: number) {
 
     if (absentTeachers && workloadTeachers) {
       const table: string[] = buildTable(month, year, absentTeachers, workloadTeachers);
+      sendToTabelSheet(table);
       return table;
     }
     console.error('Failed to fetch one or both data sets');

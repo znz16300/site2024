@@ -23,10 +23,10 @@ const ModalWithCloseButton: React.FC<ModalProps> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div className={classes.shadow} onClick={() => setVisible(false)}>
+    <div className={`${classes.shadow}`} onClick={() => setVisible(false)}>
       {/* <Draggable defaultPosition={{ x: initialX, y: initialY }}> */}
       <div
-        className={classes.wrapper}
+        className={`${classes.wrapper} ${classes.resizable}`}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}>
         <div className={classes.btnWrapper}>

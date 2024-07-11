@@ -23,6 +23,7 @@ const pageCache: IPageCache = {
 };
 
 async function getDocuments(force: boolean, tableNews: Table) {
+  console.log('tableNews', tableNews);
   if (force || !pageCache[tableNews.tableName]) {
     const searchString = '?field=show&value=1';
     try {
