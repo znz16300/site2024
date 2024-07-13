@@ -54,12 +54,6 @@ function SearchPanel({ isSearch, setIsSearch }: SearchPanetProps) {
   const [resultContent, setResultContent] = useState<Result[] | null>(null);
   const { state } = useAppContext();
 
-  useEffect(() => {
-    if (resultContent) {
-      console.log('Updated resultContent state:', resultContent);
-    }
-  }, [resultContent]);
-
   function stripHtml(htmlString: string) {
     const temporaryElement = document.createElement('div');
     temporaryElement.innerHTML = htmlString;
@@ -68,10 +62,7 @@ function SearchPanel({ isSearch, setIsSearch }: SearchPanetProps) {
 
   async function handleSearch(): Promise<void> {
     try {
-      const resultSearch: Result[] | null = await getSearch(
-        valueText,
-        state.oauth?.google_public_api_key as string
-      );
+      const resultSearch: Result[] | null = await getSearch(valueText, '');
       console.log('Result from getSearch:', resultSearch);
       if (resultSearch) {
         setResultContent(resultSearch);
@@ -80,6 +71,13 @@ function SearchPanel({ isSearch, setIsSearch }: SearchPanetProps) {
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
+  }
+
+  function combineLinks(field1: string, field2: string): string[] {
+    const splitLinks = (field: string): string[] => {
+      return field ? field.split(',').map((link) => link.trim()) : [];
+    };
+    return [...splitLinks(field1), ...splitLinks(field2)];
   }
 
   function renderResults() {
@@ -99,11 +97,15 @@ function SearchPanel({ isSearch, setIsSearch }: SearchPanetProps) {
                 <p>{stripHtml(item['Абзац']).slice(0, 65)}...</p>
               </Link>
             )}
-            {res.titleTable === 'Документи' && (
-              <Link to={`${item['Файл(и) документу']}`}>
-                <p>{item['Назва документу']}</p>
-              </Link>
-            )}
+            {res.titleTable === 'Документи' &&
+              combineLinks(
+                item['Посилання на документ (якщо більше одного, то через кому)'],
+                item['Файл(и) документу']
+              ).map((link) => (
+                <Link key={link} to={`${link}`}>
+                  <p>{item['Назва документу']}</p>
+                </Link>
+              ))}
             {res.titleTable === 'Новини' && (
               <Link to={`/news?id=${item.id}`}>
                 <p>{item['Назва новини']}</p>
@@ -127,7 +129,10 @@ function SearchPanel({ isSearch, setIsSearch }: SearchPanetProps) {
             className={classes.input}
             type="text"
             value={valueText}
-            onChange={(e) => setValueText(e.currentTarget.value)}
+            onChange={(e) => {
+              setValueText(e.currentTarget.value);
+              handleSearch();
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 handleSearch();

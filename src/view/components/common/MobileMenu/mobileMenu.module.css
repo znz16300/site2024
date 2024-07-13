@@ -29,7 +29,7 @@
 }
 .mobileMenuBoxShow {
   visibility: visible;
-  left: calc(100% - 320px);
+  left: calc(100% - 301px);
 }
 .menuHeader {
   background-color: var(--accent-color);

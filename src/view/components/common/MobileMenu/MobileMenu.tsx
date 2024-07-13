@@ -1,11 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import * as classes from './mobileMenu.module.css';
@@ -28,24 +28,85 @@ export default function MobileMenu({
 }: MobileMenuProps): JSX.Element {
   const [level, setLevel] = useState(1);
   const [currentMenu, setCurrentMenu] = useState<IMenuItem[][]>([menuAll]);
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const selectLevel = (level: number, menu?: IMenuItem[]) => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  const setMenuRef = (element: HTMLDivElement) => {
+    menuRef.current = element;
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpened(false);
+      } else if (e.key === 'ArrowDown') {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % currentMenu[level - 1].length);
+      } else if (e.key === 'ArrowUp') {
+        setActiveIndex(
+          (prevIndex) =>
+            (prevIndex - 1 + currentMenu[level - 1].length) % currentMenu[level - 1].length
+        );
+      } else if (e.key === 'Enter') {
+        const activeItem = currentMenu[level - 1][activeIndex];
+        if (activeItem.children && activeItem.link === '#') {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          selectLevel(null, level + 1, activeItem.children);
+        } else if (activeItem.link && activeItem.link !== '#') {
+          // Assuming Link is for navigation, you might need to trigger navigation here
+          window.location.href = urlUpdate(activeItem.link);
+        }
+      }
+    };
+
+    if (isMenuOpened) {
+      document.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMenuOpened, currentMenu, level, activeIndex]);
+
+  // function updateScroll(length: number, ref: HTMLDivElement) {
+  //   if (length < 10) {
+  //     ref.style.overflowY = 'hidden';
+  //     console.log(length, 'hidden');
+  //   } else {
+  //     ref.style.overflowY = 'auto';
+  //     console.log(length, 'auto');
+  //   }
+  // }
+
+  const selectLevel = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    levelIt: number,
+    menu?: IMenuItem[]
+  ) => {
     if (!menu) {
       return;
     }
-    setLevel(level);
+    if (menuRef.current) {
+      menuRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setLevel(levelIt);
     setCurrentMenu((l) => {
-      l[level] = menu;
+      l[levelIt] = menu;
       return l;
     });
+    setActiveIndex(0); // Reset active index when changing levels
   };
 
   const backLevel = () => {
+    console.log('back');
     setLevel(level - 1);
     setCurrentMenu((l) => {
       l[level] = [];
       return l;
     });
+    setActiveIndex(0); // Reset active index when going back
   };
 
   return (
@@ -58,7 +119,9 @@ export default function MobileMenu({
           onClick={() => setIsMenuOpened(false)}
           className={cn(classes.cover, { [classes.coverShow]: isMenuOpened })}
         />
-        <div className={cn(classes.mobileMenuBox, { [classes.mobileMenuBoxShow]: isMenuOpened })}>
+        <div
+          ref={setMenuRef}
+          className={cn(classes.mobileMenuBox, { [classes.mobileMenuBoxShow]: isMenuOpened })}>
           <div className={classes.menuHeader}>
             {level > 1 && (
               <button className={classes.backButton} onClick={() => backLevel()}>
@@ -66,7 +129,7 @@ export default function MobileMenu({
                 Назад
               </button>
             )}
-            {level === 1 && <div className={classes.backButton}>Menu</div>}
+            {level === 1 && <div className={classes.backButton} />}
             <button className={classes.closeButton} onClick={() => setIsMenuOpened(false)}>
               <CloseXIcon width="2rem" height="2rem" fill="var(--light-text-color)" />
             </button>
@@ -75,18 +138,21 @@ export default function MobileMenu({
             className={classes.level}
             style={{ transform: `translateX(calc(-100% * ${level - 1} - 24px * ${level - 1}))` }}>
             {currentMenu.map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <div key={index}>
-                {item.map((m) => (
+                {item.map((m, i) => (
                   <div key={m.Title}>
                     {m.children && m.link === '#' && (
                       <button
-                        className={classes.item}
-                        onClick={() => selectLevel(level + 1, m.children)}>
+                        className={cn(classes.item, { [classes.activeItem]: i === activeIndex })}
+                        onClick={(e) => selectLevel(e, level + 1, m.children)}>
                         <div>{m.Title}</div> <ArrowRightIcon width="5rem" height="5rem" />
                       </button>
                     )}
                     {m.link && m.link !== '#' && (
-                      <Link to={urlUpdate(m.link)} className={classes.item}>
+                      <Link
+                        to={urlUpdate(m.link)}
+                        className={cn(classes.item, { [classes.activeItem]: i === activeIndex })}>
                         {m.Title}
                       </Link>
                     )}

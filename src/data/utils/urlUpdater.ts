@@ -17,8 +17,13 @@ export default function urlUpdate(url: string) {
     }
   } else if (url.indexOf('http') === 0) {
     urlToNavigate = url;
-  } else if (url === '/kursi.html' || url === '/site/kursi.html') {
-    urlToNavigate = './courses';
+  } else if (
+    url === './kursi.html' ||
+    url === '/kursi.html' ||
+    url === './site/kursi.html' ||
+    url === '/site/kursi.html'
+  ) {
+    urlToNavigate = '/courses';
   }
   return urlToNavigate;
 }

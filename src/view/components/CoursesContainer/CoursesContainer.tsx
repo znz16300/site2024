@@ -54,7 +54,7 @@ function CoursesContainer({
   }
 
   function handleAddCourses(): void {
-    window.open(process.env.GOOGLEFORM_NEWS as string, '_blank', 'noopener,noreferrer');
+    window.open(process.env.GOOGLEFORM_COURSES as string, '_blank', 'noopener,noreferrer');
   }
 
   return (

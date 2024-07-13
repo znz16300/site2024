@@ -61,6 +61,14 @@ function Navbar({ page }: NavbarProps) {
     setIsOpen(!isOpen);
   };
 
+  function handleSearch(): void {
+    toggleMenu();
+    // оновлюємо новини, документи та сторінки
+    getSearch('', state.oauth?.google_public_api_key as string);
+
+    setIsSearch(true);
+  }
+
   const toggleMenuFromKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
       e.preventDefault();
@@ -82,8 +90,6 @@ function Navbar({ page }: NavbarProps) {
       try {
         const menu: IMenuItem[] | null = await getAdvmenu(false);
         if (menu) {
-          // eslint-disable-next-line no-console
-          console.log(menu);
           setAdvmenu(menu);
         }
       } catch {
@@ -92,19 +98,23 @@ function Navbar({ page }: NavbarProps) {
       }
     }
     fetchAdvmenu();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.key.toLowerCase() === 'f') {
+        event.preventDefault();
+        handleSearch();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown as unknown as EventListener);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown as unknown as EventListener);
+    };
   }, []);
 
   function handleMore(): void {
     toggleMenu();
     setIsMenuOpened(true);
-  }
-
-  function handleSearch(): void {
-    toggleMenu();
-    // оновлюємо новини, документи та сторінки
-    getSearch('', state.oauth?.google_public_api_key as string);
-
-    setIsSearch(true);
   }
 
   return (
@@ -124,9 +134,6 @@ function Navbar({ page }: NavbarProps) {
         <Link to="/" onClick={toggleMenu}>
           Головна
         </Link>
-        <Link to="/courses" onClick={toggleMenu}>
-          Курси
-        </Link>
         <Link to="/news" onClick={toggleMenu}>
           Новини
         </Link>
@@ -140,7 +147,7 @@ function Navbar({ page }: NavbarProps) {
           Контакти
         </Link>
         <div className={classes.btnMore} onClick={handleMore}>
-          Більше...
+          ...
         </div>
         <div onClick={handleSearch} title="Пошук на сайті">
           <div
