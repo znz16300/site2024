@@ -167,7 +167,7 @@
   .greeting-module__picture___mr8bu {
     background-image: url(ea88d71c562dbf4d1b19.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     min-width: 40rem;
     border-radius: 1rem;
     height: 50rem;
@@ -201,6 +201,9 @@
       max-width: unset;
       width: 90%;
       align-items: center;
+    }
+    .greeting-module__picture___mr8bu {
+      width: 90%;
     }
   }
 }
