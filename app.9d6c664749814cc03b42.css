@@ -165,9 +165,10 @@
   }
 
   .greeting-module__picture___mr8bu {
-    background-image: url(ea88d71c562dbf4d1b19.png);
+    background-image: url(f1b985a76ee6c7bb8bbb.jpg);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-position: right;
+    background-size: cover;
     min-width: 40rem;
     border-radius: 1rem;
     height: 50rem;
