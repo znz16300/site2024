@@ -139,7 +139,7 @@
 
   .burger {
     display: flex;
-    z-index: 700;
+    z-index: 100;
   }
 
   .shadow {

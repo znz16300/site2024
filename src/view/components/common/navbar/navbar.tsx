@@ -158,7 +158,7 @@ function Navbar({ page }: NavbarProps) {
 
         {SHOWLOGIN &&
           (!state.userLoggedIn ? (
-            <div onClick={() => toggleLog('login')} title="Зайти">
+            <div onClick={() => toggleLog('login')} title="Увійти">
               <div className={classes.icon} style={{ backgroundImage: `url('${loginIcon}')` }} />
             </div>
           ) : (

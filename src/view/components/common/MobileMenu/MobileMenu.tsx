@@ -70,16 +70,6 @@ export default function MobileMenu({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMenuOpened, currentMenu, level, activeIndex]);
 
-  // function updateScroll(length: number, ref: HTMLDivElement) {
-  //   if (length < 10) {
-  //     ref.style.overflowY = 'hidden';
-  //     console.log(length, 'hidden');
-  //   } else {
-  //     ref.style.overflowY = 'auto';
-  //     console.log(length, 'auto');
-  //   }
-  // }
-
   const selectLevel = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     levelIt: number,
