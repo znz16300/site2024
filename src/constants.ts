@@ -126,7 +126,7 @@ export const COURSES_TABLE_COLLS = [
   {
     field: 'Назва організації чи платформи, на базі якої проходила підготовка, навчання',
     // eslint-disable-next-line prettier/prettier
-    title: 'Суб\'єкт підвищення'
+    title: "Суб'єкт підвищення"
   },
   { field: 'Форма навчання', title: '' },
   { field: 'Фотокопія сертифікату, свідоцтва тощо', title: 'Документ' },
