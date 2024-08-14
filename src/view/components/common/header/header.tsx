@@ -29,7 +29,7 @@ function Header({ page }: HeaderProps) {
               className={classes.logo}
             />
             <div className={classes.title} style={{ color }}>
-              Куликіський ліцей
+              Куликівський ліцей
             </div>
           </div>
         </Link>
