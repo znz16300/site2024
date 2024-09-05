@@ -11,6 +11,7 @@ import AppRoutes from './AppRoutes';
 import { AuthProvider } from './data/api/AuthProvider';
 import { AppState, OAuthObject } from './data/types/main-props';
 import getOAuth from './data/api/getOAuth';
+import Loader from './view/components/common/Loader/Loader';
 
 interface GlobalState {
   state: AppState;
@@ -51,7 +52,7 @@ function App() {
   }, []);
 
   if (!clientId) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
