@@ -107,7 +107,7 @@ export const REASONS = [
   { title: 'Лікарняний', label: 'ТН' },
   { title: 'Відпустка основна', label: '' },
   { title: 'Відпустка по пологам', label: 'ВП' },
-  { title: 'Відаустка без збереження', label: 'НА' }
+  { title: 'Відпустка без збереження', label: 'НА' }
 ];
 
 export const COURSES_TABLE_COLLS = [
@@ -127,7 +127,7 @@ export const COURSES_TABLE_COLLS = [
   {
     field: 'Назва організації чи платформи, на базі якої проходила підготовка, навчання',
     // eslint-disable-next-line prettier/prettier
-    title: 'Суб\'єкт підвищення'
+    title: "Суб'єкт підвищення"
   },
   { field: 'Форма навчання', title: '' },
   { field: 'Фотокопія сертифікату, свідоцтва тощо', title: 'Документ' },
