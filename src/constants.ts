@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable prettier/prettier */
 import { IMenuItem } from './data/types/interfaces/mobileMenu';
 
 /* eslint-disable import/prefer-default-export */
