@@ -100,6 +100,7 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
   const indexCach = `${tablePage.tableName}-${tablePage.title}`;
   // eslint-disable-next-line no-console
   console.log('tablePage', tablePage);
+  // const paramFilter = '';
   const paramFilter = tablePage.title === '' ? '' : `?field=Розділ&value=${tablePage.title}`;
   if (force || !pageCache[indexCach]) {
     try {
@@ -108,14 +109,12 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
       );
       // Оновлення новин з обробленими фотографіями
       let updatedNewsArray = response.data;
+      // eslint-disable-next-line no-console
+      // console.log(JSON.stringify(updatedNewsArray));
       if (apiKey !== '') {
         updatedNewsArray = await processNewsArray(response.data, apiKey);
       }
       pageCache[indexCach] = updatedNewsArray;
-      // const updatedNewsArray = await processNewsArray(response.data, apiKey);
-      // if (updatedNewsArray) {
-      //   pageCache[indexCach] = updatedNewsArray;
-      // }
     } catch (err) {
       return null;
     }
