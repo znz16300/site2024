@@ -2,8 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
-import products from '../pages-data';
-import teachers from '../teachers-data';
+// import teachers from '../teachers-data';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // import teachers from '../teachers-data';
 
@@ -127,14 +126,28 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
       }
     }
   } else {
-    let data;
-    data = products.filter((product) => product.Розділ === tablePage.title);
-    if (tablePage.tableName === '1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI') {
-      data = products.filter((product) => product.Розділ === tablePage.title);
-    } else if (tablePage.tableName === '15D-n7O5AdsttUF3LfkOhRexS-Q4T78MfXDbUlmsPHRc') {
-      data = teachers.filter((teacher) => teacher.Розділ === tablePage.title);
-    }
-    pageCache[indexCach] = data;
+    const url =
+      tablePage.tableName === '15D-n7O5AdsttUF3LfkOhRexS-Q4T78MfXDbUlmsPHRc'
+        ? '../teachers-data.json'
+        : '../pages-data.json';
+    await axios
+      .get(url)
+      .then((response) => {
+        // Успішна відповідь, отримуємо дані
+        const { data } = response;
+        const products: DataObject[] = data as DataObject[];
+        let dataFiltred: DataObject[] = [];
+        dataFiltred = products.filter((product) => product['Розділ'] === tablePage.title);
+        pageCache[indexCach] = dataFiltred;
+        if (pageCache[indexCach]) {
+          const result = pageCache[indexCach];
+          return result;
+        }
+      })
+      .catch((error) => {
+        // Обробка помилок
+        console.error('Error fetching the JSON file:', error);
+      });
   }
 
   if (pageCache[indexCach]) {
