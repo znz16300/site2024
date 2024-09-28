@@ -2,6 +2,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
+import products from '../pages-data';
+import teachers from '../teachers-data';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import teachers from '../teachers-data';
 
 function extractIdFromUrl(url: string) {
   const match = url.match(
@@ -102,22 +106,35 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
   console.log('tablePage', tablePage);
   // const paramFilter = '';
   const paramFilter = tablePage.title === '' ? '' : `?field=Розділ&value=${tablePage.title}`;
-  if (force || !pageCache[indexCach]) {
-    try {
-      const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tablePage.tableName}/${tablePage.sheetName}/A1:F10000${paramFilter}`
-      );
-      // Оновлення новин з обробленими фотографіями
-      let updatedNewsArray = response.data;
-      // eslint-disable-next-line no-console
-      // console.log(JSON.stringify(updatedNewsArray));
-      if (apiKey !== '') {
-        updatedNewsArray = await processNewsArray(response.data, apiKey);
+
+  const GOOGLE_TABLE_USE = false;
+
+  if (GOOGLE_TABLE_USE) {
+    if (force || !pageCache[indexCach]) {
+      try {
+        const response = await axios.get(
+          `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tablePage.tableName}/${tablePage.sheetName}/A1:F10000${paramFilter}`
+        );
+        let updatedNewsArray = response.data;
+        // eslint-disable-next-line no-console
+        console.log(JSON.stringify(updatedNewsArray));
+        if (apiKey !== '') {
+          updatedNewsArray = await processNewsArray(response.data, apiKey);
+        }
+        pageCache[indexCach] = updatedNewsArray;
+      } catch (err) {
+        return null;
       }
-      pageCache[indexCach] = updatedNewsArray;
-    } catch (err) {
-      return null;
     }
+  } else {
+    let data;
+    data = products.filter((product) => product.Розділ === tablePage.title);
+    if (tablePage.tableName === '1F6QVr9WNio-_ODmnIlMTSHeSQxLOjgnd0nYB1_z0BeI') {
+      data = products.filter((product) => product.Розділ === tablePage.title);
+    } else if (tablePage.tableName === '15D-n7O5AdsttUF3LfkOhRexS-Q4T78MfXDbUlmsPHRc') {
+      data = teachers.filter((teacher) => teacher.Розділ === tablePage.title);
+    }
+    pageCache[indexCach] = data;
   }
 
   if (pageCache[indexCach]) {
