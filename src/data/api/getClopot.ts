@@ -4,9 +4,10 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
-import { COURSES_TABLE_COLLS, GOLOVA, ZAKLAD } from '../../constants';
+import { COURSES_TABLE_COLLS } from '../../constants';
 import { fullNameToInic, fullNameToParts } from '../utils/nameUtils';
 import { getGenitiveAll } from '../utils/getPatronymic';
+import { params } from './getParams';
 
 interface Context {
   teacher: string;
@@ -32,23 +33,6 @@ function formatDate(date: Date): string {
   if (yy < 10) yy = `0${yy}`;
   return `${dd}.${mm}.20${yy}`;
 }
-
-// async function getGenitiveCase(
-//   lastName: string,
-//   firstName: string,
-//   middleName: string,
-//   gender: GrammaticalGender
-// ): Promise<string> {
-//   const input = {
-//     familyName: lastName,
-//     givenName: firstName,
-//     patronymicName: middleName,
-//     gender
-//   };
-
-//   const result = await inGenitive(input);
-//   return `${result.familyName} ${result.givenName} ${result.patronymicName}`;
-// }
 
 function createContext(records: DataObject[], golova: string, zaklad: string): Context {
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require, @typescript-eslint/no-var-requires
@@ -102,7 +86,9 @@ function createContext(records: DataObject[], golova: string, zaklad: string): C
 
 async function getClopot(courses: DataObject[]) {
   if (courses.length > 0) {
-    const context = createContext(courses, GOLOVA, ZAKLAD);
+
+    console.log('params.GOLOVA', params.GOLOVA);
+    const context = createContext(courses, params.GOLOVA, params.ZAKLAD);
     const url = `${process.env.PYTHONANYWHERE_SERVER_URL}/getFileKursi`;
     // Створення URLSearchParams для тіла запиту
     const formData = new URLSearchParams();

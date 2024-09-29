@@ -9,11 +9,11 @@ import * as classes from './сourses.module.css';
 import Loader from '../../components/common/Loader/Loader';
 import Header from '../../components/common/header/header';
 import getCourses from '../../../data/api/getCourses';
-import { TEACHERS } from '../../../constants';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import CoursesContainer from '../../components/CoursesContainer/CoursesContainer';
 import CoursesDetails from '../../components/CoursesDetails/CoursesDetails';
 import { DriveFile } from '../../../data/types/interfaces/googleFileInfo';
+import { params } from '../../../data/api/getParams';
 
 // export const ITEMS_PER_PAGE_NEWS = 10;
 
@@ -116,7 +116,7 @@ function Сourses() {
               <option key="*" value="*">
                 Всі
               </option>
-              {TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
+              {params.TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
                 <option key={item} value={item}>
                   {item}
                 </option>

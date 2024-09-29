@@ -2,7 +2,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
-import { GOOGLE_TABLE_USE } from '../../constants';
+import { params } from './getParams';
+// import { GOOGLE_TABLE_USE } from '../../constants';
 
 function extractIdFromUrl(url: string) {
   const match = url.match(
@@ -104,7 +105,7 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
   // const paramFilter = '';
   const paramFilter = tablePage.title === '' ? '' : `?field=Розділ&value=${tablePage.title}`;
 
-  if (GOOGLE_TABLE_USE) {
+  if (params.GOOGLE_TABLE_USE) {
     if (force || !pageCache[indexCach]) {
       try {
         const response = await axios.get(

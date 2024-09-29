@@ -3,7 +3,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import { IMenuItem } from '../types/interfaces/mobileMenu';
-import { GOOGLE_TABLE_USE } from '../../constants';
+import { params } from './getParams';
 
 function buildMenuTree(menuItems: IMenuItem[], parentId: string = '0'): IMenuItem[] {
   return menuItems
@@ -28,7 +28,7 @@ const tableMenu = {
 };
 
 async function getAdvmenu(force: boolean) {
-  if (GOOGLE_TABLE_USE) {
+  if (params.GOOGLE_TABLE_USE) {
     if (force || !pageCache[tableMenu.tableName]) {
       try {
         const response = await axios.get(

@@ -3,12 +3,13 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import * as classes from './tabels.module.css';
-import { REASONS, TEACHERS } from '../../../constants';
+import { REASONS } from '../../../constants';
 import Header from '../../components/common/header/header';
 import Footer from '../../components/common/footer/footer';
 import Button from '../../components/common/Button/Button';
 import getTabel from '../../../data/api/getTabel';
 import Modal from '../../components/common/modal/modal';
+import { params } from '../../../data/api/getParams';
 
 function Tabels() {
   const [teacher, setTeacher] = useState<string>('');
@@ -69,7 +70,7 @@ function Tabels() {
                   <option key="*" value="*">
                     Всі
                   </option>
-                  {TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
+                  {params.TEACHERS.sort((a, b) => a.localeCompare(b)).map((item) => (
                     <option key={item} value={item}>
                       {item}
                     </option>

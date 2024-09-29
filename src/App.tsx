@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,6 +13,7 @@ import { AuthProvider } from './data/api/AuthProvider';
 import { AppState, OAuthObject } from './data/types/main-props';
 import getOAuth from './data/api/getOAuth';
 import Loader from './view/components/common/Loader/Loader';
+import getParams from './data/api/getParams';
 
 interface GlobalState {
   state: AppState;
@@ -49,6 +51,7 @@ function App() {
       }
     }
     fetchOAuth();
+    getParams();
   }, []);
 
   if (!clientId) {
