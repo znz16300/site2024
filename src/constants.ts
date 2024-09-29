@@ -4,7 +4,6 @@
 
 /* eslint-disable import/prefer-default-export */
 
-
 export const REASONS = [
   { title: 'Лікарняний', label: 'ТН' },
   { title: 'Відпустка основна', label: '' },

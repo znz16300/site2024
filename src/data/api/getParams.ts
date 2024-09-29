@@ -5,8 +5,8 @@ import axios from 'axios';
 export const params = {
   GOOGLE_TABLE_USE: true,
   TEACHERS: [''],
-  GOLOVA: 'Орсагош Оксані Валеріївні',
-  ZAKLAD: 'Куликівського ліцею'
+  GOLOVA: '',
+  ZAKLAD: ''
 };
 
 export async function getParams() {
@@ -19,8 +19,6 @@ export async function getParams() {
       params.TEACHERS = data.TEACHERS;
       params.GOLOVA = data.GOLOVA;
       params.ZAKLAD = data.ZAKLAD;
-      // eslint-disable-next-line no-console
-      console.log('params.GOLOVA', params.GOLOVA);
     })
     .catch((error) => {
       console.error('Error fetching the JSON file:', error);

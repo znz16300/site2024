@@ -86,7 +86,6 @@ function createContext(records: DataObject[], golova: string, zaklad: string): C
 
 async function getClopot(courses: DataObject[]) {
   if (courses.length > 0) {
-
     console.log('params.GOLOVA', params.GOLOVA);
     const context = createContext(courses, params.GOLOVA, params.ZAKLAD);
     const url = `${process.env.PYTHONANYWHERE_SERVER_URL}/getFileKursi`;
