@@ -2,9 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
-// import teachers from '../teachers-data';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// import teachers from '../teachers-data';
+import { GOOGLE_TABLE_USE } from '../../constants';
 
 function extractIdFromUrl(url: string) {
   const match = url.match(
@@ -106,8 +104,6 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
   // const paramFilter = '';
   const paramFilter = tablePage.title === '' ? '' : `?field=Розділ&value=${tablePage.title}`;
 
-  const GOOGLE_TABLE_USE = false;
-
   if (GOOGLE_TABLE_USE) {
     if (force || !pageCache[indexCach]) {
       try {
@@ -126,14 +122,10 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
       }
     }
   } else {
-    const url =
-      tablePage.tableName === '15D-n7O5AdsttUF3LfkOhRexS-Q4T78MfXDbUlmsPHRc'
-        ? '../teachers-data.json'
-        : '../pages-data.json';
+    const url = `../data/${tablePage.tableName}.json`;
     await axios
       .get(url)
       .then((response) => {
-        // Успішна відповідь, отримуємо дані
         const { data } = response;
         const products: DataObject[] = data as DataObject[];
         let dataFiltred: DataObject[] = [];
@@ -145,7 +137,6 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
         }
       })
       .catch((error) => {
-        // Обробка помилок
         console.error('Error fetching the JSON file:', error);
       });
   }

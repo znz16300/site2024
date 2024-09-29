@@ -3,6 +3,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import { IMenuItem } from '../types/interfaces/mobileMenu';
+import { GOOGLE_TABLE_USE } from '../../constants';
 
 function buildMenuTree(menuItems: IMenuItem[], parentId: string = '0'): IMenuItem[] {
   return menuItems
@@ -27,18 +28,34 @@ const tableMenu = {
 };
 
 async function getAdvmenu(force: boolean) {
-  if (force || !pageCache[tableMenu.tableName]) {
-    try {
-      const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableMenu.tableName}/${tableMenu.sheetName}/A1:E10000`
-      );
-      const resp: IMenuItem[] | null = response.data;
-      if (resp) {
-        pageCache[tableMenu.tableName] = resp;
+  if (GOOGLE_TABLE_USE) {
+    if (force || !pageCache[tableMenu.tableName]) {
+      try {
+        const response = await axios.get(
+          `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableMenu.tableName}/${tableMenu.sheetName}/A1:E10000`
+        );
+        const resp: IMenuItem[] | null = response.data;
+        if (resp) {
+          pageCache[tableMenu.tableName] = resp;
+        }
+      } catch (err) {
+        return null;
       }
-    } catch (err) {
-      return null;
     }
+  } else {
+    const url = `../data/${'1G1l3J4HHLOItVLYbrPL08ml3TtON_fAULcpecqn0vwM'}.json`;
+    await axios
+      .get(url)
+      .then((response) => {
+        const resp: IMenuItem[] | null = response.data;
+        if (resp) {
+          pageCache[tableMenu.tableName] = resp;
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching the JSON file:', error);
+        return null;
+      });
   }
 
   if (pageCache[tableMenu.tableName]) {

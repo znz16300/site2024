@@ -2,6 +2,8 @@
 /* eslint-disable prettier/prettier */
 import { IMenuItem } from './data/types/interfaces/mobileMenu';
 
+export const GOOGLE_TABLE_USE = false;
+
 /* eslint-disable import/prefer-default-export */
 export const TEACHERS = [
   'Зеленський Олександр Станіславович',
