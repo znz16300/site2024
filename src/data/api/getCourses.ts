@@ -24,6 +24,25 @@ const cache: IPageCache = {
   empty: null
 };
 
+function convertDateFormat(dateStr: string): string {
+  // Розбиваємо рядок на дату і час
+  const [datePart, timePart] = dateStr.split(' ');
+
+  // Розбиваємо дату на день, місяць і рік
+  const [day, month, year] = datePart.split('.');
+
+  // Повертаємо рядок у форматі YYYY-MM-DD HH:mm:ss
+  return `${year}-${month}-${day} ${timePart}`;
+}
+
+function sortRecordsByTimestamp(records: DataObject[]): DataObject[] {
+  return records.sort((a, b) => {
+    const dateA = new Date(convertDateFormat(a['Позначка часу']));
+    const dateB = new Date(convertDateFormat(b['Позначка часу']));
+    return dateB.getTime() - dateA.getTime();
+  });
+}
+
 function getId(element: DataObject) {
   const urls = element['Фотокопія сертифікату, свідоцтва тощо'];
   const elementsArray: string[] = urls.split(/[\s,\n]+/);
@@ -70,7 +89,13 @@ async function getCourses(force: boolean, teacher: string, google_public_api_key
             }
           })
         );
-        cache[teacher] = resp;
+        // eslint-disable-next-line no-console
+        console.log(resp);
+
+        const sortedRecords = sortRecordsByTimestamp(resp);
+        // eslint-disable-next-line no-console
+        console.log(resp);
+        cache[teacher] = sortedRecords;
       }
     } catch (err) {
       return null;
