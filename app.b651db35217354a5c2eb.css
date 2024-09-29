@@ -1968,7 +1968,7 @@ a {
   \************************************************************************************************************************/
 .card-module__card___Fvnmq {
   width: 25rem;
-  aspect-ratio: 1.2;
+  aspect-ratio: 0.85;
   border-radius: 1rem;
   padding: 0.5rem;
   border: none;
@@ -1984,8 +1984,9 @@ a {
 .card-module__imgBlock___TRFUz {
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: top center;
   width: 95%;
-  height: 25rem;
+  height: 80%;
 }
 
 .card-module__card___Fvnmq:hover {
