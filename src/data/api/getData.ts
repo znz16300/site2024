@@ -68,24 +68,41 @@ async function processNewsArray(newsArray: DataObject[], apiKey: string): Promis
 }
 
 async function getNews(force: boolean, apiKey: string) {
-  if (!newsCache || force) {
-    const searchString = '?field=show&value=1';
-    try {
-      const response = await axios.get(
-        `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000${searchString}`
-      );
-      // Оновлення новин з обробленими фотографіями
-      let updatedNewsArray = response.data;
-      if (apiKey !== '') {
-        updatedNewsArray = await processNewsArray(response.data, apiKey);
-      }
+  if (params.GOOGLE_TABLE_USE) {
+    if (!newsCache || force) {
+      const searchString = '?field=show&value=1';
+      try {
+        const response = await axios.get(
+          `${process.env.PYTHONANYWHERE_SERVER_URL}/getdata/${tableNews.tableName}/${tableNews.sheetName}/A1:E10000${searchString}`
+        );
+        // Оновлення новин з обробленими фотографіями
+        let updatedNewsArray = response.data;
+        if (apiKey !== '') {
+          updatedNewsArray = await processNewsArray(response.data, apiKey);
+        }
 
-      newsCache = updatedNewsArray;
-      return updatedNewsArray;
-    } catch (err) {
-      console.error('Error fetching news:', err);
-      return null;
+        newsCache = updatedNewsArray;
+        return updatedNewsArray;
+      } catch (err) {
+        console.error('Error fetching news:', err);
+        return null;
+      }
     }
+  } else {
+    const url = `../data/${tableNews.tableName}.json`;
+    await axios
+      .get(url)
+      .then((response) => {
+        const { data } = response;
+        const products: DataObject[] = data as DataObject[];
+        let dataFiltred: DataObject[] = [];
+        dataFiltred = products.filter((product) => product.show === '1');
+        newsCache = dataFiltred;
+        return newsCache;
+      })
+      .catch((error) => {
+        console.error('Error fetching the JSON file:', error);
+      });
   }
   return newsCache;
 }
