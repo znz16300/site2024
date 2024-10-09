@@ -31,6 +31,10 @@ function NewsItem({ news }: NewsItemProps) {
     }
   }
 
+  function textModif(newsText: string): string {
+    return newsText.replace(/(?<!<br>)\n/g, '<br>\n');
+  }
+
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
@@ -44,7 +48,7 @@ function NewsItem({ news }: NewsItemProps) {
             <div
               className={classes.description}
               // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: news['Текст новини'] }}
+              dangerouslySetInnerHTML={{ __html: textModif(news['Текст новини']) }}
             />
           </div>
           <div className={classes.btnBlock}>
