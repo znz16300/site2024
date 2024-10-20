@@ -5,6 +5,9 @@ import getGoogleDriveImageUrl from './getGoogleDriveImageUrl';
 import { params } from './getParams';
 // import { GOOGLE_TABLE_USE } from '../../constants';
 
+// const DATA_URL = '../data';
+const DATA_URL = 'https://znz16300.github.io/assets/data';
+
 function extractIdFromUrl(url: string) {
   const match = url.match(
     /https?:\/\/drive\.google\.com\/(?:open\?id=|uc\?export=view&id=)([^&]+)/
@@ -89,7 +92,7 @@ async function getNews(force: boolean, apiKey: string) {
       }
     }
   } else {
-    const url = `../data/${tableNews.tableName}.json`;
+    const url = `${DATA_URL}/${tableNews.tableName}.json`;
     await axios
       .get(url)
       .then((response) => {
