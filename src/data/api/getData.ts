@@ -6,7 +6,7 @@ import { params } from './getParams';
 // import { GOOGLE_TABLE_USE } from '../../constants';
 
 // const DATA_URL = '../data';
-const DATA_URL = 'https://znz16300.github.io/assets/data';
+const DATA_URL = 'https://znz16300.github.io/sitedata/data';
 
 function extractIdFromUrl(url: string) {
   const match = url.match(
