@@ -143,7 +143,7 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
       }
     }
   } else {
-    const url = `../data/${tablePage.tableName}.json`;
+    const url = `${DATA_URL}/${tablePage.tableName}.json`;
     await axios
       .get(url)
       .then((response) => {
@@ -154,6 +154,8 @@ export async function getPage(force: boolean, apiKey: string, tablePage: Table) 
         pageCache[indexCach] = dataFiltred;
         if (pageCache[indexCach]) {
           const result = pageCache[indexCach];
+          // eslint-disable-next-line no-console
+          console.log(result);
           return result;
         }
       })
