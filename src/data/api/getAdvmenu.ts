@@ -43,7 +43,7 @@ async function getAdvmenu(force: boolean) {
       }
     }
   } else {
-    const url = `../data/${'1G1l3J4HHLOItVLYbrPL08ml3TtON_fAULcpecqn0vwM'}.json`;
+    const url = `https://znz16300.github.io/sitedata/data/${'1G1l3J4HHLOItVLYbrPL08ml3TtON_fAULcpecqn0vwM'}.json`;
     await axios
       .get(url)
       .then((response) => {
